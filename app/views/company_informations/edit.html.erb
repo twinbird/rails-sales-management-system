@@ -1,0 +1,19 @@
+<h1><%= t('.title') %></h1>
+
+<%= form_for(@company_information) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.fields_for :user_profiles do |u| %>
+    <div class="field">
+      <%= u.label :name %>
+      <%= u.text_field :name %>
+    </div>
+  <% end %>
+
+  <%= f.submit t('.submit') %>
+<% end %>
