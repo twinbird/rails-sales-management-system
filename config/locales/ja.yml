@@ -1,0 +1,11 @@
+ja:
+  devise:
+    signup: サインアップ
+    signin: サインイン
+    signout: サインアウト
+    characters_minimum: 文字以上で入力してください
+    forgot_your_password: パスワードをお忘れですか?
+    send_me_reset_password_instructions: パスワード再設定のメールを送信
+    new_password: 新しいパスワード
+    confirm_new_password: 新しいパスワード(再入力)
+    change_my_password: パスワードを変更
