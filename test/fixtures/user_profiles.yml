@@ -1,0 +1,9 @@
+yamada:
+  user: yamada
+  company_information: lemon
+  name: 山田 孝之
+
+sato:
+  user: sato
+  company_information: lime
+  name: 佐藤 健
