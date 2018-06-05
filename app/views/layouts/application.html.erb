@@ -9,11 +9,17 @@
   </head>
 
   <body>
+    <% if signed_in? %>
+    <nav>
+      <ul>
+        <li><%= link_to t('layout.customers'), customers_path %></li>
+        <li><%= link_to t('layout.mysetting'), edit_company_information_path(current_user.user_profile.company_information) %></li>
+        <li><%= link_to t('devise.signout'), destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </nav>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <% if signed_in? %>
-      <%= link_to t('devise.signout'), destroy_user_session_path, method: :delete %>
-    <% end %>
     <%= yield %>
   </body>
 </html>

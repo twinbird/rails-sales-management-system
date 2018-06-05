@@ -1,0 +1,28 @@
+<h1><%= t('.title') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.customer.name') %></th>
+      <th><%= t('activerecord.attributes.customer.payment_term') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.name %></td>
+        <td><%= customer.payment_term %></td>
+        <td><%= link_to t('.show'), customer %></td>
+        <td><%= link_to t('.edit'), edit_customer_path(customer) %></td>
+        <td><%= link_to t('.destroy'), customer, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+    <%= will_paginate @customers %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('.new_entry'), new_customer_path %>

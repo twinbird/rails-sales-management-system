@@ -1,0 +1,9 @@
+pepper:
+  name: pepper.co.ltd
+  payment_term: 月末締め翌月末払い
+  company_information: lime
+
+mint:
+  name: ミント株式会社
+  payment_term: 月末締め翌々月末払い
+  company_information: lemon

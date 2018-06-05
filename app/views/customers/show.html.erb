@@ -1,0 +1,12 @@
+<p>
+  <strong><%= t('.name') %>:</strong>
+  <%= @customer.name %>
+</p>
+
+<p>
+  <strong><%= t('.payment_term') %>:</strong>
+  <%= @customer.payment_term %>
+</p>
+
+<%= link_to t('.edit'), edit_customer_path(@customer) %> |
+<%= link_to t('.back'), customers_path %>

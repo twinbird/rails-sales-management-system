@@ -61,3 +61,5 @@ gem 'devise-i18n', '~> 1.6.2'
 group :development do
   gem 'letter_opener_web', '~> 1.3.4'
 end
+
+gem 'will_paginate', '~> 3.1.6'
