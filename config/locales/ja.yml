@@ -27,6 +27,7 @@ ja:
   layout:
     mysetting: ユーザ設定
     customers: 顧客情報の管理
+    please_entry_user_information: 他の機能の利用の前に、ユーザ情報の設定を行ってください
   company_informations:
     edit:
       title: ユーザ情報の登録
