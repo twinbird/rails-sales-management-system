@@ -19,9 +19,10 @@
         <td><%= link_to t('.destroy'), customer, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
       </tr>
     <% end %>
-    <%= will_paginate @customers %>
   </tbody>
 </table>
+
+<%= will_paginate @customers %>
 
 <br>
 

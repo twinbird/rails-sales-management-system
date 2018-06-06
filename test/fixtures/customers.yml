@@ -7,3 +7,10 @@ mint:
   name: ミント株式会社
   payment_term: 月末締め翌々月末払い
   company_information: lemon
+
+<% 90.times do |i| %>
+customer<%= i %>:
+  name: 顧客<%= i %>
+  payment_term: 月末締め翌月15日現金払い
+  company_information: lime
+<% end %>
