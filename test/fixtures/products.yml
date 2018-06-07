@@ -1,0 +1,9 @@
+crown:
+  name: クラウン
+  default_price: 5000000
+  company_information: lime
+
+macbook:
+  name: Mac book
+  default_price: 200000
+  company_information: lemon

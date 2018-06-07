@@ -1,0 +1,29 @@
+<h1><%= t('.title') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.product.name') %></th>
+      <th><%= t('activerecord.attributes.product.default_price') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.default_price %></td>
+        <td><%= link_to t('.show'), product %></td>
+        <td><%= link_to t('.edit'), edit_product_path(product) %></td>
+        <td><%= link_to t('.destroy'), product, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @products %>
+
+<br>
+
+<%= link_to t('.new_product'), new_product_path %>

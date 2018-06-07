@@ -1,0 +1,12 @@
+<p>
+  <strong><%= t('activerecord.attributes.product.name') %>:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.product.default_price') %>:</strong>
+  <%= @product.default_price %>
+</p>
+
+<%= link_to t('.edit'), edit_product_path(@product) %> |
+<%= link_to t('.back'), products_path %>
