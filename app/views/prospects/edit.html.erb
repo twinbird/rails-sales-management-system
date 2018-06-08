@@ -1,0 +1,6 @@
+<h1><%= t('.title') %></h1>
+
+<%= render 'form', prospect: @prospect %>
+
+<%= link_to t('.show'), @prospect %> |
+<%= link_to t('.back'), prospects_path %>

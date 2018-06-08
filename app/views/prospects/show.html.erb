@@ -1,0 +1,42 @@
+<p>
+  <strong><%= t('activerecord.attributes.prospect.title') %>:</strong>
+  <%= @prospect.title %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.prospect.customer') %>:</strong>
+  <%= @prospect.customer.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.prospect.rank') %>:</strong>
+  <%= @prospect.rank %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.prospect.prospect_amount') %>:</strong>
+  <%= @prospect.prospect_amount %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.prospect.prospect_order_date') %>:</strong>
+  <%= @prospect.prospect_order_date.to_s(:date) %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.prospect.prospect_earning_date') %>:</strong>
+  <%= @prospect.prospect_earning_date.to_s(:date) %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.prospect.distribute') %>:</strong>
+  <%= @prospect.distribute %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.prospect.user_profile') %>:</strong>
+  <%= @prospect.user_profile.name %>
+</p>
+
+<%= link_to t('.edit'), edit_prospect_path(@prospect) %> |
+<%= link_to t('.back'), prospects_path %>

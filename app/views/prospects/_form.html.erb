@@ -1,0 +1,57 @@
+<%= form_with(model: prospect, local: true) do |form| %>
+  <% if prospect.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(prospect.errors.count, "error") %> prohibited this prospect from being saved:</h2>
+
+      <ul>
+      <% prospect.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :prospect_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :customer_id %>
+    <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rank %>
+    <%= form.select :rank, Prospect.ranks.keys.map{|k| [k, k]} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prospect_amount %>
+    <%= form.text_field :prospect_amount, id: :prospect_prospect_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prospect_order_date %>
+    <%= form.datetime_select :prospect_order_date, id: :prospect_prospect_order_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prospect_earning_date %>
+    <%= form.datetime_select :prospect_earning_date, id: :prospect_prospect_earning_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :distribute %>
+    <%= form.text_field :distribute, id: :prospect_distribute %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_profile_id %>
+    <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]} %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
