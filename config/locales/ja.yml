@@ -30,6 +30,7 @@ ja:
         payment_term: 支払条件
       prospect:
         title: 案件名
+        description: 案件の説明
         customer_id: 顧客
         prospect_amount: 見込金額
         prospect_order_date: 受注見込日

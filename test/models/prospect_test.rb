@@ -30,4 +30,9 @@ class ProspectTest < ActiveSupport::TestCase
     assert_not @buy_new_computer.valid?
   end
 
+  test "description must be less than 800" do
+    @buy_new_computer.description = "a" * 801
+    assert_not @buy_new_computer.valid?
+  end
+
 end

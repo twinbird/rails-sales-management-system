@@ -17,6 +17,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
     <%= form.label :customer_id %>
     <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]} %>
   </div>

@@ -1,5 +1,6 @@
 buy_new_computer:
   title: 営業所新規開設に伴う新しいPCの導入
+  description: 営業所(10人程度)を関西に親切するためPCを5台程度導入予定とのこと
   customer: pepper
   rank: 2
   prospect_amount: 1000000
@@ -11,6 +12,7 @@ buy_new_computer:
 
 buy_new_taxi:
   title: 新しいタクシーの購入
+  description: 現在運行中のタクシーがかなり古いため入れ替え予定
   customer: mint
   rank: 1
   prospect_amount: 4000000
