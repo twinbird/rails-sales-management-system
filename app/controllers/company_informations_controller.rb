@@ -6,7 +6,7 @@ class CompanyInformationsController < ApplicationController
       @company_information = CompanyInformation.new
       @company_information.user_profiles.build.user = current_user
     else
-      @company_information = current_user.user_profile.company_information
+      @company_information = current_user_company
     end
   end
 
@@ -20,7 +20,7 @@ class CompanyInformationsController < ApplicationController
   end
 
   def update
-    @company_information = current_user.user_profile.company_information
+    @company_information = current_user_company
     if @company_information.update_attributes(company_information_params)
       flash.now[:notice] = t('.updated')
     end

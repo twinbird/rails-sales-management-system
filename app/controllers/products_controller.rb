@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = current_user.user_profile.company_information.products.build
+    @product = current_user_company.products.build
   end
 
   # GET /products/1/edit
@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = current_user.user_profile.company_information.products.build(product_params)
+    @product = current_user_company.products.build(product_params)
 
     respond_to do |format|
       if @product.save
@@ -66,7 +66,7 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find_by(id: params[:id], company_information: current_user.user_profile.company_information)
+      @product = Product.find_by(id: params[:id], company_information: current_user_company)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

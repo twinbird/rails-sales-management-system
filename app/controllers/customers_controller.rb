@@ -16,7 +16,7 @@ class CustomersController < ApplicationController
 
   # GET /customers/new
   def new
-    @customer = current_user.user_profile.company_information.customers.build
+    @customer = current_user_company.customers.build
   end
 
   # GET /customers/1/edit
@@ -26,7 +26,7 @@ class CustomersController < ApplicationController
   # POST /customers
   # POST /customers.json
   def create
-    @customer = current_user.user_profile.company_information.customers.build(customer_params)
+    @customer = current_user_company.customers.build(customer_params)
 
     respond_to do |format|
       if @customer.save
@@ -66,7 +66,7 @@ class CustomersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.find_by(id: params[:id], company_information_id: current_user.user_profile.company_information.id)
+      @customer = Customer.find_by(id: params[:id], company_information: current_user_company)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

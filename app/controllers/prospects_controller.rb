@@ -8,7 +8,7 @@ class ProspectsController < ApplicationController
   # GET /prospects
   # GET /prospects.json
   def index
-    @prospects = current_user.user_profile.company_information.prospects.order(:updated_at).paginate(page: params[:page])
+    @prospects = current_user_company.prospects.order(:updated_at).paginate(page: params[:page])
   end
 
   # GET /prospects/1
@@ -18,7 +18,7 @@ class ProspectsController < ApplicationController
 
   # GET /prospects/new
   def new
-    @prospect = current_user.user_profile.company_information.prospects.build
+    @prospect = current_user_company.prospects.build
   end
 
   # GET /prospects/1/edit
@@ -28,7 +28,7 @@ class ProspectsController < ApplicationController
   # POST /prospects
   # POST /prospects.json
   def create
-    @prospect = current_user.user_profile.company_information.prospects.build(prospect_params)
+    @prospect = current_user_company.prospects.build(prospect_params)
 
     respond_to do |format|
       if @prospect.save
@@ -68,15 +68,15 @@ class ProspectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_prospect
-      @prospect = Prospect.find_by(id: params[:id], company_information: current_user.user_profile.company_information)
+      @prospect = Prospect.find_by(id: params[:id], company_information: current_user_company)
     end
 
     def set_customers
-      @customers = current_user.user_profile.company_information.customers
+      @customers = current_user_company.customers
     end
 
     def set_users
-      @users = current_user.user_profile.company_information.user_profiles
+      @users = current_user_company.user_profiles
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
