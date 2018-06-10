@@ -28,7 +28,6 @@ ja:
       customer:
         name: 顧客名
         payment_term: 支払条件
-<<<<<<< HEAD
       prospect:
         title: 案件名
         customer_id: 顧客
@@ -38,15 +37,14 @@ ja:
         distribute: 商流
         user_profile_id: 担当者
         rank: 商談ランク
-=======
       product:
         name: 商品名
         default_price: 標準単価
->>>>>>> 511002dacdb407bcdb8962bc37f27d4c23d39385
   layout:
     mysetting: ユーザ設定
     customers: 顧客情報の管理
     prospects: 案件の管理
+    products: 商品情報の管理
     please_entry_user_information: 他の機能の利用の前に、ユーザ情報の設定を行ってください
   company_informations:
     edit:
