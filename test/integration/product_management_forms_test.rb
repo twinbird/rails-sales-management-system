@@ -5,7 +5,7 @@ class ProductManagementFormsTest < ActionDispatch::IntegrationTest
 
   def setup
     @sato = users(:sato)
-    # yamada belongs to a company that has many products 
+    # yamada belongs to a company that has many products
     @yamada = users(:yamada)
     @new_user = users(:new_user)
     @crown = products(:crown)
@@ -39,7 +39,7 @@ class ProductManagementFormsTest < ActionDispatch::IntegrationTest
 
     get products_path
     assert_response :success
-    assert_select 'a[href=?]', new_product_path 
+    assert_select 'a[href=?]', new_product_path
 
     get new_product_path
     assert_response :success
@@ -64,7 +64,7 @@ class ProductManagementFormsTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to product_path(@crown)
     follow_redirect!
-    
+
     assert_match /hoge/, response.body
   end
 

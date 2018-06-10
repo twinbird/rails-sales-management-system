@@ -13,15 +13,13 @@ class CompanyInformationsController < ApplicationController
   def create
     @company_information = CompanyInformation.new(company_information_params)
     @company_information.user_profiles.first.user = current_user
-    if @company_information.save
-      flash.now[:notice] = t('.created')
-    end
+    flash.now[:notice] = t('.created') if @company_information.save
     render 'edit'
   end
 
   def update
     @company_information = current_user_company
-    if @company_information.update_attributes(company_information_params)
+    if @company_information.update(company_information_params)
       flash.now[:notice] = t('.updated')
     end
     render 'edit'

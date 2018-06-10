@@ -41,8 +41,8 @@ class ProspectManagementFormsTest < ActionDispatch::IntegrationTest
                                                customer_id: customers(:pepper).id,
                                                rank: 'A',
                                                prospect_amount: 10000,
-                                               prospect_order_date: DateTime.now.to_s,
-                                               prospect_earning_date: DateTime.now.to_s,
+                                               prospect_order_date: Time.zone.now.to_s,
+                                               prospect_earning_date: Time.zone.now.to_s,
                                                distribute: "既存顧客",
                                                user_profile_id: users(:sato).id } }
     assert_response :success
@@ -53,8 +53,8 @@ class ProspectManagementFormsTest < ActionDispatch::IntegrationTest
                                                customer_id: customers(:pepper).id,
                                                rank: 'A',
                                                prospect_amount: 10000,
-                                               prospect_order_date: DateTime.now.to_s,
-                                               prospect_earning_date: DateTime.now.to_s,
+                                               prospect_order_date: Time.zone.now.to_s,
+                                               prospect_earning_date: Time.zone.now.to_s,
                                                distribute: "既存顧客",
                                                user_profile_id: users(:sato).id } }
     follow_redirect!

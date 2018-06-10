@@ -64,6 +64,7 @@ class CustomersController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
       @customer = Customer.find_by(id: params[:id], company_information: current_user_company)

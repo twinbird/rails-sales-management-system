@@ -1,11 +1,10 @@
 module ApplicationHelper
-
-  def is_initialized?
+  def initialized?
     !current_user.user_profile.nil?
   end
 
   def initialized_user!
-    unless is_initialized?
+    unless initialized?
       flash[:notice] = t('layout.please_entry_user_information')
       redirect_to mysetting_path
     end
@@ -16,5 +15,4 @@ module ApplicationHelper
     return current_user.user_profile if current_user.user_profile.nil?
     current_user.user_profile.company_information
   end
-
 end

@@ -60,6 +60,8 @@ gem 'devise-i18n', '~> 1.6.2'
 
 group :development do
   gem 'letter_opener_web', '~> 1.3.4'
+  gem 'rubocop', '~> 0.57.1', require: false
 end
 
 gem 'will_paginate', '~> 3.1.6'
+
