@@ -7,3 +7,10 @@ macbook:
   name: Mac book
   default_price: 200000
   company_information: lemon
+
+<% 99.times do |i| %>
+product_<%= i %>:
+  name: product <%= i %>
+  default_price: <%= 1000 * i %>
+  company_information: lemon
+<% end %>
