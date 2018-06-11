@@ -63,6 +63,7 @@ ja:
       destroy: 削除
       new_entry: 新しい顧客を追加
       are_you_sure: 本当に削除してよろしいですか?
+      search: 検索
     new:
       title: 新しい顧客情報の追加
       back: 戻る

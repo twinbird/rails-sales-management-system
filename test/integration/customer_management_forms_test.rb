@@ -89,4 +89,23 @@ class CustomerManagementFormsTest < ActionDispatch::IntegrationTest
     assert_select 'div.pagination'
   end
 
+  test "search listing customer" do
+    sign_in(@sato)
+
+    get customers_path
+    assert_response :success
+    assert_select 'a[href=?]', customer_path(@pepper)
+
+    # should found search
+    get customers_path, params: { query: 'pepper' }
+    assert_response :success
+    assert_select 'a[href=?]', customer_path(@pepper)
+    assert_select 'input[value=?]', 'pepper'
+
+    # shouldn't found search
+    get customers_path, params: { query: 'hoge' }
+    assert_select 'a[href=?]', customer_path(@pepper), count: 0
+    assert_select 'input[value=?]', 'hoge'
+  end
+
 end

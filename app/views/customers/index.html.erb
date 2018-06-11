@@ -1,5 +1,10 @@
 <h1><%= t('.title') %></h1>
 
+<%= form_tag customers_path, method: :get do %>
+  <%= text_field_tag :query, @query %>
+  <%= submit_tag t('.search') %>
+<% end %>
+
 <table>
   <thead>
     <tr>
