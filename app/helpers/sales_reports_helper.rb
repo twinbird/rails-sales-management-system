@@ -1,0 +1,2 @@
+module SalesReportsHelper
+end

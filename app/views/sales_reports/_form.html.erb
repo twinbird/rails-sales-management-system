@@ -1,0 +1,35 @@
+<%= form_with(model: sales_report, local: true) do |form| %>
+  <% if sales_report.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% sales_report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :customer %>
+    <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_profile %>
+    <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :occur_date %>
+    <%= form.datetime_select :occur_date, id: :sales_report_occur_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :sales_report_description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

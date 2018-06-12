@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180608135511) do
+ActiveRecord::Schema.define(version: 20180612002734) do
 
   create_table "company_informations", force: :cascade do |t|
     t.string "name"
@@ -52,6 +52,19 @@ ActiveRecord::Schema.define(version: 20180608135511) do
     t.index ["company_information_id"], name: "index_prospects_on_company_information_id"
     t.index ["customer_id"], name: "index_prospects_on_customer_id"
     t.index ["user_profile_id"], name: "index_prospects_on_user_profile_id"
+  end
+
+  create_table "sales_reports", force: :cascade do |t|
+    t.integer "company_information_id"
+    t.integer "customer_id"
+    t.integer "user_profile_id"
+    t.datetime "occur_date"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_information_id"], name: "index_sales_reports_on_company_information_id"
+    t.index ["customer_id"], name: "index_sales_reports_on_customer_id"
+    t.index ["user_profile_id"], name: "index_sales_reports_on_user_profile_id"
   end
 
   create_table "user_profiles", force: :cascade do |t|

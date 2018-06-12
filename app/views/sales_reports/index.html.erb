@@ -1,0 +1,38 @@
+<h1><%= t('.title') %></h1>
+
+<%= form_tag sales_reports_path, method: :get do %>
+  <%= text_field_tag :query, @query %>
+  <%= submit_tag t('.search') %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.sales_report.customer') %></th>
+      <th><%= t('activerecord.attributes.sales_report.user_profile') %></th>
+      <th><%= t('activerecord.attributes.sales_report.occur_date') %></th>
+      <th><%= t('activerecord.attributes.sales_report.description') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sales_reports.each do |sales_report| %>
+      <tr>
+        <td><%= sales_report.customer.name %></td>
+        <td><%= sales_report.user_profile.name %></td>
+        <td><%= sales_report.occur_date.to_s(:date) %></td>
+        <td><%= sales_report.description %></td>
+        <td><%= link_to t('.show'), sales_report %></td>
+        <td><%= link_to t('.edit'), edit_sales_report_path(sales_report) %></td>
+        <td><%= link_to t('.destroy'), sales_report, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @sales_reports %>
+
+<br>
+
+<%= link_to t('.new_sales_report'), new_sales_report_path %>

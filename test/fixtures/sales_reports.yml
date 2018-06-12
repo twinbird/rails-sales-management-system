@@ -1,0 +1,22 @@
+sales_to_mint:
+  company_information: lemon
+  customer: mint
+  user_profile: yamada
+  occur_date: 2018-06-12 
+  description: ミント株式会社へ定期訪問。大型案件の兆し有。
+
+sales_to_pepper:
+  company_information: lime
+  customer: pepper
+  user_profile: sato
+  occur_date: 2018-06-12
+  description: pepper株式会社へ営業交代のご挨拶。
+
+<% 90.times do |i| %>
+sales_reports<%= i %>:
+  company_information: lime
+  customer: pepper
+  user_profile: sato
+  occur_date: 2018-06-12
+  description: description
+<% end %>

@@ -1,0 +1,22 @@
+<p>
+  <strong><%= t('activerecord.attributes.sales_report.customer') %>:</strong>
+  <%= @sales_report.customer.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.sales_report.user_profile') %>:</strong>
+  <%= @sales_report.user_profile.name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.sales_report.occur_date') %>:</strong>
+  <%= @sales_report.occur_date.to_s(:date) %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.sales_report.description') %>:</strong>
+  <%= @sales_report.description %>
+</p>
+
+<%= link_to t('.edit'), edit_sales_report_path(@sales_report) %> |
+<%= link_to t('.back'), sales_reports_path %>

@@ -12,6 +12,7 @@
     <% if signed_in? %>
     <nav>
       <ul>
+        <li><%= link_to t('layout.sales_reports'), sales_reports_path %></li>
         <li><%= link_to t('layout.customers'), customers_path %></li>
         <li><%= link_to t('layout.prospects'), prospects_path %></li>
         <li><%= link_to t('layout.products'), products_path %></li>
