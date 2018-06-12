@@ -12,6 +12,13 @@ sales_to_pepper:
   occur_date: 2018-06-12
   description: pepper株式会社へ営業交代のご挨拶。
 
+visit_to_pepper:
+  company_information: lime
+  customer: pepper
+  user_profile: tanaka
+  occur_date: 2016-01-15
+  description: XX商談についてご訪問
+
 <% 90.times do |i| %>
 sales_reports<%= i %>:
   company_information: lime

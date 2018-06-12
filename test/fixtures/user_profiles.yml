@@ -7,3 +7,8 @@ sato:
   user: sato
   company_information: lime
   name: 佐藤 健
+
+tanaka:
+  user: tanaka
+  company_information: lime
+  name: 田中 健司

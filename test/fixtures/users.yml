@@ -6,6 +6,10 @@ sato:
   email: sato@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
+tanaka:
+  email: tanaka@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
 new_user:
   email: newuser@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
