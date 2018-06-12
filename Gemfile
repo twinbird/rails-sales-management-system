@@ -64,4 +64,5 @@ group :development do
 end
 
 gem 'will_paginate', '~> 3.1.6'
-
+gem 'jquery-rails', '~> 4.3.3'
+gem 'cocoon', '~> 1.2.11'

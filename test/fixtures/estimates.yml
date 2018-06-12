@@ -1,0 +1,49 @@
+buy_new_computer:
+  company_information: lemon
+  prospect: buy_new_computer
+  title: 営業所新規開設に伴う新しいPCの導入
+  customer: pepper
+  customer_name: pepper.co.ltd
+  estimate_no: 20180601131011
+  issue_date: 2018-06-12
+  due_date: 2018-06-12
+  due_date_pending_flag: false
+  payment_term: 月末締め翌月末払い
+  effective_date: 2018-07-12
+  tax_rate: 0.08
+  remarks: 無線LAN設営も同時に行う
+  user_profile: yamada
+
+buy_new_taxi:
+  company_information: lime
+  prospect: buy_new_taxi
+  title: 新しいタクシーの購入
+  customer: mint
+  customer_name: ミント株式会社
+  estimate_no: 20180601131011
+  issue_date: 2018-06-12
+  due_date: nil
+  due_date_pending_flag: true
+  payment_term: 月末締め翌々月末払い
+  effective_date: 2018-07-12
+  tax_rate: 0.08
+  remarks: 
+  user_profile: sato
+
+<% 99.times do |i| %>
+estimate<%= i %>:
+  company_information: lime
+  prospect: 
+  title: estimate_<%= i %>
+  customer: mint
+  customer_name: ミント株式会社
+  estimate_no: 20180601131011
+  issue_date: 2018-06-12
+  due_date: nil
+  due_date_pending_flag: true
+  payment_term: 月末締め翌々月末払い
+  effective_date: 2018-07-12
+  tax_rate: 0.08
+  remarks: 
+  user_profile: sato
+<% end %>

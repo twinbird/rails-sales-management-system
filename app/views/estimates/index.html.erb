@@ -1,0 +1,52 @@
+<h1><%= t('.title') %></h1>
+
+<%= form_tag estimates_path, method: :get do %>
+  <%= text_field_tag :query, @query %>
+  <%= submit_tag t('.search') %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.estimate.prospect_id') %></th>
+      <th><%= t('activerecord.attributes.estimate.title') %></th>
+      <th><%= t('activerecord.attributes.estimate.customer_name') %></th>
+      <th><%= t('activerecord.attributes.estimate.estimate_no') %></th>
+      <th><%= t('activerecord.attributes.estimate.issue_date') %></th>
+      <th><%= t('activerecord.attributes.estimate.due_date') %></th>
+      <th><%= t('activerecord.attributes.estimate.payment_term') %></th>
+      <th><%= t('activerecord.attributes.estimate.effective_date') %></th>
+      <th><%= t('activerecord.attributes.estimate.tax_rate') %></th>
+      <th><%= t('activerecord.attributes.estimate.remarks') %></th>
+      <th><%= t('activerecord.attributes.estimate.user_profile_id') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @estimates.each do |estimate| %>
+      <tr>
+        <td><%= estimate.prospect.try(:title) %></td>
+        <td><%= estimate.title %></td>
+        <td><%= estimate.customer_name %></td>
+        <td><%= estimate.estimate_no %></td>
+        <td><%= estimate.issue_date %></td>
+        <td><%= display_due_date(estimate) %></td>
+        <td><%= estimate.payment_term %></td>
+        <td><%= estimate.effective_date %></td>
+        <td><%= estimate.tax_rate %></td>
+        <td><%= estimate.remarks %></td>
+        <td><%= estimate.user_profile.name %></td>
+        <td><%= link_to t('.show'), estimate %></td>
+        <td><%= link_to t('.edit'), edit_estimate_path(estimate) %></td>
+        <td><%= link_to t('.destroy'), estimate, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @estimates %>
+
+<br>
+
+<%= link_to t('.new_estimate'), new_estimate_path %>

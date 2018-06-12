@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180612002734) do
+ActiveRecord::Schema.define(version: 20180612074739) do
 
   create_table "company_informations", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,42 @@ ActiveRecord::Schema.define(version: 20180612002734) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_information_id"], name: "index_customers_on_company_information_id"
+  end
+
+  create_table "estimate_details", force: :cascade do |t|
+    t.integer "estimate_id"
+    t.integer "display_order"
+    t.integer "product_id"
+    t.string "product_name"
+    t.decimal "quantity"
+    t.decimal "unit_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["estimate_id"], name: "index_estimate_details_on_estimate_id"
+    t.index ["product_id"], name: "index_estimate_details_on_product_id"
+  end
+
+  create_table "estimates", force: :cascade do |t|
+    t.integer "company_information_id"
+    t.integer "prospect_id"
+    t.string "title"
+    t.integer "customer_id"
+    t.string "customer_name"
+    t.string "estimate_no"
+    t.date "issue_date"
+    t.date "due_date"
+    t.boolean "due_date_pending_flag"
+    t.string "payment_term"
+    t.date "effective_date"
+    t.decimal "tax_rate"
+    t.text "remarks"
+    t.integer "user_profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_information_id"], name: "index_estimates_on_company_information_id"
+    t.index ["customer_id"], name: "index_estimates_on_customer_id"
+    t.index ["prospect_id"], name: "index_estimates_on_prospect_id"
+    t.index ["user_profile_id"], name: "index_estimates_on_user_profile_id"
   end
 
   create_table "products", force: :cascade do |t|
