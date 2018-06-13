@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180612074739) do
+ActiveRecord::Schema.define(version: 20180615063330) do
 
   create_table "company_informations", force: :cascade do |t|
     t.string "name"
@@ -61,6 +61,43 @@ ActiveRecord::Schema.define(version: 20180612074739) do
     t.index ["customer_id"], name: "index_estimates_on_customer_id"
     t.index ["prospect_id"], name: "index_estimates_on_prospect_id"
     t.index ["user_profile_id"], name: "index_estimates_on_user_profile_id"
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "display_order"
+    t.integer "product_id"
+    t.string "product_name"
+    t.decimal "quantity"
+    t.decimal "unit_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.index ["product_id"], name: "index_order_details_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "company_information_id"
+    t.integer "prospect_id"
+    t.integer "estimate_id"
+    t.string "title"
+    t.integer "customer_id"
+    t.string "customer_name"
+    t.string "order_no"
+    t.date "issue_date"
+    t.date "due_date"
+    t.string "payment_term"
+    t.decimal "tax_rate"
+    t.text "remarks"
+    t.integer "user_profile_id"
+    t.boolean "submitted_flag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_information_id"], name: "index_orders_on_company_information_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["estimate_id"], name: "index_orders_on_estimate_id"
+    t.index ["prospect_id"], name: "index_orders_on_prospect_id"
+    t.index ["user_profile_id"], name: "index_orders_on_user_profile_id"
   end
 
   create_table "products", force: :cascade do |t|

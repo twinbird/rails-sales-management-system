@@ -1,0 +1,67 @@
+<p>
+  <strong><%= t('activerecord.attributes.order.prospect_id') %>:</strong>
+  <%= @order.prospect.try(:title) %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.estimate_id') %>:</strong>
+  <%= @order.estimate.try(:title) %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.title') %>:</strong>
+  <%= @order.title %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.customer_id') %>:</strong>
+  <%= @order.customer.try(:name) %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.customer_name') %>:</strong>
+  <%= @order.customer_name %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.order_no') %>:</strong>
+  <%= @order.order_no %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.issue_date') %>:</strong>
+  <%= @order.issue_date %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.due_date') %>:</strong>
+  <%= @order.due_date %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.payment_term') %>:</strong>
+  <%= @order.payment_term %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.tax_rate') %>:</strong>
+  <%= @order.tax_rate %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.remarks') %>:</strong>
+  <%= @order.remarks %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.user_profile_id') %>:</strong>
+  <%= @order.user_profile.try(:name) %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.order.submitted_flag') %>:</strong>
+  <%= submitted_message(@order) %>
+</p>
+
+<%= link_to t('.edit'), edit_order_path(@order) %> |
+<%= link_to t('.back'), orders_path %>

@@ -1,0 +1,102 @@
+<%= form_with(model: order, local: true) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :prospect_id %>
+    <%= form.select :prospect_id, @prospects.map{|p| [p.title, p.id]}, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estimate_id %>
+    <%= form.select :estimate_id, @estimates.map{|e| [e.title, e.id]}, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :order_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :customer_id %>
+    <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order_no %>
+    <%= form.text_field :order_no, id: :order_order_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :issue_date %>
+    <%= form.date_select :issue_date, id: :order_issue_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due_date %>
+    <%= form.date_select :due_date, id: :order_due_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :payment_term %>
+    <%= form.text_field :payment_term, id: :order_payment_term %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax_rate %>
+    <%= form.text_field :tax_rate, id: :order_tax_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remarks %>
+    <%= form.text_area :remarks, id: :order_remarks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_profile_id %>
+    <%= form.select :user_profile_id, @user_profiles.map{|u| [u.name, u.id]} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :submitted_flag %>
+    <%= form.check_box :submitted_flag, id: :order_submitted_flag %>
+  </div>
+
+  <div class="details">
+    <%= link_to_add_association t('.add_detail'), form, :order_details,
+      data: {
+        association_insertion_node: '#order_details',
+        association_insertion_method: 'append'
+      }
+    %>
+    <table>
+      <thead>
+        <tr>
+          <th><%= t('activerecord.attributes.order_detail.display_order') %></th>
+          <th><%= t('activerecord.attributes.order_detail.product_id') %></th>
+          <th><%= t('activerecord.attributes.order_detail.product_name') %></th>
+          <th><%= t('activerecord.attributes.order_detail.quantity') %></th>
+          <th><%= t('activerecord.attributes.order_detail.unit_price') %></th>
+          <th><%= t('activerecord.attributes.order_detail.price') %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="order_details">
+        <%= form.fields_for :order_details do |detail| %>
+          <%= render 'order_detail_fields', f: detail %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

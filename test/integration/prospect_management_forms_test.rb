@@ -8,7 +8,7 @@ class ProspectManagementFormsTest < ActionDispatch::IntegrationTest
     # yamada has many prospects
     @yamada = users(:yamada)
     @new_user = users(:new_user)
-    @buy_new_computer = prospects(:buy_new_computer)
+    @buy_new_taxi = prospects(:buy_new_taxi)
   end
 
   test "can't access not setup user" do
@@ -68,20 +68,20 @@ class ProspectManagementFormsTest < ActionDispatch::IntegrationTest
 
     get prospects_path
     assert_response :success
-    assert_select 'a[href=?]', edit_prospect_path(@buy_new_computer)
+    assert_select 'a[href=?]', edit_prospect_path(@buy_new_taxi)
 
-    get edit_prospect_path(@buy_new_computer)
+    get edit_prospect_path(@buy_new_taxi)
     assert_response :success
 
     # input miss
-    patch prospect_path(@buy_new_computer), params: { prospect: { title: '' } }
+    patch prospect_path(@buy_new_taxi), params: { prospect: { title: '' } }
     assert_response :success
     assert_select '#error_explanation', count: 1
 
     # valid input
-    patch prospect_path(@buy_new_computer), params: { prospect: { title: '新車購入' } }
+    patch prospect_path(@buy_new_taxi), params: { prospect: { title: '新車購入' } }
 
-    assert_redirected_to prospect_path(@buy_new_computer)
+    assert_redirected_to prospect_path(@buy_new_taxi)
     follow_redirect!
 
     assert_not flash.empty?
@@ -93,12 +93,12 @@ class ProspectManagementFormsTest < ActionDispatch::IntegrationTest
 
     get prospects_path
     assert_response :success
-    assert_select 'a[href=?]', prospect_path(@buy_new_computer)
+    assert_select 'a[href=?]', prospect_path(@buy_new_taxi)
 
-    delete prospect_path(@buy_new_computer)
+    delete prospect_path(@buy_new_taxi)
     assert_redirected_to prospects_path
     follow_redirect!
-    assert_select 'a[href=?]', prospect_path(@buy_new_computer), count: 0
+    assert_select 'a[href=?]', prospect_path(@buy_new_taxi), count: 0
   end
 
   test "listing pagination" do
