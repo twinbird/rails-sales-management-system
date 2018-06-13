@@ -14,3 +14,8 @@ product_<%= i %>:
   default_price: <%= 1000 * i %>
   company_information: lemon
 <% end %>
+
+gala:
+  name: GALA
+  default_price: 7000000
+  company_information: lime

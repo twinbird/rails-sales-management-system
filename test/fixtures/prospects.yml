@@ -7,8 +7,8 @@ buy_new_computer:
   prospect_order_date: 2018-06-07 23:52:50
   prospect_earning_date: 2018-06-07 23:52:50
   distribute: 山中さんからの紹介
-  user_profile: sato
-  company_information: lime
+  user_profile: yamada
+  company_information: lemon
 
 buy_new_taxi:
   title: 新しいタクシーの購入
@@ -19,8 +19,8 @@ buy_new_taxi:
   prospect_order_date: 2018-06-07 23:52:50
   prospect_earning_date: 2018-06-07 23:52:50
   distribute: 既存顧客
-  user_profile: yamada
-  company_information: lemon
+  user_profile: sato
+  company_information: lime
 
 <% 99.times do |i| %>
 prospect_<%= i %>:
