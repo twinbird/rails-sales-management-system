@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
+  resources :delivery_slips
   resources :orders
+  resources :order_details, only: [:show]
   resources :estimates
   resources :sales_reports
   resources :prospects
   resources :products
   resources :customers
+  resources :company_informations, only: [:edit, :create, :update]
   devise_for :users
   root to: 'static_pages#index'
-  resources :company_informations, only: [:edit, :create, :update]
   get '/mysetting', to: 'company_informations#edit'
 
   if Rails.env.development?

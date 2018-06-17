@@ -47,3 +47,19 @@ detail_<%= i %>:
   quantity: <%= i %>
   unit_price: <%= i * 1000 %>
 <% end %>
+
+delivered_order_one:
+  order: delivered_order
+  display_order: 1
+  product: macbook
+  product_name: macbook
+  quantity: 10
+  unit_price: 150000
+
+delivered_order_two:
+  order: delivered_order
+  display_order: 2
+  product:
+  product_name: 1年保証
+  quantity: 10
+  unit_price: 10000

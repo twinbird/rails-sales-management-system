@@ -1,0 +1,38 @@
+<h1><%= t('.title') %></h1>
+
+<%= form_tag delivery_slips_path, method: :get do %>
+  <%= text_field_tag :query, @query %>
+  <%= submit_tag t('.search') %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.customer.name') %></th>
+      <th><%= t('activerecord.attributes.delivery_slip.order_id') %></th>
+      <th><%= t('activerecord.attributes.delivery_slip.delivery_date') %></th>
+      <th><%= t('activerecord.attributes.delivery_slip.remarks') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @delivery_slips.each do |delivery_slip| %>
+      <tr>
+        <td><%= delivery_slip.order.try(:customer).try(:name) %></td>
+        <td><%= delivery_slip.order.try(:title) %></td>
+        <td><%= delivery_slip.delivery_date %></td>
+        <td><%= delivery_slip.remarks %></td>
+        <td><%= link_to t('.show'), delivery_slip %></td>
+        <td><%= link_to t('.edit'), edit_delivery_slip_path(delivery_slip) %></td>
+        <td><%= link_to t('.destroy'), delivery_slip, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @delivery_slips %>
+
+<br>
+
+<%= link_to t('.new_delivery_slip'), new_delivery_slip_path %>

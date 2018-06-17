@@ -1,0 +1,6 @@
+<h1><%= t('.title') %></h1>
+
+<%= render 'form', delivery_slip: @delivery_slip %>
+
+<%= link_to t('.show'), @delivery_slip %> |
+<%= link_to t('.back'), delivery_slips_path %>
