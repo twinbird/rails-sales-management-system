@@ -1,0 +1,17 @@
+<p>
+  <strong><%= t('activerecord.attributes.delivery_slip.order_id') %>:</strong>
+  <%= @delivery_slip.order.try(:title) %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.delivery_slip.delivery_date') %>:</strong>
+  <%= @delivery_slip.delivery_date %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.delivery_slip.remarks') %>:</strong>
+  <%= @delivery_slip.remarks %>
+</p>
+
+<%= link_to t('.edit'), edit_delivery_slip_path(@delivery_slip) %> |
+<%= link_to t('.back'), delivery_slips_path %>

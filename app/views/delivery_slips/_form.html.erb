@@ -1,0 +1,68 @@
+<%= form_with(model: delivery_slip, local: true) do |form| %>
+  <% if delivery_slip.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% delivery_slip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :order_id %>
+    <%= form.select :order_id, @orders.map{|o| [o.title, o.id, data: { detail_path: order_detail_path(o)}]}, { include_blank: true }, id: 'delivery_slip_order_id' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :delivery_date %>
+    <%= form.date_select :delivery_date, id: :delivery_slip_delivery_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remarks %>
+    <%= form.text_area :remarks, id: :delivery_slip_remarks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_profile_id %>
+    <%= form.select :user_profile_id, @user_profiles.map{|u| [u.name, u.id]} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax_rate %>
+    <%= form.text_field :tax_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :submitted_flag %>
+    <%= form.check_box :submitted_flag %>
+  </div>
+
+  <div class="details">
+    <%= link_to_add_association t('.add_detail'), form, :delivery_slip_details,
+      data: {
+        association_insertion_node: '#delivery_slip_details',
+        association_insertion_method: 'append'
+      }
+    %>
+    <table>
+      <thead>
+        <tr>
+          <th><%= t('activerecord.attributes.delivery_slip_detail.display_order') %></th>
+          <th><%= t('activerecord.attributes.delivery_slip_detail.order_detail_id') %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="delivery_slip_details">
+        <%= form.fields_for :delivery_slip_details do |detail| %>
+          <%= render 'delivery_slip_detail_fields', f: detail %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

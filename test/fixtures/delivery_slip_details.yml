@@ -1,0 +1,16 @@
+delivered_order_one:
+  display_order: 1
+  delivery_slip: delivered_order
+  order_detail: delivered_order_one
+
+delivered_order_two:
+  display_order: 2
+  delivery_slip: delivered_order
+  order_detail: delivered_order_two
+
+<% 40.times do |i| %>
+delivered_order<%= i %>:
+  display_order: 1
+  delivery_slip: delivery_slip<%= i %>
+  order_detail: detail_<%= i %>
+<% end %>

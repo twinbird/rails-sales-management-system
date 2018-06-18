@@ -5,6 +5,7 @@ class Order < ApplicationRecord
   belongs_to :customer
   belongs_to :user_profile
   has_many :order_details, dependent: :destroy
+  has_many :delivery_slips, dependent: :restrict_with_error
   accepts_nested_attributes_for :order_details, allow_destroy: true, limit: 10
   before_validation :set_customer_name
 

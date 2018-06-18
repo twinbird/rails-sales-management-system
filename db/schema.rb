@@ -27,6 +27,31 @@ ActiveRecord::Schema.define(version: 20180618195819) do
     t.index ["company_information_id"], name: "index_customers_on_company_information_id"
   end
 
+  create_table "delivery_slip_details", force: :cascade do |t|
+    t.integer "display_order"
+    t.integer "delivery_slip_id"
+    t.integer "order_detail_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["delivery_slip_id"], name: "index_delivery_slip_details_on_delivery_slip_id"
+    t.index ["order_detail_id"], name: "index_delivery_slip_details_on_order_detail_id"
+  end
+
+  create_table "delivery_slips", force: :cascade do |t|
+    t.integer "company_information_id"
+    t.integer "order_id"
+    t.date "delivery_date"
+    t.decimal "tax_rate"
+    t.integer "user_profile_id"
+    t.text "remarks"
+    t.boolean "submitted_flag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_information_id"], name: "index_delivery_slips_on_company_information_id"
+    t.index ["order_id"], name: "index_delivery_slips_on_order_id"
+    t.index ["user_profile_id"], name: "index_delivery_slips_on_user_profile_id"
+  end
+
   create_table "estimate_details", force: :cascade do |t|
     t.integer "estimate_id"
     t.integer "display_order"
