@@ -8,7 +8,8 @@ class ProspectsController < ApplicationController
   # GET /prospects
   # GET /prospects.json
   def index
-    @prospects = current_user_company.prospects.order(:updated_at).paginate(page: params[:page])
+    @prospects = current_user_company.prospects.search(params[:query]).order(:updated_at).paginate(page: params[:page], per_page: 20)
+    @query = params[:query]
   end
 
   # GET /prospects/1

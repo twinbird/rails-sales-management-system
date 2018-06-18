@@ -109,4 +109,16 @@ class ProspectManagementFormsTest < ActionDispatch::IntegrationTest
     assert_select 'div.pagination'
   end
 
+  test "search prospects" do
+    sign_in(@yamada)
+
+    get prospects_path
+    assert_response :success
+    assert_select 'tbody>tr', count: 20
+
+    get prospects_path, params: { query: '営業所' }
+    assert_response :success
+    assert_select 'tbody>tr', count: 1
+  end
+
 end

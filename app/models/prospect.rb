@@ -9,4 +9,8 @@ class Prospect < ApplicationRecord
   validates :description, length: { maximum: 800 }
   validates :rank, presence: true
   validates :distribute, length: { maximum: 100 }
+
+  scope :search, -> (word) {
+    joins(:customer).where("title LIKE :word OR customers.name LIKE :word", word: "\%#{word}\%")
+  }
 end
