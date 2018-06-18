@@ -119,6 +119,7 @@ class ProspectManagementFormsTest < ActionDispatch::IntegrationTest
     get prospects_path, params: { query: '営業所' }
     assert_response :success
     assert_select 'tbody>tr', count: 1
+    assert_select 'input[value=?]', '営業所'
   end
 
 end
