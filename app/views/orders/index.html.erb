@@ -36,7 +36,7 @@
         <td><%= order.payment_term %></td>
         <td><%= order.remarks %></td>
         <td><%= order.user_profile.name %></td>
-        <td><%= submitted_message(order) %></td>
+        <td><%= submitted_order_message(order) %></td>
         <td><%= link_to t('.show'), order %></td>
         <td><%= link_to t('.edit'), edit_order_path(order) %></td>
         <td><%= link_to t('.destroy'), order, method: :delete, data: { confirm: t('.are_you_sure') } %></td>

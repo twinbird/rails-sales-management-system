@@ -4,11 +4,11 @@ module EstimatesHelper
     t('estimates.helper.due_date_pending')
   end
 
-  def submitted_message(estimate)
+  def submitted_estimate_message(estimate)
     if estimate.submitted_flag
-      t('estimate.helper.submitted')
+      t('estimates.helper.submitted')
     else
-      t('estimate.helper.unsubmitted')
+      t('estimates.helper.unsubmitted')
     end
   end
 end
