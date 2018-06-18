@@ -80,4 +80,17 @@ class ProductManagementFormsTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
 
+  test "search products" do
+    sign_in(@yamada)
+
+    get products_path
+    assert_response :success
+    assert_select 'tbody>tr', count: 20
+
+    get products_path, params: { query: 'Mac' }
+    assert_response :success
+    assert_select 'tbody>tr', count: 1
+    assert_select 'input[value=?]', 'Mac'
+  end
+
 end

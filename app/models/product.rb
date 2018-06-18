@@ -7,4 +7,8 @@ class Product < ApplicationRecord
   scope :ours, -> (user) {
     where(company_information: user.user_profile.company_information)
   }
+
+  scope :search, -> (word) {
+    where("name LIKE :word", word: "\%#{word}\%")
+  }
 end
