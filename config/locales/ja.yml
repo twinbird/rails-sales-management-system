@@ -56,6 +56,7 @@ ja:
         tax_rate: 消費税率
         remarks: 備考
         user_profile_id: 担当営業
+        submitted_flag: 提出済み
       estimate_detail:
         display_order: 表示順
         product_id: 商品
@@ -236,6 +237,9 @@ ja:
       add_detail: 明細を追加
     estimate_detail_fields:
       remove_detail: 明細を削除
+    helper:
+      submitted: 提出済
+      unsubmitted: 未提出
   orders:
     index:
       title: 注文の管理

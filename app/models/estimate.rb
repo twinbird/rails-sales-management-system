@@ -21,6 +21,7 @@ class Estimate < ApplicationRecord
   validates :tax_rate, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 1 }
   validates :remarks, length: { maximum: 1000 }
   validate :details_count_validate
+  validates :submitted_flag, inclusion: { in: [true, false] }
 
   scope :search, -> (word) {
     joins(:customer).joins(:user_profile).where("title LIKE :word OR customers.name LIKE :word OR user_profiles.name LIKE :word", word: "\%#{word}\%")

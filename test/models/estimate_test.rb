@@ -111,4 +111,9 @@ class EstimateTest < ActiveSupport::TestCase
     assert_not @buy_new_computer.valid?
   end
 
+  test "submitted flag must be true or false" do
+    @buy_new_computer.submitted_flag = nil
+    assert_not @buy_new_computer.valid?
+  end
+
 end

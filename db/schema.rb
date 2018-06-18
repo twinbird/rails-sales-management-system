@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180615063330) do
+ActiveRecord::Schema.define(version: 20180618195819) do
 
   create_table "company_informations", force: :cascade do |t|
     t.string "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20180615063330) do
     t.integer "user_profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "submitted_flag"
     t.index ["company_information_id"], name: "index_estimates_on_company_information_id"
     t.index ["customer_id"], name: "index_estimates_on_customer_id"
     t.index ["prospect_id"], name: "index_estimates_on_prospect_id"

@@ -69,6 +69,11 @@
     <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]} %>
   </div>
 
+  <div class="field">
+    <%= form.label :submitted_flag %>
+    <%= form.check_box :submitted_flag, id: :estimate_submitted_flag %>
+  </div>
+
   <div class="details">
     <%= link_to_add_association t('.add_detail'), form, :estimate_details,
       data: {

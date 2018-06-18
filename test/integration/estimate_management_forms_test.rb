@@ -73,6 +73,7 @@ class EstimateManagementFormsTest < ActionDispatch::IntegrationTest
                                                payment_term: '月末締め翌々月現金払い',
                                                effective_date: Time.zone.now.next_month,
                                                tax_rate: 0.08,
+                                               submitted_flag: false,
                                                remarks: '冬タイヤは含まない' } }
     assert_response :success
     assert flash.empty?
@@ -90,6 +91,7 @@ class EstimateManagementFormsTest < ActionDispatch::IntegrationTest
                                                tax_rate: 0.08,
                                                remarks: '冬タイヤは含まない',
                                                user_profile_id: @sato.id,
+                                               submitted_flag: false,
                                                estimate_details_attributes: [
                                                  {
                                                    display_order: 1,
