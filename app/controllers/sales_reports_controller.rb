@@ -9,6 +9,7 @@ class SalesReportsController < ApplicationController
   # GET /sales_reports.json
   def index
     @sales_reports = current_user_company.sales_reports.search(params[:query]).order(updated_at: :desc).paginate(page: params[:page], per_page: 20)
+    @query = params[:query]
   end
 
   # GET /sales_reports/1

@@ -105,21 +105,25 @@ class SalesReportManageFormsTest < ActionDispatch::IntegrationTest
     get sales_reports_path, params: { query: '田中' }
     assert_response :success
     assert_select 'tbody>tr', count: 1
+    assert_select 'input[value=?]', '田中'
 
     # specify partial customer name
     get sales_reports_path, params: { query: 'peppe' }
     assert_response :success
     assert_select 'tbody>tr', count: 20
+    assert_select 'input[value=?]', 'peppe'
 
     # specify partial description
     get sales_reports_path, params: { query: 'XX商談に' }
     assert_response :success
     assert_select 'tbody>tr', count: 1
+    assert_select 'input[value=?]', 'XX商談に'
 
     # specify other customer name
     get sales_reports_path, params: { query: 'ミント株式会社' }
     assert_response :success
     assert_select 'tbody>tr', count: 0
+    assert_select 'input[value=?]', 'ミント株式会社'
   end
 
 end
