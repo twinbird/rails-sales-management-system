@@ -26,7 +26,7 @@ buy_new_taxi:
   due_date: 2018-09-02
   payment_term: 月末締め翌々月末払い
   tax_rate: 0.08
-  remarks: 
+  remarks: ''
   user_profile: sato
   submitted_flag: false
 
@@ -43,7 +43,7 @@ order<%= i %>:
   due_date: 2018-06-29
   payment_term: 月末締め翌々月末払い
   tax_rate: 0.08
-  remarks: 
+  remarks: ''
   user_profile: sato
   submitted_flag: false
 <% end %>
