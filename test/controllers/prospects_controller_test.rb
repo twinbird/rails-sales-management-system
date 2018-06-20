@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProspectManagementFormsTest < ActionDispatch::IntegrationTest
+class ProspectsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   def setup
@@ -37,26 +37,31 @@ class ProspectManagementFormsTest < ActionDispatch::IntegrationTest
     assert_select 'form[action=?]', prospects_path
 
     # input miss
-    post prospects_path, params: { prospect: { title: '',
-                                               customer_id: customers(:pepper).id,
-                                               rank: 'A',
-                                               prospect_amount: 10000,
-                                               prospect_order_date: Time.zone.now.to_s,
-                                               prospect_earning_date: Time.zone.now.to_s,
-                                               distribute: "既存顧客",
-                                               user_profile_id: users(:sato).id } }
+    assert_no_difference('Prospect.count') do
+      post prospects_path, params: { prospect: { title: '',
+                                                 customer_id: customers(:pepper).id,
+                                                 rank: 'A',
+                                                 prospect_amount: 10000,
+                                                 prospect_order_date: Time.zone.now.to_s,
+                                                 prospect_earning_date: Time.zone.now.to_s,
+                                                 distribute: "既存顧客",
+                                                 user_profile_id: users(:sato).id } }
+    end
     assert_response :success
     assert_select '#error_explanation', count: 1
 
     # valid input
-    post prospects_path, params: { prospect: { title: '案件1',
-                                               customer_id: customers(:pepper).id,
-                                               rank: 'A',
-                                               prospect_amount: 10000,
-                                               prospect_order_date: Time.zone.now.to_s,
-                                               prospect_earning_date: Time.zone.now.to_s,
-                                               distribute: "既存顧客",
-                                               user_profile_id: users(:sato).id } }
+    assert_difference('Prospect.count', 1) do
+      post prospects_path, params: { prospect: { title: '案件1',
+                                                 customer_id: customers(:pepper).id,
+                                                 rank: 'A',
+                                                 prospect_amount: 10000,
+                                                 prospect_order_date: Time.zone.now.to_s,
+                                                 prospect_earning_date: Time.zone.now.to_s,
+                                                 distribute: "既存顧客",
+                                                 user_profile_id: users(:sato).id } }
+    end
+    assert_redirected_to Prospect.last
     follow_redirect!
     assert_not flash.empty?
 
@@ -75,17 +80,18 @@ class ProspectManagementFormsTest < ActionDispatch::IntegrationTest
 
     # input miss
     patch prospect_path(@buy_new_taxi), params: { prospect: { title: '' } }
+    assert_not_equal @buy_new_taxi.reload.title, ''
     assert_response :success
     assert_select '#error_explanation', count: 1
 
     # valid input
     patch prospect_path(@buy_new_taxi), params: { prospect: { title: '新車購入' } }
 
+    assert_equal @buy_new_taxi.reload.title, '新車購入'
     assert_redirected_to prospect_path(@buy_new_taxi)
     follow_redirect!
 
     assert_not flash.empty?
-    assert_match /新車購入/, response.body
   end
 
   test "destroy prospect" do
@@ -95,7 +101,9 @@ class ProspectManagementFormsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'a[href=?]', prospect_path(@buy_new_taxi)
 
-    delete prospect_path(@buy_new_taxi)
+    assert_difference('Prospect.count', -1) do
+      delete prospect_path(@buy_new_taxi)
+    end
     assert_redirected_to prospects_path
     follow_redirect!
     assert_select 'a[href=?]', prospect_path(@buy_new_taxi), count: 0

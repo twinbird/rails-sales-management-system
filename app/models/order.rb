@@ -30,8 +30,8 @@ class Order < ApplicationRecord
   private
 
     def details_count_validate
-      errors.add(:order_details, 'too_many_details') if order_details.size > MAX_DETAILS_SIZE
-      errors.add(:order_details, 'too_few_details') if order_details.size < MIN_DETAILS_SIZE
+      errors.add(:order_details, 'too many details') if order_details.size > MAX_DETAILS_SIZE
+      errors.add(:order_details, 'too few details') if order_details.size < MIN_DETAILS_SIZE
     end
 
     def set_customer_name

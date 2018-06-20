@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProductManagementFormsTest < ActionDispatch::IntegrationTest
+class ProductsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   def setup
@@ -44,11 +44,21 @@ class ProductManagementFormsTest < ActionDispatch::IntegrationTest
     get new_product_path
     assert_response :success
 
-    post products_path, params: { product: { name: '品物1',
-                                             default_price: 1000 } }
-    follow_redirect!
+    # miss post(name is empty)
+    assert_no_difference('Product.count') do
+      post products_path, params: { product: { name: '',
+                                               default_price: 1000 } }
+    end
+    assert_response :success
+    assert_select '#error_explanation'
 
-    assert_match /品物1/, response.body
+    # correct post
+    assert_difference('Product.count', 1) do
+      post products_path, params: { product: { name: '品物1',
+                                               default_price: 1000 } }
+    end
+    assert_redirected_to Product.last
+    follow_redirect!
   end
 
   test "edit products" do
@@ -60,12 +70,17 @@ class ProductManagementFormsTest < ActionDispatch::IntegrationTest
 
     get edit_product_path(@crown)
     assert_response :success
+
+    # miss post(name is empty)
+    patch product_path(@crown), params: { product: { name: '' } }
+    assert_not_equal @crown.reload.name, ''
+
+    # correct post
     patch product_path(@crown), params: { product: { name: 'hoge' } }
 
+    assert_equal @crown.reload.name, 'hoge'
     assert_redirected_to product_path(@crown)
     follow_redirect!
-
-    assert_match /hoge/, response.body
   end
 
   test "destroy products" do
@@ -75,7 +90,9 @@ class ProductManagementFormsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'a[href=?]', product_path(@crown), count: 2
 
-    delete product_path(@crown)
+    assert_difference('Product.count', -1) do
+      delete product_path(@crown)
+    end
     assert_redirected_to products_path
     assert_not flash.empty?
   end

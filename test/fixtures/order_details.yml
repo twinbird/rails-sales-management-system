@@ -63,3 +63,19 @@ delivered_order_two:
   product_name: 1年保証
   quantity: 10
   unit_price: 10000
+
+pending_delivery_order_one:
+  order: pending_delivery_order
+  display_order: 1
+  product: thinkpad
+  product_name: thinkpad
+  quantity: 100
+  unit_price: 100000
+
+pending_delivery_order_two:
+  order: delivered_order
+  display_order: 2
+  product:
+  product_name: 1年保証
+  quantity: 100
+  unit_price: 10000

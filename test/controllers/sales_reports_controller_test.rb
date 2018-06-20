@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SalesReportManageFormsTest < ActionDispatch::IntegrationTest
+class SalesReportsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   def setup
@@ -37,10 +37,24 @@ class SalesReportManageFormsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'form[action=?]', sales_reports_path
 
-    post sales_reports_path, params: { sales_report: { customer_id: @pepper.id,
-                                                       user_profile_id: @sato.id,
-                                                       occur_date: Time.zone.now,
-                                                       description: "this is sales report" } }
+    # miss post(empty description)
+    assert_no_difference('SalesReport.count') do
+      post sales_reports_path, params: { sales_report: { customer_id: @pepper.id,
+                                                         user_profile_id: @sato.id,
+                                                         occur_date: Time.zone.now,
+                                                         description: "" } }
+    end
+    assert_response :success
+    assert_select '#error_explanation'
+
+    # correct post
+    assert_difference('SalesReport.count', 1) do
+      post sales_reports_path, params: { sales_report: { customer_id: @pepper.id,
+                                                         user_profile_id: @sato.id,
+                                                         occur_date: Time.zone.now,
+                                                         description: "this is sales report" } }
+    end
+    assert_redirected_to SalesReport.last
     follow_redirect!
     assert_not flash.empty?
     assert_match /this is sales report/, response.body
@@ -57,12 +71,17 @@ class SalesReportManageFormsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'form[action=?]', sales_report_path(@sales_to_mint)
 
+    # miss post (description empty)
+    patch sales_report_path(@sales_to_mint), params: { sales_report: { description: "" } }
+    assert_response :success
+    assert_select '#error_explanation'
+
+    # correct post
     patch sales_report_path(@sales_to_mint), params: { sales_report: { description: "sales report!" } }
     assert_redirected_to sales_report_path(@sales_to_mint)
     follow_redirect!
-
+    assert_equal @sales_to_mint.reload.description, "sales report!"
     assert_not flash.empty?
-    assert_match /sales report!/, response.body
   end
 
   test "destroy sales report" do
@@ -73,7 +92,9 @@ class SalesReportManageFormsTest < ActionDispatch::IntegrationTest
 
     assert_select 'a[href=?]', sales_report_path(@sales_to_mint), count: 2
 
-    delete sales_report_path(@sales_to_mint)
+    assert_difference('SalesReport.count', -1) do
+      delete sales_report_path(@sales_to_mint)
+    end
     assert_redirected_to sales_reports_path
     follow_redirect!
 

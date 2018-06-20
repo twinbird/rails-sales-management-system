@@ -14,3 +14,8 @@ customer<%= i %>:
   payment_term: 月末締め翌月15日現金払い
   company_information: lime
 <% end %>
+
+no_use_customer:
+  name: no use customer
+  payment_term: 月末締め翌々月末現金
+  company_information: lime

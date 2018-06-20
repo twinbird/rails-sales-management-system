@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CustomerManagementFormsTest < ActionDispatch::IntegrationTest
+class CustomersControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   def setup
@@ -34,8 +34,20 @@ class CustomerManagementFormsTest < ActionDispatch::IntegrationTest
     get new_customer_path
     assert_response :success
 
-    post customers_path, params: { customer: { name: '顧客1',
-                                               payment_term: '月末締め翌々月末現金支払い' } }
+    # miss post(name is empty)
+    assert_no_difference('Customer.count') do
+      post customers_path, params: { customer: { name: '',
+                                                 payment_term: '月末締め翌々月末現金支払い' } }
+    end
+    assert_response :success
+    assert_select '#error_explanation'
+
+    # correct post
+    assert_difference('Customer.count', 1) do
+      post customers_path, params: { customer: { name: '顧客1',
+                                                 payment_term: '月末締め翌々月末現金支払い' } }
+    end
+    assert_redirected_to Customer.last
     follow_redirect!
     assert_not flash.empty?
   end
@@ -55,6 +67,7 @@ class CustomerManagementFormsTest < ActionDispatch::IntegrationTest
                                                         payment_term: '月末締め翌月末現金払い' } }
     assert_response :success
     assert_select '#error_explanation', count: 1
+    assert_not_equal @pepper.reload.name, ''
 
     # valid input
     patch customer_path(@pepper), params: { customer: { name: '顧客1',
@@ -62,6 +75,8 @@ class CustomerManagementFormsTest < ActionDispatch::IntegrationTest
     assert_redirected_to @pepper
     follow_redirect!
     assert_not flash.empty?
+
+    assert_equal @pepper.reload.name, '顧客1'
   end
 
   test "delete customer" do
@@ -71,7 +86,17 @@ class CustomerManagementFormsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'a[href=?]', customer_path(@pepper)
 
-    delete customer_path(@pepper)
+    # pepper should not delete with restrict_with_error
+    assert_no_difference('Customer.count') do
+      delete customer_path(@pepper)
+    end
+    assert_redirected_to customers_path
+    assert_not flash.empty?
+
+    # no use customer can be destroy
+    assert_difference('Customer.count', -1) do
+      delete customer_path(customers(:no_use_customer))
+    end
     assert_redirected_to customers_path
     assert_not flash.empty?
   end

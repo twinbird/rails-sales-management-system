@@ -63,3 +63,18 @@ delivered_order:
   remarks: このオーダーは納品済のテストデータ
   user_profile: sato
   submitted_flag: true
+
+pending_delivery_order:
+  company_information: lime
+  prospect:
+  estimate:
+  title: ThinkPad100台
+  customer: mint
+  customer_name: ミント株式会社
+  order_no: 20180302130001
+  issue_date: 2018-03-02
+  due_date: 2018-03-15
+  payment_term: 月末締め翌々月末払い
+  tax_rate: 0.08
+  remarks: このオーダーは未納品のテストデータ
+  user_profile: sato
