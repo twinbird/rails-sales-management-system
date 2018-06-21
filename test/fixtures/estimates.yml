@@ -28,7 +28,7 @@ buy_new_taxi:
   payment_term: 月末締め翌々月末払い
   effective_date: 2018-07-12
   tax_rate: 0.08
-  remarks: 
+  remarks: ''
   user_profile: sato
   submitted_flag: true
 
@@ -46,7 +46,7 @@ estimate<%= i %>:
   payment_term: 月末締め翌々月末払い
   effective_date: 2018-07-12
   tax_rate: 0.08
-  remarks: 
+  remarks: ''
   user_profile: sato
   submitted_flag: false
 <% end %>
