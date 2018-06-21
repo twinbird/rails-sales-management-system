@@ -7,6 +7,7 @@ class CompanyInformation < ApplicationRecord
   has_many :sales_reports, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :delivery_slips, dependent: :destroy
+  has_many :earnings, dependent: :destroy
   accepts_nested_attributes_for :user_profiles
 
   validates :name, presence: true, length: { maximum: 50 }

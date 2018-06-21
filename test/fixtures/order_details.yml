@@ -73,7 +73,7 @@ pending_delivery_order_one:
   unit_price: 100000
 
 pending_delivery_order_two:
-  order: delivered_order
+  order: pending_delivery_order
   display_order: 2
   product:
   product_name: 1年保証

@@ -1,0 +1,36 @@
+<h1><%= t('.title') %></h1>
+
+<%= form_tag earnings_path, method: :get do %>
+  <%= text_field_tag :query, @query %>
+  <%= submit_tag t('.search') %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.earning.order_id') %></th>
+      <th><%= t('activerecord.attributes.earning.occur_date') %></th>
+      <th><%= t('activerecord.attributes.earning.amount') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @earnings.each do |earning| %>
+      <tr>
+        <td><%= earning.order&.title %></td>
+        <td><%= earning.occur_date %></td>
+        <td><%= earning.amount %></td>
+        <td><%= link_to t('.show'), earning %></td>
+        <td><%= link_to t('.edit'), edit_earning_path(earning) %></td>
+        <td><%= link_to t('.destroy'), earning, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate(@earnings) %>
+
+<br>
+
+<%= link_to t('.add_new_earning'), new_earning_path %>

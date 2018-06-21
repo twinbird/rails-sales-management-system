@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :earnings
   resources :delivery_slips
   resources :orders
   resources :order_details, only: [:show]

@@ -1,0 +1,30 @@
+<%= form_with(model: earning, local: true) do |form| %>
+  <% if earning.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% earning.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :order_id %>
+    <%= form.select :order_id, @orders.pluck(:title, :id) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :occur_date %>
+    <%= form.date_select :occur_date, id: :earning_occur_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount, id: :earning_amount %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

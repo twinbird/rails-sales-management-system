@@ -1,0 +1,13 @@
+delivered_order_earning:
+  company_information: lime
+  order: delivered_order
+  occur_date: 2017-12-22
+  amount: 1600000
+
+<% 20.times do |i| %>
+delivered_order_earning<%= i %>:
+  company_information: lime
+  order: order<%= i %>
+  occur_date: 2017-12-19
+  amount: <%= i * 1000 %>
+<% end %>

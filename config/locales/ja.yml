@@ -19,9 +19,10 @@ ja:
       customer: 顧客
       prospect: 案件
       estimate: 見積
-      orders: 受注
+      order: 受注
       product: 商品
-      sales_reports: 営業報告
+      sales_report: 営業報告
+      earning: 売上
     attributes:
       company_information:
         name: 会社名
@@ -103,6 +104,10 @@ ja:
       delivery_slip_detail:
         display_order: 表示順
         order_detail_id: 注文明細
+      earning:
+        order_id: 注文名
+        occur_date: 売上日
+        amount: 売上金額
     errors:
       messages:
         too_many_details: 明細が多すぎます
@@ -113,7 +118,8 @@ ja:
     prospects: 案件の管理
     estimates: 見積の管理
     orders: 注文の管理
-    delivery_slip: 納品の管理
+    delivery_slips: 納品の管理
+    earnings: 売上の管理
     products: 商品情報の管理
     sales_reports: 営業報告
     please_entry_user_information: 他の機能の利用の前に、ユーザ情報の設定を行ってください
@@ -312,3 +318,28 @@ ja:
       add_detail: 明細の追加
     delivery_slip_detail_fields:
       remove_detail: 明細を削除
+  earnings:
+    index:
+      title: 売上の管理
+      show: 詳細
+      edit: 編集
+      destroy: 削除
+      are_you_sure: 本当に削除してよろしいですか?
+      search: 検索
+      add_new_earning: 売上の登録
+    new:
+      title: 売上の登録
+      back: 戻る
+    create:
+      earning_was_successfully_created: 売上を登録しました
+    edit:
+      title: 売上の変更
+      show: 詳細
+      back: 戻る
+    update:
+      earning_was_successfully_updated: 売上の情報を更新しました
+    show:
+      edit: 編集
+      back: 戻る
+    destroy:
+      earning_was_successfully_destroyed: 売上の情報を削除しました
