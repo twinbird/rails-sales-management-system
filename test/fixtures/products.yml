@@ -8,6 +8,11 @@ macbook:
   default_price: 200000
   company_information: lemon
 
+egg_break_machine:
+  name: 全自動卵割り機
+  default_price: 10000
+  company_information: lemon
+
 <% 99.times do |i| %>
 product_<%= i %>:
   name: product <%= i %>

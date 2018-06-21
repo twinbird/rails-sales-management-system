@@ -38,6 +38,14 @@ buy_new_taxi_two:
   quantity: 5
   unit_price: 500000
 
+non_ordered_estimate_one:
+  estimate: non_ordered_estimate
+  display_order: 1
+  product:
+  product_name: HPのサーバ
+  quantity: 1
+  unit_price: 4000000
+
 <% 99.times do |i| %>
 detail_<%= i %>:
   estimate: estimate_<%= i %>

@@ -2,6 +2,7 @@ class Prospect < ApplicationRecord
   belongs_to :customer
   belongs_to :user_profile
   belongs_to :company_information
+  has_one :estimate, dependent: :restrict_with_error
 
   enum rank: { A: 0, B: 1, C: 2, D: 3 }
 

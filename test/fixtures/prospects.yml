@@ -22,6 +22,18 @@ buy_new_taxi:
   user_profile: sato
   company_information: lime
 
+introduce_new_garage:
+  title: 新しいガレージの導入
+  description: ガレージ老朽化のため建造したいとの事
+  customer: mint
+  rank: 1
+  prospect_amount: 10000000
+  prospect_order_date: 2018-06-20 23:52:50
+  prospect_earning_date: 2018-08-07 23:52:50
+  distribute: 既存顧客
+  user_profile: sato
+  company_information: lime
+
 <% 99.times do |i| %>
 prospect_<%= i %>:
   title: タイトル

@@ -11,6 +11,7 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
     @buy_new_taxi_prospect = prospects(:buy_new_taxi)
     @customer_mint = customers(:mint)
     @crown = products(:crown)
+    @non_ordered_estimate = estimates(:non_ordered_estimate)
   end
 
   test "can't access not setup user" do
@@ -140,16 +141,33 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
 
     get estimates_path
     assert_response :success
-    assert_select 'tbody>tr', count: 1
+    assert_select 'tbody>tr', count: 2
 
     assert_difference('Estimate.count', -1) do
+      delete estimate_path(@non_ordered_estimate)
+    end
+    assert_redirected_to estimates_path
+    follow_redirect!
+    assert_not flash.empty?
+
+    assert_select 'tbody>tr', count: 1
+  end
+
+  test "can't destroy ordered estimate" do
+    sign_in(@yamada)
+
+    get estimates_path
+    assert_response :success
+    assert_select 'tbody>tr', count: 2
+
+    assert_no_difference('Estimate.count') do
       delete estimate_path(@buy_new_computer)
     end
     assert_redirected_to estimates_path
     follow_redirect!
     assert_not flash.empty?
 
-    assert_select 'tbody>tr', count: 0
+    assert_select 'tbody>tr', count: 2
   end
 
 end

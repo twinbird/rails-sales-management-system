@@ -9,6 +9,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     @yamada = users(:yamada)
     @new_user = users(:new_user)
     @crown = products(:crown)
+    @egg_break_machine = products(:egg_break_machine)
   end
 
   test "can't access not setup user" do
@@ -83,15 +84,29 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
   end
 
-  test "destroy products" do
+  test "can't destroy using products" do
     sign_in(@sato)
 
     get products_path
     assert_response :success
     assert_select 'a[href=?]', product_path(@crown), count: 2
 
-    assert_difference('Product.count', -1) do
+    assert_no_difference('Product.count') do
       delete product_path(@crown)
+    end
+    assert_redirected_to products_path
+    assert_not flash.empty?
+  end
+
+  test "destroy products" do
+    sign_in(@yamada)
+
+    get products_path, params: { query: '卵' }
+    assert_response :success
+    assert_select 'a[href=?]', product_path(@egg_break_machine), count: 2
+
+    assert_difference('Product.count', -1) do
+      delete product_path(@egg_break_machine)
     end
     assert_redirected_to products_path
     assert_not flash.empty?

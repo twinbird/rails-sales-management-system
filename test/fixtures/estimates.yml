@@ -32,6 +32,23 @@ buy_new_taxi:
   user_profile: sato
   submitted_flag: true
 
+non_ordered_estimate:
+  company_information: lemon
+  prospect: 
+  title: 新サーバ購入
+  customer: pepper
+  customer_name: pepper.co.ltd
+  estimate_no: 20180301131011
+  issue_date: 2018-03-12
+  due_date: 
+  due_date_pending_flag: true
+  payment_term: 月末締め翌月末払い
+  effective_date: 2018-04-12
+  tax_rate: 0.08
+  remarks: LAN設営も同時に行う
+  user_profile: yamada
+  submitted_flag: true
+
 <% 99.times do |i| %>
 estimate<%= i %>:
   company_information: lime

@@ -9,6 +9,7 @@ class ProspectsControllerTest < ActionDispatch::IntegrationTest
     @yamada = users(:yamada)
     @new_user = users(:new_user)
     @buy_new_taxi = prospects(:buy_new_taxi)
+    @introduce_new_garage = prospects(:introduce_new_garage)
   end
 
   test "can't access not setup user" do
@@ -94,19 +95,34 @@ class ProspectsControllerTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
 
-  test "destroy prospect" do
+  test "can't destroy created estimate prospect" do
     sign_in(@sato)
 
     get prospects_path
     assert_response :success
     assert_select 'a[href=?]', prospect_path(@buy_new_taxi)
 
-    assert_difference('Prospect.count', -1) do
+    assert_no_difference('Prospect.count') do
       delete prospect_path(@buy_new_taxi)
     end
     assert_redirected_to prospects_path
     follow_redirect!
-    assert_select 'a[href=?]', prospect_path(@buy_new_taxi), count: 0
+    assert_select 'a[href=?]', prospect_path(@buy_new_taxi), count: 2
+  end
+
+  test "destroy prospect" do
+    sign_in(@sato)
+
+    get prospects_path
+    assert_response :success
+    assert_select 'a[href=?]', prospect_path(@introduce_new_garage)
+
+    assert_difference('Prospect.count', -1) do
+      delete prospect_path(@introduce_new_garage)
+    end
+    assert_redirected_to prospects_path
+    follow_redirect!
+    assert_select 'a[href=?]', prospect_path(@introduce_new_garage), count: 0
   end
 
   test "listing pagination" do

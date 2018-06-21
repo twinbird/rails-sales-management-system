@@ -3,6 +3,7 @@ class Estimate < ApplicationRecord
   belongs_to :prospect, optional: true
   belongs_to :customer
   belongs_to :user_profile
+  has_one :order, dependent: :restrict_with_error
   has_many :estimate_details, dependent: :destroy
   accepts_nested_attributes_for :estimate_details, allow_destroy: true, limit: 10
   before_validation :save_customer_name

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180618195819) do
+ActiveRecord::Schema.define(version: 20180621235915) do
 
   create_table "company_informations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "企業情報" do |t|
     t.string "name", default: "", null: false, comment: "会社名"
@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 20180618195819) do
     t.index ["company_information_id"], name: "index_delivery_slips_on_company_information_id"
     t.index ["order_id"], name: "index_delivery_slips_on_order_id"
     t.index ["user_profile_id"], name: "index_delivery_slips_on_user_profile_id"
+  end
+
+  create_table "earnings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "company_information_id", comment: "企業情報ID"
+    t.bigint "order_id", comment: "受注ID"
+    t.integer "status", default: 0, null: false, comment: "計上状態"
+    t.date "occur_date", comment: "計上日"
+    t.decimal "amount", precision: 10, default: "0", null: false, comment: "計上金額"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_information_id"], name: "index_earnings_on_company_information_id"
+    t.index ["order_id"], name: "index_earnings_on_order_id"
   end
 
   create_table "estimate_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "見積明細" do |t|
@@ -199,6 +211,8 @@ ActiveRecord::Schema.define(version: 20180618195819) do
   add_foreign_key "delivery_slips", "company_informations"
   add_foreign_key "delivery_slips", "orders"
   add_foreign_key "delivery_slips", "user_profiles"
+  add_foreign_key "earnings", "company_informations"
+  add_foreign_key "earnings", "orders"
   add_foreign_key "estimate_details", "estimates"
   add_foreign_key "estimate_details", "products"
   add_foreign_key "estimates", "company_informations"
