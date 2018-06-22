@@ -1,0 +1,7 @@
+closing_by_10th:
+  company_information: lime
+  name: 10日締め
+
+closing_by_end_of_month:
+  company_information: lime
+  name: 月末締め

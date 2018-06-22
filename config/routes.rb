@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :closing_groups
   resources :earnings
   resources :delivery_slips
   resources :orders

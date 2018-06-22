@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company information:</strong>
+  <%= @closing_group.company_information %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @closing_group.name %>
+</p>
+
+<%= link_to 'Edit', edit_closing_group_path(@closing_group) %> |
+<%= link_to 'Back', closing_groups_path %>

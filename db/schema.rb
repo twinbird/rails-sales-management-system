@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180622034519) do
+ActiveRecord::Schema.define(version: 20180622131024) do
+
+  create_table "closing_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "company_information_id", comment: "企業情報ID"
+    t.string "name", default: "", null: false, comment: "締処理グループ名"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_information_id", "name"], name: "index_closing_groups_on_company_information_id_and_name", unique: true
+    t.index ["company_information_id"], name: "index_closing_groups_on_company_information_id"
+  end
 
   create_table "company_informations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "企業情報" do |t|
     t.string "name", default: "", null: false, comment: "会社名"
@@ -204,6 +213,7 @@ ActiveRecord::Schema.define(version: 20180622034519) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "closing_groups", "company_informations"
   add_foreign_key "customers", "company_informations"
   add_foreign_key "delivery_slip_details", "delivery_slips"
   add_foreign_key "delivery_slip_details", "order_details"
