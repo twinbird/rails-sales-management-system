@@ -1,14 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Company information:</strong>
-  <%= @closing_group.company_information %>
-</p>
-
-<p>
-  <strong>Name:</strong>
+  <strong><%= t('activerecord.attributes.closing_group.name') %>:</strong>
   <%= @closing_group.name %>
 </p>
 
-<%= link_to 'Edit', edit_closing_group_path(@closing_group) %> |
-<%= link_to 'Back', closing_groups_path %>
+<%= link_to t('.edit'), edit_closing_group_path(@closing_group) %> |
+<%= link_to t('.back'), closing_groups_path %>

@@ -1,8 +1,6 @@
 <%= form_with(model: closing_group, local: true) do |form| %>
   <% if closing_group.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(closing_group.errors.count, "error") %> prohibited this closing_group from being saved:</h2>
-
       <ul>
       <% closing_group.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,11 +8,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :company_information_id %>
-    <%= form.text_field :company_information_id, id: :closing_group_company_information_id %>
-  </div>
 
   <div class="field">
     <%= form.label :name %>
