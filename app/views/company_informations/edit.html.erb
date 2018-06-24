@@ -1,19 +1,30 @@
 <h1><%= t('.title') %></h1>
 
-<%= form_for(@company_information) do |f| %>
+<%= form_for(@company_information, html: { class: 'form-horizontal' }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <%= f.fields_for :user_profiles do |u| %>
+  <div class="form-group">
     <div class="field">
-      <%= u.label :name %>
-      <%= u.text_field :name %>
+      <%= f.label :name, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
     </div>
-  <% end %>
-
-  <%= f.submit t('.submit') %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.fields_for :user_profiles do |u| %>
+      <div class="field">
+        <%= u.label :name, class: 'control-label col-sm-1' %>
+        <div class="col-sm-5">
+          <%= u.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-1"></div>
+    <%= f.submit t('.submit'), class: 'btn btn-primary col-sm-1' %>
+  </div>
 <% end %>

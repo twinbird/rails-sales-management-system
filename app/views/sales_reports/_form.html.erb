@@ -1,4 +1,4 @@
-<%= form_with(model: sales_report, local: true) do |form| %>
+<%= form_with(model: sales_report, local: true, class: 'form-horizontal') do |form| %>
   <% if sales_report.errors.any? %>
     <div id="error_explanation">
       <ul>
@@ -9,27 +9,46 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :customer %>
-    <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]} %>
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :customer, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {}, class: 'form-control' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :user_profile %>
-    <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]} %>
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :user_profile, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]}, {}, class: 'form-control' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :occur_date %>
-    <%= form.datetime_select :occur_date, id: :sales_report_occur_date %>
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :occur_date, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.date_field :occur_date, id: :sales_report_occur_date, class: 'form-control' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :sales_report_description %>
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :description, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.text_area :description, id: :sales_report_description, class: 'form-control' %>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <div class="col-sm-1"></div>
+    <div class="actions">
+      <%= form.submit class: 'btn btn-primary col-sm-1' %>
+    </div>
   </div>
 <% end %>

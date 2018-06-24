@@ -1,4 +1,4 @@
-<%= form_with(model: earning, local: true) do |form| %>
+<%= form_with(model: earning, local: true, class: 'form-horizontal') do |form| %>
   <% if earning.errors.any? %>
     <div id="error_explanation">
       <ul>
@@ -9,22 +9,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :order_id %>
-    <%= form.select :order_id, @orders.pluck(:title, :id) %>
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :order_id, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.select :order_id, @orders.pluck(:title, :id), {}, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :occur_date, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.date_field :occur_date, id: :earning_occur_date, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :amount, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.text_field :amount, id: :earning_amount, class: 'form-control' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :occur_date %>
-    <%= form.date_select :occur_date, id: :earning_occur_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount, id: :earning_amount %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <div class="actions">
+      <div class="col-sm-1"></div>
+      <%= form.submit class: 'btn btn-primary col-sm-1' %>
+    </div>
   </div>
 <% end %>

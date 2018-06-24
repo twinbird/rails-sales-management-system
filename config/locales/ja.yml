@@ -257,7 +257,7 @@ ja:
     form:
       add_detail: 明細を追加
     estimate_detail_fields:
-      remove_detail: 明細を削除
+      remove_detail: 削除
     helper:
       submitted: 提出済
       unsubmitted: 未提出
@@ -292,7 +292,7 @@ ja:
     form:
       add_detail: 明細を追加
     order_detail_fields:
-      remove_detail: 明細を削除
+      remove_detail: 削除
   delivery_slips:
     index:
       title: 納品の管理
@@ -321,7 +321,7 @@ ja:
     form:
       add_detail: 明細の追加
     delivery_slip_detail_fields:
-      remove_detail: 明細を削除
+      remove_detail: 削除
   earnings:
     index:
       title: 売上の管理

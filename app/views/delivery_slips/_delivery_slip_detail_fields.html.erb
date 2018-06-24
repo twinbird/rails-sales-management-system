@@ -1,5 +1,5 @@
 <tr class="nested-fields">
-  <td><%= f.text_field :display_order %></td>
-  <td><%= f.select :order_detail_id, @order_details.pluck(:product_name, :id), {}, { class: 'delivery_slip_detail' } %></td>
-  <td><%= link_to_remove_association t('.remove_detail'), f %></td>
+  <td class="col-sm-1"><%= f.text_field :display_order, class: 'form-control' %></td>
+  <td class="col-sm-4"><%= f.select :order_detail_id, @order_details.pluck(:product_name, :id), {}, { class: 'delivery_slip_detail form-control' } %></td>
+  <td class="col-sm-1"><%= link_to_remove_association t('.remove_detail'), f %></td>
 </tr>

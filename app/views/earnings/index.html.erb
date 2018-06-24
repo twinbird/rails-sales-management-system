@@ -1,11 +1,17 @@
 <h1><%= t('.title') %></h1>
 
 <%= form_tag earnings_path, method: :get do %>
-  <%= text_field_tag :query, @query %>
-  <%= submit_tag t('.search') %>
+  <div class="input-group col-sm-4">
+    <%= text_field_tag :query, @query, class: 'form-control' %>
+    <span class="input-group-btn">
+      <%= button_tag class: 'btn btn-default' do %>
+        <%= content_tag :span, t('.search'), class: 'glyphicon glyphicon-search' %>
+      <% end %>
+    </span>
+  </div>
 <% end %>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th><%= t('activerecord.attributes.earning.order_id') %></th>

@@ -1,4 +1,4 @@
-<%= form_with(model: estimate, local: true) do |form| %>
+<%= form_with(model: estimate, local: true, class: 'form-horizontal') do |form| %>
   <% if estimate.errors.any? %>
     <div id="error_explanation">
       <ul>
@@ -9,100 +9,158 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :prospect_id %>
-    <%= form.select :prospect_id, @prospects.map{|p| [p.title, p.id]}, include_blank: true %>
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :prospect_id, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.select :prospect_id, @prospects.map{|p| [p.title, p.id]}, { include_blank: true }, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :title, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.text_field :title, id: :estimate_title, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :customer_id, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {}, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :estimate_no, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.text_field :estimate_no, id: :estimate_estimate_no, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :issue_date, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.date_field :issue_date, id: :estimate_issue_date, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :due_date, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.date_field :due_date, id: :estimate_due_date, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :due_date_pending_flag, class: 'control-label col-sm-1' %>
+      <div class="col-sm-1">
+        <%= form.check_box :due_date_pending_flag, id: :estimate_due_date_pending_flag, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :payment_term, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.text_field :payment_term, id: :estimate_payment_term, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :effective_date, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.date_field :effective_date, id: :estimate_effective_date, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :tax_rate, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.text_field :tax_rate, id: :estimate_tax_rate, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :remarks, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.text_area :remarks, id: :estimate_remarks, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :user_profile_id, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]}, {}, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="field">
+      <%= form.label :submitted_flag, class: 'control-label col-sm-1' %>
+      <div class="col-sm-5">
+        <%= form.check_box :submitted_flag, id: :estimate_submitted_flag, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  
+    <div class="details col-sm-12">
+      <%= link_to_add_association t('.add_detail'), form, :estimate_details,
+        data: {
+          association_insertion_node: '#estimate_details',
+          association_insertion_method: 'append'
+        }
+      %>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-sm-1"><%= t('activerecord.attributes.estimate_detail.display_order') %></th>
+            <th class="col-sm-2"><%= t('activerecord.attributes.estimate_detail.product_id') %></th>
+            <th class="col-sm-2"><%= t('activerecord.attributes.estimate_detail.product_name') %></th>
+            <th class="col-sm-1"><%= t('activerecord.attributes.estimate_detail.quantity') %></th>
+            <th class="col-sm-2"><%= t('activerecord.attributes.estimate_detail.unit_price') %></th>
+            <th class="col-sm-2"><%= t('activerecord.attributes.estimate_detail.price') %></th>
+            <th class="col-sm-1"></th>
+          </tr>
+        </thead>
+        <tbody id="estimate_details">
+          <%= form.fields_for :estimate_details do |detail| %>
+            <%= render 'estimate_detail_fields', f: detail %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :estimate_title %>
-  </div>
+  <div class="form-group"></div>
 
-  <div class="field">
-    <%= form.label :customer_id %>
-    <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]} %>
-  </div>
-
-  <div class="field">
-    <%= form.label :estimate_no %>
-    <%= form.text_field :estimate_no, id: :estimate_estimate_no %>
-  </div>
-
-  <div class="field">
-    <%= form.label :issue_date %>
-    <%= form.date_select :issue_date, id: :estimate_issue_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :due_date %>
-    <%= form.date_select :due_date, id: :estimate_due_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :due_date_pending_flag %>
-    <%= form.check_box :due_date_pending_flag, id: :estimate_due_date_pending_flag %>
-  </div>
-
-  <div class="field">
-    <%= form.label :payment_term %>
-    <%= form.text_field :payment_term, id: :estimate_payment_term %>
-  </div>
-
-  <div class="field">
-    <%= form.label :effective_date %>
-    <%= form.date_select :effective_date, id: :estimate_effective_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :tax_rate %>
-    <%= form.text_field :tax_rate, id: :estimate_tax_rate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :remarks %>
-    <%= form.text_area :remarks, id: :estimate_remarks %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_profile_id %>
-    <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]} %>
-  </div>
-
-  <div class="field">
-    <%= form.label :submitted_flag %>
-    <%= form.check_box :submitted_flag, id: :estimate_submitted_flag %>
-  </div>
-
-  <div class="details">
-    <%= link_to_add_association t('.add_detail'), form, :estimate_details,
-      data: {
-        association_insertion_node: '#estimate_details',
-        association_insertion_method: 'append'
-      }
-    %>
-    <table>
-      <thead>
-        <tr>
-          <th><%= t('activerecord.attributes.estimate_detail.display_order') %></th>
-          <th><%= t('activerecord.attributes.estimate_detail.product_id') %></th>
-          <th><%= t('activerecord.attributes.estimate_detail.product_name') %></th>
-          <th><%= t('activerecord.attributes.estimate_detail.quantity') %></th>
-          <th><%= t('activerecord.attributes.estimate_detail.unit_price') %></th>
-          <th><%= t('activerecord.attributes.estimate_detail.price') %></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="estimate_details">
-        <%= form.fields_for :estimate_details do |detail| %>
-          <%= render 'estimate_detail_fields', f: detail %>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <div class="col-sm-1"></div>
+    <div class="actions">
+      <%= form.submit class: 'btn btn-primary col-sm-1' %>
+    </div>
   </div>
 
 <% end %>
