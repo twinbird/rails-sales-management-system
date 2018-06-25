@@ -11,7 +11,7 @@
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :customer, class: 'control-label col-sm-1' %>
+      <%= form.label :customer, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
         <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {}, class: 'form-control' %>
       </div>
@@ -20,7 +20,7 @@
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :user_profile, class: 'control-label col-sm-1' %>
+      <%= form.label :user_profile, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
         <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]}, {}, class: 'form-control' %>
       </div>
@@ -29,7 +29,7 @@
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :occur_date, class: 'control-label col-sm-1' %>
+      <%= form.label :occur_date, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
         <%= form.date_field :occur_date, id: :sales_report_occur_date, class: 'form-control' %>
       </div>
@@ -38,9 +38,9 @@
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :description, class: 'control-label col-sm-1' %>
+      <%= form.label :description, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.text_area :description, id: :sales_report_description, class: 'form-control' %>
+        <%= form.text_area :description, id: :sales_report_description, class: 'form-control', rows: 12, placeholder: t('.description_placeholder') %>
       </div>
     </div>
   </div>

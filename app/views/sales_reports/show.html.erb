@@ -1,22 +1,24 @@
-<p>
-  <strong><%= t('activerecord.attributes.sales_report.customer') %>:</strong>
-  <%= @sales_report.customer.name %>
-</p>
 
-<p>
-  <strong><%= t('activerecord.attributes.sales_report.user_profile') %>:</strong>
-  <%= @sales_report.user_profile.name %>
-</p>
+<h2><%= @sales_report.customer.name %> (<%= @sales_report.occur_date.to_s(:date) %>)</h2>
 
-<p>
-  <strong><%= t('activerecord.attributes.sales_report.occur_date') %>:</strong>
-  <%= @sales_report.occur_date.to_s(:date) %>
-</p>
+<div class="row">
+  <div class="col-sm-2 pull-right">
+    <%= link_to t('.edit'), edit_sales_report_path(@sales_report), class: 'btn btn-warning' %>
+    <%= link_to t('.destroy'), @sales_report, method: :delete, data: { confirm: t('.are_you_sure') }, class: 'btn btn-danger' %>
+  </div>
 
-<p>
-  <strong><%= t('activerecord.attributes.sales_report.description') %>:</strong>
-  <%= @sales_report.description %>
-</p>
+  <div class="col-sm-6">
+    <h4>
+      <strong><%= t('activerecord.attributes.sales_report.user_profile') %>:</strong>
+      <%= @sales_report.user_profile.name %>
+    </h4>
+  </div>
+</div>
 
-<%= link_to t('.edit'), edit_sales_report_path(@sales_report) %> |
-<%= link_to t('.back'), sales_reports_path %>
+
+<h4>
+  <strong><%= t('activerecord.attributes.sales_report.description') %></strong>
+</h4>
+<pre>
+<%= @sales_report.description %>
+</pre>

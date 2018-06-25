@@ -1,37 +1,41 @@
 <h1><%= t('.title') %></h1>
 
-<%= form_tag sales_reports_path, method: :get do %>
-  <div class="input-group col-sm-4">
-    <%= text_field_tag :query, @query, class: 'form-control' %>
-    <span class="input-group-btn">
-      <%= button_tag class: 'btn btn-default' do %>
-        <%= content_tag :span, t('.search'), class: 'glyphicon glyphicon-search' %>
-      <% end %>
-    </span>
+<div class="row">
+  <%= form_tag sales_reports_path, method: :get, class: 'col-sm-6' do %>
+    <div class="input-group">
+      <%= text_field_tag :query, @query, class: 'form-control', placeholder: t('.search_word_placeholder') %>
+      <span class="input-group-btn">
+        <%= button_tag class: 'btn btn-default' do %>
+          <%= content_tag :span, t('.search'), class: 'glyphicon glyphicon-search' %>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+  
+  <div class="pull-right col-sm-2">
+    <%= link_to t('.new_sales_report'), new_sales_report_path, class: 'btn btn-primary' %>
   </div>
-<% end %>
+</div>
 
 <table class="table table-hover">
-  <thead>
+  <thead class="thead-dark">
     <tr>
+      <th></th>
       <th><%= t('activerecord.attributes.sales_report.customer') %></th>
       <th><%= t('activerecord.attributes.sales_report.user_profile') %></th>
       <th><%= t('activerecord.attributes.sales_report.occur_date') %></th>
       <th><%= t('activerecord.attributes.sales_report.description') %></th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @sales_reports.each do |sales_report| %>
       <tr>
+        <td><%= link_to t('.open'), sales_report, class: 'btn btn-info' %></td>
         <td><%= sales_report.customer.name %></td>
         <td><%= sales_report.user_profile.name %></td>
         <td><%= sales_report.occur_date.to_s(:date) %></td>
-        <td><%= sales_report.description %></td>
-        <td><%= link_to t('.show'), sales_report %></td>
-        <td><%= link_to t('.edit'), edit_sales_report_path(sales_report) %></td>
-        <td><%= link_to t('.destroy'), sales_report, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+        <td><%= sales_report.description.truncate(50) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,6 +43,3 @@
 
 <%= will_paginate @sales_reports %>
 
-<br>
-
-<%= link_to t('.new_sales_report'), new_sales_report_path %>
