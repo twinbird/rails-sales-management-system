@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180622131024) do
+ActiveRecord::Schema.define(version: 20180625191701) do
 
   create_table "closing_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "company_information_id", comment: "企業情報ID"
@@ -160,8 +160,8 @@ ActiveRecord::Schema.define(version: 20180622131024) do
     t.bigint "customer_id", comment: "顧客ID"
     t.integer "rank", default: 0, null: false, comment: "商談ランク"
     t.decimal "prospect_amount", precision: 10, default: "0", null: false, comment: "案件想定金額"
-    t.datetime "prospect_order_date", comment: "注文予定日"
-    t.datetime "prospect_earning_date", comment: "売上予定日"
+    t.date "prospect_order_date", comment: "注文予定日"
+    t.date "prospect_earning_date", comment: "売上予定日"
     t.string "distribute", default: "", null: false, comment: "商流"
     t.bigint "user_profile_id", comment: "担当者ID"
     t.bigint "company_information_id", comment: "企業情報ID"
@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(version: 20180622131024) do
     t.bigint "company_information_id", comment: "企業情報ID"
     t.bigint "customer_id", comment: "顧客ID"
     t.bigint "user_profile_id", comment: "ユーザ情報ID"
-    t.datetime "occur_date", comment: "活動日"
+    t.date "occur_date", comment: "活動日"
     t.string "description", default: "", null: false, comment: "報告内容"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
