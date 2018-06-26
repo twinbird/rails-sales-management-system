@@ -4,6 +4,8 @@ class SalesReportsController < ApplicationController
   before_action :set_sales_report, only: [:show, :edit, :update, :destroy]
   before_action :set_customers
   before_action :set_users
+  before_action :set_latest_prospects, only: [:show]
+  before_action :set_latest_estimates, only: [:show]
 
   # GET /sales_reports
   # GET /sales_reports.json
@@ -79,6 +81,14 @@ class SalesReportsController < ApplicationController
 
     def set_users
       @users = UserProfile.ours(current_user)
+    end
+
+    def set_latest_estimates
+      @latest_estimates = @sales_report.customer.estimates.order(issue_date: :desc).limit(5)
+    end
+
+    def set_latest_prospects
+      @latest_prospects = @sales_report.customer.prospects.order(created_at: :desc).limit(5)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
