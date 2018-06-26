@@ -1,11 +1,13 @@
-<h1><%= t('.title') %></h1>
+<div class="row mt-3"></div>
+
+<h4><%= t('.title') %></h4>
 
 <div class="row">
   <%= form_tag sales_reports_path, method: :get, class: 'col-sm-6' do %>
-    <div class="input-group">
-      <%= text_field_tag :query, @query, class: 'form-control', placeholder: t('.search_word_placeholder') %>
+    <div class="input-group input-group-sm">
+      <%= text_field_tag :query, @query, class: 'form-control input-sm', placeholder: t('.search_word_placeholder') %>
       <span class="input-group-btn">
-        <%= button_tag class: 'btn btn-default' do %>
+        <%= button_tag class: 'btn btn-default btn-sm' do %>
           <%= content_tag :span, t('.search'), class: 'glyphicon glyphicon-search' %>
         <% end %>
       </span>
@@ -13,11 +15,13 @@
   <% end %>
   
   <div class="pull-right col-sm-2">
-    <%= link_to t('.new_sales_report'), new_sales_report_path, class: 'btn btn-primary' %>
+    <%= link_to t('.new_sales_report'), new_sales_report_path, class: 'btn btn-primary btn-sm' %>
   </div>
 </div>
 
-<table class="table table-hover">
+<div class="row mt-3"></div>
+
+<table class="table table-hover table-sm">
   <thead class="thead-dark">
     <tr>
       <th></th>
@@ -31,7 +35,7 @@
   <tbody>
     <% @sales_reports.each do |sales_report| %>
       <tr>
-        <td><%= link_to t('.open'), sales_report, class: 'btn btn-info' %></td>
+        <td><%= link_to t('.open'), sales_report, class: 'btn btn-info btn-sm' %></td>
         <td><%= sales_report.customer.name %></td>
         <td><%= sales_report.user_profile.name %></td>
         <td><%= sales_report.occur_date.to_s(:date) %></td>

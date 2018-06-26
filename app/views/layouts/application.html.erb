@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsSalesManagementSystem</title>
+    <title>Rails CRM</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,7 +10,7 @@
 
   <body>
     <% if signed_in? %>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
       <!-- brand -->
       <%= link_to 'Rails CRM', root_path, class: 'navbar-brand' %>
       <!-- toggle button -->
@@ -43,8 +43,12 @@
     </nav>
     <% end %>
     <div class="container-fluid">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% if notice %>
+        <p class="notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert"><%= alert %></p>
+      <% end %>
       <%= yield %>
     </div>
   </body>
