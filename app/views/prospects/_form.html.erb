@@ -11,87 +11,87 @@
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :title, class: 'control-label col-sm-1' %>
+      <%= form.label :title, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.text_field :title, id: :prospect_title, class: 'form-control' %>
+        <%= form.text_field :title, id: :prospect_title, class: 'form-control form-control-sm' %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :description, class: 'control-label col-sm-1' %>
+      <%= form.label :description, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.text_area :description, class: 'form-control' %>
+        <%= form.text_area :description, rows: 10, class: 'form-control form-control-sm', placeholder: t('.description_placeholder') %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :customer_id, class: 'control-label col-sm-1' %>
+      <%= form.label :customer_id, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {}, class: 'form-control' %>
+        <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {}, class: 'form-control form-control-sm' %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :rank, class: 'control-label col-sm-1' %>
+      <%= form.label :rank, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.select :rank, Prospect.ranks.keys.map{|k| [k, k]}, {}, class: 'form-control' %>
+        <%= form.select :rank, Prospect.ranks.keys.map{|k| [k, k]}, {}, class: 'form-control form-control-sm' %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :prospect_amount, class: 'control-label col-sm-1' %>
+      <%= form.label :prospect_amount, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.text_field :prospect_amount, id: :prospect_prospect_amount, class: 'form-control' %>
+        <%= form.text_field :prospect_amount, id: :prospect_prospect_amount, class: 'form-control form-control-sm' %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :prospect_order_date, class: 'control-label col-sm-1' %>
+      <%= form.label :prospect_order_date, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.date_field :prospect_order_date, id: :prospect_prospect_order_date, class: 'form-control' %>
+        <%= form.date_field :prospect_order_date, id: :prospect_prospect_order_date, class: 'form-control form-control-sm' %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :prospect_earning_date, class: 'control-label col-sm-1' %>
+      <%= form.label :prospect_earning_date, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.date_field :prospect_earning_date, id: :prospect_prospect_earning_date, class: 'form-control' %>
+        <%= form.date_field :prospect_earning_date, id: :prospect_prospect_earning_date, class: 'form-control form-control-sm' %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :distribute, class: 'control-label col-sm-1' %>
+      <%= form.label :distribute, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.text_field :distribute, id: :prospect_distribute, class: 'form-control' %>
+        <%= form.text_field :distribute, id: :prospect_distribute, class: 'form-control form-control-sm' %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
     <div class="field">
-      <%= form.label :user_profile_id, class: 'control-label col-sm-1' %>
+      <%= form.label :user_profile_id, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]}, {}, class: 'form-control' %>
+        <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]}, {}, class: 'form-control form-control-sm' %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="col-sm-1"></div>
+    <div class="col-sm-2"></div>
     <div class="actions">
       <%= form.submit class: 'btn btn-primary col-sm-1' %>
     </div>

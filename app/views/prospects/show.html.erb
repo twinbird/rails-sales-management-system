@@ -1,47 +1,88 @@
-<p>
-  <strong><%= t('activerecord.attributes.prospect.title') %>:</strong>
-  <%= @prospect.title %>
-</p>
+<div class="row mt-3"></div>
 
-<p>
-  <strong><%= t('activerecord.attributes.prospect.description') %>:</strong>
-  <%= @prospect.description %>
-</p>
+<h4><%= t('.title') %></h4>
 
-<p>
-  <strong><%= t('activerecord.attributes.prospect.customer') %>:</strong>
-  <%= @prospect.customer.name %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.prospect.title') %></strong>:
+  </div>
+  <div class="col-sm-5">
+    <%= @prospect.title %>
+  </div>
+  <div class="col-sm-2">
+    <%= link_to t('.edit'), edit_prospect_path(@prospect), class: 'btn btn-warning btn-sm' %>
+    <%= link_to t('.destroy'), @prospect, method: :delete, data: { confirm: t('.are_you_sure') }, class: 'btn btn-danger btn-sm' %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.prospect.rank') %>:</strong>
-  <%= @prospect.rank %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.prospect.description') %>:</strong>
+  </div>
+  <div class="col-sm-5">
+    <%= @prospect.description %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.prospect.prospect_amount') %>:</strong>
-  <%= @prospect.prospect_amount %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.prospect.customer_id') %>:</strong>
+  </div>
+  <div class="col-sm-5">
+    <%= @prospect.customer.name %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.prospect.prospect_order_date') %>:</strong>
-  <%= @prospect.prospect_order_date.to_s(:date) %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.prospect.rank') %>:</strong>
+  </div>
+  <div class="col-sm-5">
+    <%= @prospect.rank %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.prospect.prospect_earning_date') %>:</strong>
-  <%= @prospect.prospect_earning_date.to_s(:date) %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.prospect.prospect_amount') %>:</strong>
+  </div>
+  <div class="col-sm-5">
+    <%= @prospect.prospect_amount %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.prospect.distribute') %>:</strong>
-  <%= @prospect.distribute %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.prospect.prospect_order_date') %>:</strong>
+  </div>
+  <div class="col-sm-5">
+    <%= @prospect.prospect_order_date.to_s(:date) %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.prospect.user_profile') %>:</strong>
-  <%= @prospect.user_profile.name %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.prospect.prospect_earning_date') %>:</strong>
+  </div>
+  <div class="col-sm-5">
+    <%= @prospect.prospect_earning_date.to_s(:date) %>
+  </div>
+</div>
 
-<%= link_to t('.edit'), edit_prospect_path(@prospect) %> |
-<%= link_to t('.back'), prospects_path %>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.prospect.distribute') %>:</strong>
+  </div>
+  <div class="col-sm-5">
+    <%= @prospect.distribute %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.prospect.user_profile_id') %>:</strong>
+  </div>
+  <div class="col-sm-5">
+    <%= @prospect.user_profile.name %>
+  </div>
+</div>
