@@ -1,29 +1,43 @@
 <div class="row mt-3"></div>
 
+<h4><%= t('.title') %></h4>
+
 <div class="row">
-  <div class="col-sm-6">
-    <h4><%= @sales_report.customer.name %> (<%= @sales_report.occur_date.to_s(:date) %>)</h4>
+  <div class="col-sm-2">
+    <%= t('activerecord.attributes.sales_report.customer') %>:
   </div>
   <div class="col-sm-4">
-    <h5>
-      <%= t('activerecord.attributes.sales_report.user_profile') %>:
-      <%= @sales_report.user_profile.name %>
-    </h5>
+    <%= @sales_report.customer.name %>
   </div>
-  <div class="col-sm-2 pull-right">
+  <div class="col-sm-2">
     <%= link_to t('.edit'), edit_sales_report_path(@sales_report), class: 'btn btn-warning btn-sm' %>
     <%= link_to t('.destroy'), @sales_report, method: :delete, data: { confirm: t('.are_you_sure') }, class: 'btn btn-danger btn-sm' %>
   </div>
 </div>
 
 <div class="row">
-  <h6>
-    <strong><%= t('activerecord.attributes.sales_report.description') %></strong>
-  </h6>
+  <div class="col-sm-2">
+    <%= t('activerecord.attributes.sales_report.occur_date') %>:
+  </div>
+  <div class="col-sm-4">
+    <%= @sales_report.occur_date.to_s(:date) %>
+  </div>
 </div>
 
 <div class="row">
-  <pre class="col-sm-8"><%= @sales_report.description %></pre>
+  <div class="col-sm-2">
+    <%= t('activerecord.attributes.sales_report.user_profile') %>:
+  </div>
+  <div class="col-sm-4">
+    <%= @sales_report.user_profile.name %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-2">
+    <%= t('activerecord.attributes.sales_report.description') %>:
+  </div>
+  <pre class="col-sm-4"><%= @sales_report.description %></pre>
 </div>
 
 <div class="row">
