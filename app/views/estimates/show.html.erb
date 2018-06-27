@@ -1,62 +1,81 @@
-<p>
-  <strong><%= t('activerecord.attributes.estimate.prospect_id') %>:</strong>
-  <%= @estimate.prospect.try(:title) %>
-</p>
+<div class="row mt-3"></div>
 
-<p>
-  <strong><%= t('activerecord.attributes.estimate.title') %>:</strong>
-  <%= @estimate.title %>
-</p>
+<h4><%= t('.title') %></h4>
 
-<p>
-  <strong><%= t('activerecord.attributes.estimate.customer_name') %>:</strong>
-  <%= @estimate.customer_name %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.estimate.prospect_id') %>:</strong>
+  </div>
+  <div class="col-sm-4">
+    <%= @estimate.prospect.try(:title) %>
+  </div>
+  <div class="col-sm-2">
+    <%= link_to t('.edit'), edit_estimate_path(@estimate), class: 'btn btn-warning btn-sm' %>
+    <%= link_to t('.destroy'), @estimate, method: :delete, data: { confirm: t('.are_you_sure') }, class: 'btn btn-danger btn-sm' %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.estimate.estimate_no') %>:</strong>
-  <%= @estimate.estimate_no %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.estimate.title') %>:</strong>
+  </div>
+  <div class="col-sm-4">
+    <%= @estimate.title %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.estimate.issue_date') %>:</strong>
-  <%= @estimate.issue_date.to_s %>
-</p>
 
-<p>
-  <strong><%= t('activerecord.attributes.estimate.due_date') %>:</strong>
-  <%= display_due_date(@estimate) %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.estimate.customer_name') %>:</strong>
+  </div>
+  <div class="col-sm-4">
+    <%= @estimate.customer_name %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.estimate.payment_term') %>:</strong>
-  <%= @estimate.payment_term %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.estimate.estimate_no') %>:</strong>
+  </div>
+  <div class="col-sm-4">
+    <%= @estimate.estimate_no %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.estimate.effective_date') %>:</strong>
-  <%= @estimate.effective_date.to_s %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.estimate.issue_date') %>:</strong>
+  </div>
+  <div class="col-sm-4">
+    <%= @estimate.issue_date.to_s %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.estimate.tax_rate') %>:</strong>
-  <%= @estimate.tax_rate %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.estimate.due_date') %>:</strong>
+  </div>
+  <div class="col-sm-4">
+    <%= @estimate.due_date.to_s %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.estimate.remarks') %>:</strong>
-  <%= @estimate.remarks %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.estimate.payment_term') %>:</strong>
+  </div>
+  <div class="col-sm-4">
+    <%= @estimate.payment_term %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.estimate.user_profile_id') %>:</strong>
-  <%= @estimate.user_profile.name %>
-</p>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.estimate.submitted_flag') %>:</strong>
+  </div>
+  <div class="col-sm-4">
+    <%= submitted_estimate_message(@estimate) %>
+  </div>
+</div>
 
-<p>
-  <strong><%= t('activerecord.attributes.estimate.submitted_flag') %>:</strong>
-  <%= submitted_estimate_message(@estimate) %>
-</p>
-
-<%= link_to t('.edit'), edit_estimate_path(@estimate) %> |
-<%= link_to t('.back'), estimates_path %>

@@ -1,51 +1,48 @@
-<h1><%= t('.title') %></h1>
+<div class="row mt-3"></div>
 
-<%= form_tag estimates_path, method: :get do %>
-  <div class="input-group col-sm-4">
-    <%= text_field_tag :query, @query, class: 'form-control' %>
-    <span class="input-group-btn">
-      <%= button_tag class: 'btn btn-default' do %>
-        <%= content_tag :span, t('.search'), class: 'glyphicon glyphicon-search' %>
-      <% end %>
-    </span>
+<h4><%= t('.title') %></h4>
+
+<div class="row">
+  <%= form_tag estimates_path, method: :get, class: 'col-sm-6' do %>
+    <div class="input-group input-group-sm">
+      <%= text_field_tag :query, @query, class: 'form-control input-sm', placeholder: t('.search_placeholder') %>
+      <span class="input-group-btn">
+        <%= button_tag class: 'btn btn-default btn-sm' do %>
+          <%= content_tag :span, t('.search') %>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+  <div class="pull-right col-sm-2">
+    <%= link_to t('.new_estimate'), new_estimate_path, class: 'btn btn-primary btn-sm' %>
   </div>
-<% end %>
+</div>
 
-<table class="table table-hover">
+<div class="row mt-3"></div>
+
+<table class="table table-hover table-sm">
   <thead>
     <tr>
+      <th></th>
       <th><%= t('activerecord.attributes.estimate.prospect_id') %></th>
       <th><%= t('activerecord.attributes.estimate.title') %></th>
       <th><%= t('activerecord.attributes.estimate.customer_name') %></th>
       <th><%= t('activerecord.attributes.estimate.estimate_no') %></th>
       <th><%= t('activerecord.attributes.estimate.issue_date') %></th>
-      <th><%= t('activerecord.attributes.estimate.due_date') %></th>
-      <th><%= t('activerecord.attributes.estimate.payment_term') %></th>
-      <th><%= t('activerecord.attributes.estimate.effective_date') %></th>
-      <th><%= t('activerecord.attributes.estimate.tax_rate') %></th>
-      <th><%= t('activerecord.attributes.estimate.remarks') %></th>
       <th><%= t('activerecord.attributes.estimate.user_profile_id') %></th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @estimates.each do |estimate| %>
       <tr>
+        <td><%= link_to t('.show'), estimate, class: 'btn btn-info btn-sm' %></td>
         <td><%= estimate.prospect.try(:title) %></td>
         <td><%= estimate.title %></td>
         <td><%= estimate.customer_name %></td>
         <td><%= estimate.estimate_no %></td>
         <td><%= estimate.issue_date %></td>
-        <td><%= display_due_date(estimate) %></td>
-        <td><%= estimate.payment_term %></td>
-        <td><%= estimate.effective_date %></td>
-        <td><%= estimate.tax_rate %></td>
-        <td><%= estimate.remarks %></td>
         <td><%= estimate.user_profile.name %></td>
-        <td><%= link_to t('.show'), estimate %></td>
-        <td><%= link_to t('.edit'), edit_estimate_path(estimate) %></td>
-        <td><%= link_to t('.destroy'), estimate, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -53,6 +50,3 @@
 
 <%= will_paginate @estimates %>
 
-<br>
-
-<%= link_to t('.new_estimate'), new_estimate_path %>
