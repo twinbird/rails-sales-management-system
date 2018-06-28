@@ -74,6 +74,10 @@ class ProspectsControllerTest < ActionDispatch::IntegrationTest
 
     get prospects_path
     assert_response :success
+    assert_select 'a[href=?]', prospect_path(@buy_new_taxi)
+
+    get prospect_path(@buy_new_taxi)
+    assert_response :success
     assert_select 'a[href=?]', edit_prospect_path(@buy_new_taxi)
 
     get edit_prospect_path(@buy_new_taxi)
@@ -107,7 +111,7 @@ class ProspectsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to prospects_path
     follow_redirect!
-    assert_select 'a[href=?]', prospect_path(@buy_new_taxi), count: 2
+    assert_select 'a[href=?]', prospect_path(@buy_new_taxi)
   end
 
   test "destroy prospect" do
@@ -130,7 +134,7 @@ class ProspectsControllerTest < ActionDispatch::IntegrationTest
 
     get prospects_path
     assert_response :success
-    assert_select 'div.pagination'
+    assert_select 'nav.pagination'
   end
 
   test "search prospects" do

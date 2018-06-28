@@ -19,11 +19,8 @@ ja:
       customer: 顧客
       prospect: 案件
       estimate: 見積
-      order: 受注
       product: 商品
       sales_report: 営業報告
-      earning: 売上
-      closing_group: 締処理グループ
     attributes:
       company_information:
         name: 会社名
@@ -66,27 +63,6 @@ ja:
         quantity: 数量
         unit_price: 単価
         price: 金額
-      order:
-        prospect_id: 案件
-        estimate_id: 見積
-        title: 注文名
-        customer_id: 顧客
-        customer_name: 顧客名
-        order_no: 注文番号
-        issue_date: 発行日
-        due_date: 納期
-        payment_term: 支払条件
-        tax_rate: 消費税率
-        remarks: 備考
-        user_profile_id: 担当営業
-        submitted_flag: 提出済み
-      order_detail:
-        display_order: 表示順
-        product_id: 商品
-        product_name: 商品名
-        quantity: 数量
-        unit_price: 単価
-        price: 金額
       product:
         name: 商品名
         default_price: 標準単価
@@ -95,22 +71,6 @@ ja:
         customer: 顧客名
         user_profile: 営業担当者
         description: 活動内容
-      delivery_slip:
-        order_id: 注文名
-        delivery_date: 納品日
-        remarks: 備考
-        user_profile_id: 納品担当者
-        tax_rate: 消費税率
-        submitted_flag: 納品書送付済み
-      delivery_slip_detail:
-        display_order: 表示順
-        order_detail_id: 注文明細
-      earning:
-        order_id: 注文名
-        occur_date: 売上日
-        amount: 売上金額
-      closing_group:
-        name: グループ名
     errors:
       messages:
         too_many_details: 明細が多すぎます
@@ -120,11 +80,7 @@ ja:
     customers: 顧客情報の管理
     prospects: 案件の管理
     estimates: 見積の管理
-    orders: 注文の管理
-    delivery_slips: 納品の管理
-    earnings: 売上の管理
     products: 商品情報の管理
-    closing_groups: 締処理グループの設定
     sales_reports: 営業報告
     please_entry_user_information: 他の機能の利用の前に、ユーザ情報の設定を行ってください
   company_informations:
@@ -269,113 +225,3 @@ ja:
     helper:
       submitted: 提出済
       unsubmitted: 未提出
-  orders:
-    index:
-      title: 注文の管理
-      show: 詳細
-      edit: 編集
-      destroy: 削除
-      are_you_sure: 本当に削除してよろしいですか?
-      search: 検索
-      new_order: 新しい受注の登録
-    show:
-      edit: 編集
-      back: 戻る
-    new:
-      title: 注文情報の登録
-      back: 戻る
-    create:
-      order_was_successfully_created: 受注情報を登録しました
-    edit:
-      title: 注文情報の編集
-      show: 詳細
-      back: 戻る
-    update:
-      order_was_successfully_updated: 受注情報を更新しました
-    destroy:
-      order_was_successfully_destroyed: 受注情報を削除しました
-    helper:
-      submitted: 提出済
-      unsubmitted: 未提出
-    form:
-      add_detail: 明細を追加
-    order_detail_fields:
-      remove_detail: 削除
-  delivery_slips:
-    index:
-      title: 納品の管理
-      show: 詳細
-      edit: 編集
-      destroy: 削除
-      are_you_sure: 本当に削除してよろしいですか?
-      search: 検索
-      new_delivery_slip: 新しい納品の登録
-    new:
-      title: 納品情報の登録
-      back: 戻る
-    create:
-      delivery_slip_was_successfully_created: 納品情報を登録しました
-    show:
-      edit: 編集
-      back: 戻る
-    edit:
-      title: 納品情報の編集
-      show: 詳細
-      back: 戻る
-    update:
-      delivery_slip_was_successfully_updated: 納品情報を更新しました
-    destroy:
-      delivery_slip_was_successfully_destroyed: 納品情報を削除しました
-    form:
-      add_detail: 明細の追加
-    delivery_slip_detail_fields:
-      remove_detail: 削除
-  earnings:
-    index:
-      title: 売上の管理
-      show: 詳細
-      edit: 編集
-      destroy: 削除
-      are_you_sure: 本当に削除してよろしいですか?
-      search: 検索
-      add_new_earning: 売上の登録
-    new:
-      title: 売上の登録
-      back: 戻る
-    create:
-      earning_was_successfully_created: 売上を登録しました
-    edit:
-      title: 売上の変更
-      show: 詳細
-      back: 戻る
-    update:
-      earning_was_successfully_updated: 売上の情報を更新しました
-    show:
-      edit: 編集
-      back: 戻る
-    destroy:
-      earning_was_successfully_destroyed: 売上の情報を削除しました
-  closing_groups:
-    index:
-      title: 締処理グループの管理
-      add_closing_group: 新しい締処理グループの追加
-      show: 詳細
-      edit: 編集
-      destroy: 削除
-      are_you_sure: 本当に削除してよろしいですか?
-    new:
-      title: 新しい締処理グループの追加
-      back: 戻る
-    create:
-      closing_group_was_successfully_created: 締処理グループを作成しました
-    show:
-      edit: 編集
-      back: 戻る
-    edit:
-      title: 締処理グループ情報の編集
-      show: 詳細
-      back: 戻る
-    update:
-      closing_group_was_successfully_updated: 締処理グループの情報を更新しました
-    destroy:
-      closing_group_was_successfully_destroyed: 締処理グループを削除しました

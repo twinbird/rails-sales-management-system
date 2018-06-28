@@ -65,6 +65,10 @@ class SalesReportsControllerTest < ActionDispatch::IntegrationTest
 
     get sales_reports_path
     assert_response :success
+    assert_select 'a[href=?]', sales_report_path(@sales_to_mint)
+
+    get sales_report_path(@sales_to_mint)
+    assert_response :success
     assert_select 'a[href=?]', edit_sales_report_path(@sales_to_mint)
 
     get edit_sales_report_path(@sales_to_mint)
@@ -90,7 +94,7 @@ class SalesReportsControllerTest < ActionDispatch::IntegrationTest
     get sales_reports_path
     assert_response :success
 
-    assert_select 'a[href=?]', sales_report_path(@sales_to_mint), count: 2
+    assert_select 'a[href=?]', sales_report_path(@sales_to_mint)
 
     assert_difference('SalesReport.count', -1) do
       delete sales_report_path(@sales_to_mint)
@@ -105,13 +109,13 @@ class SalesReportsControllerTest < ActionDispatch::IntegrationTest
     sign_in(@sato)
     get sales_reports_path
     assert_response :success
-    assert_select 'div.pagination'
+    assert_select 'nav.pagination'
     sign_out(@sato)
 
     sign_in(@yamada)
     get sales_reports_path
     assert_response :success
-    assert_select 'div.pagination', count: 0
+    assert_select 'nav.pagination', count: 0
   end
 
   test "search sales report" do
