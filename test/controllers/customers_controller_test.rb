@@ -57,6 +57,10 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
 
     get customers_path
     assert_response :success
+    assert_select 'a[href=?]', customer_path(@pepper)
+
+    get customer_path(@pepper)
+    assert_response :success
     assert_select 'a[href=?]', edit_customer_path(@pepper)
 
     get edit_customer_path(@pepper)
@@ -111,7 +115,7 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
     # other user company customer must not found
     assert_select 'a[href=?]', customer_path(@mint), count: 0
 
-    assert_select 'div.pagination'
+    assert_select 'nav.pagination'
   end
 
   test "search listing customer" do

@@ -1,40 +1,45 @@
-<h1><%= t('.title') %></h1>
+<div class="row mt-3"></div>
 
-<%= form_tag products_path, method: :get do %>
-  <div class="input-group col-sm-4">
-    <%= text_field_tag :query, @query, class: 'form-control' %>
-    <span class="input-group-btn">
-      <%= button_tag class: 'btn btn-default' do %>
-        <%= content_tag :span, t('.search'), class: 'glyphicon glyphicon-search' %>
-      <% end %>
-    </span>
+<h4><%= t('.title') %></h4>
+
+<div class="row">
+  <%= form_tag products_path, method: :get, class: 'col-sm-6' do %>
+    <div class="input-group input-group-sm">
+      <%= text_field_tag :query, @query, class: 'form-control input-sm', placeholder: t('.search_placeholder') %>
+      <span class="input-group-btn">
+        <%= button_tag class: 'btn btn-default btn-sm' do %>
+          <%= content_tag :span, t('.search') %>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+
+  <div class="pull-right col-sm-2">
+    <%= link_to t('.new_product'), new_product_path, class: 'btn btn-primary btn-sm' %>
   </div>
-<% end %>
+</div>
 
-<table class="table table-hover">
+<div class="row mt-3"></div>
+
+<table class="table table-hover table-sm">
   <thead>
     <tr>
+      <th></th>
       <th><%= t('activerecord.attributes.product.name') %></th>
       <th><%= t('activerecord.attributes.product.default_price') %></th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @products.each do |product| %>
       <tr>
+        <td><%= link_to t('.show'), product, class: 'btn btn-info btn-sm' %></td>
         <td><%= product.name %></td>
         <td><%= product.default_price %></td>
-        <td><%= link_to t('.show'), product %></td>
-        <td><%= link_to t('.edit'), edit_product_path(product) %></td>
-        <td><%= link_to t('.destroy'), product, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= will_paginate @products %>
+<%= will_paginate @products, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer %>
 
-<br>
-
-<%= link_to t('.new_product'), new_product_path %>

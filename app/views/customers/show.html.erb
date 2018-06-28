@@ -1,12 +1,26 @@
-<p>
-  <strong><%= t('.name') %>:</strong>
-  <%= @customer.name %>
-</p>
+<div class="row mt-3"></div>
 
-<p>
-  <strong><%= t('.payment_term') %>:</strong>
-  <%= @customer.payment_term %>
-</p>
+<h4><%= t('.title') %></h4>
 
-<%= link_to t('.edit'), edit_customer_path(@customer) %> |
-<%= link_to t('.back'), customers_path %>
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.customer.name') %>:</strong>
+  </div>
+  <div class="col-sm-4">
+    <%= @customer.name %>
+  </div>
+  <div class="col-sm-2">
+    <%= link_to t('.edit'), edit_customer_path(@customer), class: 'btn btn-warning btn-sm' %>
+    <%= link_to t('.destroy'), @customer, method: :delete, data: { confirm: t('.are_you_sure') }, class: 'btn btn-danger btn-sm' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-2">
+    <strong><%= t('activerecord.attributes.customer.payment_term') %>:</strong>
+  </div>
+  <div class="col-sm-4">
+    <%= @customer.payment_term %>
+  </div>
+</div>
+

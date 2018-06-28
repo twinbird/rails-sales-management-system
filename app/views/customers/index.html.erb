@@ -1,40 +1,45 @@
-<h1><%= t('.title') %></h1>
+<div class="row mt-3"></div>
 
-<%= form_tag customers_path, method: :get do %>
-  <div class="input-group col-sm-4">
-    <%= text_field_tag :query, @query, class: 'form-control' %>
-    <span class="input-group-btn">
-      <%= button_tag class: 'btn btn-default' do %>
-        <%= content_tag :span, t('.search'), class: 'glyphicon glyphicon-search' %>
-      <% end %>
-    </span>
+<h4><%= t('.title') %></h4>
+
+<div class="row">
+  <%= form_tag customers_path, method: :get, class: 'col-sm-6' do %>
+    <div class="input-group input-group-sm">
+      <%= text_field_tag :query, @query, class: 'form-control input-sm', placeholder: t('.search_word_placeholder') %>
+      <span class="input-group-btn">
+        <%= button_tag class: 'btn btn-default btn-sm' do %>
+          <%= content_tag :span, t('.search') %>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+
+  <div class="pull-right col-sm-2">
+    <%= link_to t('.new_entry'), new_customer_path, class: 'btn btn-primary btn-sm' %>
   </div>
-<% end %>
+</div>
 
-<table class="table table-hover">
+<div class="row mt-3"></div>
+
+<table class="table table-hover table-sm">
   <thead>
     <tr>
+      <th></th>
       <th><%= t('activerecord.attributes.customer.name') %></th>
       <th><%= t('activerecord.attributes.customer.payment_term') %></th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
+        <td><%= link_to t('.open'), customer, class: 'btn btn-info btn-sm' %></td>
         <td><%= customer.name %></td>
         <td><%= customer.payment_term %></td>
-        <td><%= link_to t('.show'), customer %></td>
-        <td><%= link_to t('.edit'), edit_customer_path(customer) %></td>
-        <td><%= link_to t('.destroy'), customer, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= will_paginate @customers %>
+<%= will_paginate @customers, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer %>
 
-<br>
-
-<%= link_to t('.new_entry'), new_customer_path %>

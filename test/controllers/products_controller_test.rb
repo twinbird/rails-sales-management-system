@@ -32,7 +32,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     get products_path
     assert_response :success
 
-    assert_select 'div.pagination'
+    assert_select 'nav.pagination'
   end
 
   test "add new products" do

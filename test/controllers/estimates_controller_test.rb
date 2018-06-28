@@ -34,7 +34,7 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
     get estimates_path
     assert_response :success
     assert_select 'a[href=?]', estimate_path(@buy_new_computer)
-    assert_select 'div.pagination', count: 0
+    assert_select 'nav.pagination', count: 0
   end
 
   test "search estimate" do
@@ -42,12 +42,12 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
 
     get estimates_path
     assert_response :success
-    assert_select 'div.pagination'
+    assert_select 'nav.pagination'
     assert_select 'tbody>tr', count: 20
 
     get estimates_path, params: { query: 'タクシー' }
     assert_response :success
-    assert_select 'div.pagination', count: 0
+    assert_select 'nav.pagination', count: 0
     assert_select 'tbody>tr', count: 1
     assert_select 'input[value=?]', 'タクシー'
   end
