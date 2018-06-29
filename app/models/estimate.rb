@@ -22,6 +22,7 @@ class Estimate < ApplicationRecord
   validates :remarks, length: { maximum: 1000 }
   validate :details_count_validate
   validates :submitted_flag, inclusion: { in: [true, false] }
+  validates :ordered_flag, inclusion: { in: [true, false] }
 
   scope :search, -> (word) {
     joins(:customer).joins(:user_profile).where("title LIKE :word OR customers.name LIKE :word OR user_profiles.name LIKE :word", word: "\%#{word}\%")

@@ -11,4 +11,12 @@ module EstimatesHelper
       t('estimates.helper.unsubmitted')
     end
   end
+
+  def ordered_estimate_message(estimate)
+    if estimate.ordered_flag
+      t('estimates.helper.ordered')
+    else
+      t('estimates.helper.non_ordered')
+    end
+  end
 end

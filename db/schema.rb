@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180629035130) do
+ActiveRecord::Schema.define(version: 20180629154536) do
 
   create_table "company_informations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "企業情報" do |t|
     t.string "name", default: "", null: false, comment: "会社名"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20180629035130) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "submitted_flag", default: false, null: false, comment: "顧客へ提出済"
+    t.boolean "ordered_flag", default: false, null: false
     t.index ["company_information_id"], name: "index_estimates_on_company_information_id"
     t.index ["customer_id"], name: "index_estimates_on_customer_id"
     t.index ["prospect_id"], name: "index_estimates_on_prospect_id"

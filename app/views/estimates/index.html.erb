@@ -29,6 +29,7 @@
       <th><%= t('activerecord.attributes.estimate.customer_name') %></th>
       <th><%= t('activerecord.attributes.estimate.estimate_no') %></th>
       <th><%= t('activerecord.attributes.estimate.issue_date') %></th>
+      <th><%= t('activerecord.attributes.estimate.ordered_flag') %></th>
       <th><%= t('activerecord.attributes.estimate.user_profile_id') %></th>
     </tr>
   </thead>
@@ -42,6 +43,7 @@
         <td><%= estimate.customer_name %></td>
         <td><%= estimate.estimate_no %></td>
         <td><%= estimate.issue_date %></td>
+        <td><%= ordered_estimate_message(estimate) %></td>
         <td><%= estimate.user_profile.name %></td>
       </tr>
     <% end %>
