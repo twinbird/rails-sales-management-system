@@ -1,13 +1,15 @@
-<h1><%= t('.title') %></h1>
+<div class="row mt-3"></div>
+
+<h4><%= t('.title') %></h4>
 
 <%= form_for(@company_information, html: { class: 'form-horizontal' }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="form-group">
     <div class="field">
-      <%= f.label :name, class: 'control-label col-sm-1' %>
+      <%= f.label :name, class: 'control-label form-control-sm' %>
       <div class="col-sm-5">
-        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.text_field :name, class: 'form-control form-control-sm' %>
       </div>
     </div>
   </div>
@@ -15,9 +17,9 @@
   <div class="form-group">
     <%= f.fields_for :user_profiles do |u| %>
       <div class="field">
-        <%= u.label :name, class: 'control-label col-sm-1' %>
+        <%= u.label :name, class: 'control-label form-control-sm' %>
         <div class="col-sm-5">
-          <%= u.text_field :name, class: 'form-control' %>
+          <%= u.text_field :name, class: 'form-control form-control-sm' %>
         </div>
       </div>
     <% end %>
