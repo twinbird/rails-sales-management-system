@@ -189,7 +189,7 @@ ja:
   estimates:
     index:
       title: 見積の管理
-      show: 詳細
+      show: 開く
       search: 検索
       search_placeholder: 見積名/顧客名/担当営業名で検索できます
       new_estimate: 新しい見積の作成
