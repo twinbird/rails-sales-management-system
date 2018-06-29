@@ -67,6 +67,10 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
     get products_path
     assert_response :success
+    assert_select 'a[href=?]', product_path(@crown)
+
+    get product_path(@crown)
+    assert_response :success
     assert_select 'a[href=?]', edit_product_path(@crown)
 
     get edit_product_path(@crown)
@@ -89,7 +93,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
     get products_path
     assert_response :success
-    assert_select 'a[href=?]', product_path(@crown), count: 2
+    assert_select 'a[href=?]', product_path(@crown)
 
     assert_no_difference('Product.count') do
       delete product_path(@crown)
@@ -103,7 +107,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
     get products_path, params: { query: '卵' }
     assert_response :success
-    assert_select 'a[href=?]', product_path(@egg_break_machine), count: 2
+    assert_select 'a[href=?]', product_path(@egg_break_machine)
 
     assert_difference('Product.count', -1) do
       delete product_path(@egg_break_machine)
