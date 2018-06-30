@@ -1,13 +1,5 @@
 <%= form_with(model: prospect, local: true, class: 'form-horizontal') do |form| %>
-  <% if prospect.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-      <% prospect.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error_messages', object: prospect %>
 
   <div class="form-group">
     <div class="field">

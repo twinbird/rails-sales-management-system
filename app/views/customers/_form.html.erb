@@ -1,13 +1,5 @@
 <%= form_with(model: customer, local: true, class: 'form-horizontal') do |form| %>
-  <% if customer.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-      <% customer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error_messages', object: customer %>
 
   <div class="form-group">
     <div class="field">

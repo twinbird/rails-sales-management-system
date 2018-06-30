@@ -1,13 +1,5 @@
 <%= form_with(model: estimate, local: true, class: 'form-horizontal') do |form| %>
-  <% if estimate.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-      <% estimate.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error_messages', object: estimate %>
 
   <div class="row">
     <div class="col-sm-6">
