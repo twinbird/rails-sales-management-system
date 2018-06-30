@@ -85,6 +85,7 @@ ja:
     products: 商品情報の管理
     sales_reports: 営業報告
     please_entry_user_information: 他の機能の利用の前に、ユーザ情報の設定を行ってください
+    login_now: ログイン中：
   company_informations:
     edit:
       title: ユーザ情報の登録
