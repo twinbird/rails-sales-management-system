@@ -13,4 +13,9 @@ class Customer < ApplicationRecord
   scope :search, -> (word) {
     where("name LIKE :word", word: "\%#{word}\%")
   }
+
+  def latest_prospects(limit_size)
+    self.prospects.order(created_at: :desc).limit(limit_size)
+  end
+
 end

@@ -4,6 +4,7 @@ class ProspectsController < ApplicationController
   before_action :set_prospect, only: [:show, :edit, :update, :destroy]
   before_action :set_customers, only: [:new, :edit, :create, :update]
   before_action :set_users, only: [:new, :edit, :create, :update]
+  before_action :set_latest_prospects, only: [:show]
 
   # GET /prospects
   # GET /prospects.json
@@ -79,6 +80,10 @@ class ProspectsController < ApplicationController
 
     def set_users
       @users = current_user_company.user_profiles
+    end
+
+    def set_latest_prospects
+      @latest_prospects = @prospect.customer.latest_prospects(5)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

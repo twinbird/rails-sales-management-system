@@ -86,3 +86,34 @@
     <%= @prospect.user_profile.name %>
   </div>
 </div>
+
+<div class="row mt-3">
+  <div class="ml-3"></div>
+  <h5><%= t('.latest_prospects') %></h5>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h6><%= t('.latest_prospects') %></h6>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th></th>
+          <th><%= t('activerecord.attributes.prospect.title') %></th>
+          <th><%= t('activerecord.attributes.prospect.prospect_amount') %></th>
+          <th><%= t('activerecord.attributes.prospect.created_at') %></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @latest_prospects.each do |prospect| %>
+        <tr>
+          <td><%= link_to t('.open'), prospect_path(prospect), class: 'btn btn-info btn-sm' %></td>
+          <td><%= prospect.title %></td>
+          <td><%= prospect.prospect_amount %></td>
+          <td><%= prospect.created_at.to_s(:date) %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
