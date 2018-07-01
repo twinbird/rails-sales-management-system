@@ -33,7 +33,7 @@
               <%= link_to t('layout.mysetting'), mysetting_path, class: 'dropdown-item' %>
             </div>
           </li>
-          <li class="nav-item"><span class="nav-link disabled"><%= welcome_message(current_user) %></span></li>
+          <li class="nav-item"><span class="nav-link disabled"><%= welcome_message %></span></li>
           <li class="nav-item"><%= link_to t('devise.signout'), destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
         </ul>
       </div>

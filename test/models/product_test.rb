@@ -41,4 +41,15 @@ class ProductTest < ActiveSupport::TestCase
     assert @crown.valid?
   end
 
+  test "search should return only partial match product 'name'" do
+    products = Product.search('product_')
+    assert_equal 99, products.count
+
+    one_found = Product.search('自動卵')
+    assert_equal 1, one_found.count
+
+    empty = Product.search('hoge foo bar')
+    assert_equal 0, empty.count
+  end
+
 end

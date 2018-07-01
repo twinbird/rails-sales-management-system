@@ -7,19 +7,20 @@ class Customer < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :payment_term, length: { maximum: 50 }
 
-  scope :ours, -> (user) {
-    where(company_information: user.user_profile.company_information)
-  }
   scope :search, -> (word) {
     where("name LIKE :word", word: "\%#{word}\%")
   }
 
   def latest_prospects(limit_size)
-    self.prospects.order(created_at: :desc).limit(limit_size)
+    prospects.order(created_at: :desc).limit(limit_size)
   end
 
   def latest_sales_reports(limit_size)
-    self.sales_reports.order(occur_date: :desc).limit(limit_size)
+    sales_reports.order(occur_date: :desc).limit(limit_size)
+  end
+
+  def latest_estimates(limit_size)
+    estimates.order(issue_date: :desc).limit(limit_size)
   end
 
 end

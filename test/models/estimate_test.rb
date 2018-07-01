@@ -121,4 +121,19 @@ class EstimateTest < ActiveSupport::TestCase
     assert_not @buy_new_computer.valid?
   end
 
+  test "search can find partial estimate title" do
+    actual = Estimate.search('サーバ')
+    assert_equal 1, actual.count
+  end
+
+  test "search can find partial estimate customer name" do
+    actual = Estimate.search('epper')
+    assert_equal 2, actual.count
+  end
+
+  test "search can find partial estimate PIC name" do
+    actual = Estimate.search('田')
+    assert_equal 2, actual.count
+  end
+
 end

@@ -16,7 +16,7 @@ module ApplicationHelper
     current_user.user_profile.company_information
   end
 
-  def welcome_message(user)
+  def welcome_message
     t('layout.login_now') + current_user.user_profile.name
   end
 end

@@ -150,4 +150,16 @@ class ProspectsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'input[value=?]', '営業所'
   end
 
+  test "listing latest prospects" do
+    sign_in(@sato)
+
+    latest_prospects = @buy_new_taxi.customer.latest_prospects(5)
+    get prospect_path(@buy_new_taxi)
+    assert_response :success
+
+    latest_prospects.each do |prospect|
+      assert_select 'a[href=?]', prospect_path(prospect)
+    end
+  end
+
 end

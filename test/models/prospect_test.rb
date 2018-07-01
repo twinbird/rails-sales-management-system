@@ -35,4 +35,14 @@ class ProspectTest < ActiveSupport::TestCase
     assert_not @buy_new_computer.valid?
   end
 
+  test "search can find partial prospect title" do
+    actual = Prospect.search('タクシー')
+    assert_equal 1, actual.count
+  end
+
+  test "search can find partial customer name" do
+    actual = Prospect.search('epper')
+    assert_equal 1, actual.count
+  end
+
 end

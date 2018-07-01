@@ -6,8 +6,4 @@ class UserProfile < ApplicationRecord
   has_many :prospect, dependent: :restrict_with_error
 
   validates :name, presence: true, length: { maximum: 50 }
-
-  scope :ours, -> (user) {
-    where(company_information: user.user_profile.company_information)
-  }
 end

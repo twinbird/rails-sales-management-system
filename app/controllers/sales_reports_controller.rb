@@ -76,19 +76,19 @@ class SalesReportsController < ApplicationController
     end
 
     def set_customers
-      @customers = Customer.ours(current_user)
+      @customers = current_user_company.customers
     end
 
     def set_users
-      @users = UserProfile.ours(current_user)
+      @users = current_user_company.user_profiles
     end
 
     def set_latest_estimates
-      @latest_estimates = @sales_report.customer.estimates.order(issue_date: :desc).limit(5)
+      @latest_estimates = @sales_report.customer.estimates.limit(5)
     end
 
     def set_latest_prospects
-      @latest_prospects = @sales_report.customer.prospects.order(created_at: :desc).limit(5)
+      @latest_prospects = @sales_report.customer.latest_prospects(5)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -151,4 +151,28 @@ class SalesReportsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'input[value=?]', 'ミント株式会社'
   end
 
+  test "listing latest prospects" do
+    sign_in(@sato)
+
+    latest_prospects = @pepper.latest_prospects(5)
+    get sales_report_path(@sales_to_pepper)
+    assert_response :success
+
+    latest_prospects.each do |prospect|
+      assert_select 'a[href=?]', prospect_path(prospect)
+    end
+  end
+
+  test "listing latest estimates" do
+    sign_in(@sato)
+
+    latest_estimates = @pepper.latest_estimates(5)
+    get sales_report_path(@sales_to_pepper)
+    assert_response :success
+
+    latest_estimates.each do |estimate|
+      assert_select 'a[href=?]', estimate_path(estimate)
+    end
+  end
+
 end

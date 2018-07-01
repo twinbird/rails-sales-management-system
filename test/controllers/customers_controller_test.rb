@@ -137,4 +137,30 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
     assert_select 'input[value=?]', 'hoge'
   end
 
+  test "listing latest prospects" do
+    sign_in(@sato)
+
+    expect_prospects = @pepper.latest_prospects(5)
+
+    get customer_path(@pepper)
+    assert_response :success
+
+    expect_prospects.each do |prospect|
+      assert_select 'a[href=?]', prospect_path(prospect)
+    end
+  end
+
+  test "listing latest sales reports" do
+    sign_in(@sato)
+
+    expect_sales_reports = @pepper.latest_sales_reports(5)
+
+    get customer_path(@pepper)
+    assert_response :success
+
+    expect_sales_reports.each do |sales_report|
+      assert_select 'a[href=?]', sales_report_path(sales_report)
+    end
+  end
+
 end
