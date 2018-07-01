@@ -22,9 +22,9 @@
       </div>
       <div class="form-group">
         <div class="field row">
-          <%= form.label :issue_date, class: 'control-label col-sm-3' %>
+          <%= form.label :customer_id, class: 'control-label col-sm-3' %>
           <div class="col-sm-9">
-            <%= form.date_field :issue_date, id: :estimate_issue_date, class: 'form-control form-control-sm' %>
+            <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {}, class: 'form-control form-control-sm searchable' %>
           </div>
         </div>
       </div>
@@ -32,15 +32,20 @@
       <div class="form-group">
         <div class="field row">
           <%= form.label :due_date, class: 'control-label col-sm-3' %>
-          <div class="col-sm-9">
+          <div class="col-sm-4">
             <%= form.date_field :due_date, id: :estimate_due_date, class: 'form-control form-control-sm' %>
+          </div>
+          <%= form.label :due_date_pending_flag, class: 'control-label col-sm-4' %>
+          <div class="col-sm-1">
+            <%= form.check_box :due_date_pending_flag, id: :estimate_due_date_pending_flag, class: 'form-control form-control-sm' %>
           </div>
         </div>
       </div>
+
       <div class="form-group">
         <div class="field row">
           <%= form.label :effective_date, class: 'control-label col-sm-3' %>
-          <div class="col-sm-9">
+          <div class="col-sm-4">
             <%= form.date_field :effective_date, id: :estimate_effective_date, class: 'form-control form-control-sm' %>
           </div>
         </div>
@@ -49,7 +54,7 @@
       <div class="form-group">
         <div class="field row">
           <%= form.label :tax_rate, class: 'control-label col-sm-3' %>
-          <div class="col-sm-9">
+          <div class="col-sm-2">
             <%= form.text_field :tax_rate, id: :estimate_tax_rate, class: 'form-control form-control-sm' %>
           </div>
         </div>
@@ -57,14 +62,6 @@
     </div>
 
     <div class="col-sm-6">
-      <div class="form-group">
-        <div class="field row">
-          <%= form.label :customer_id, class: 'control-label col-sm-3' %>
-          <div class="col-sm-9">
-            <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {}, class: 'form-control form-control-sm searchable' %>
-          </div>
-        </div>
-      </div>
       <div class="form-group">
         <div class="field row">
           <%= form.label :estimate_no, class: 'control-label col-sm-3' %>
@@ -75,9 +72,9 @@
       </div>
       <div class="form-group">
         <div class="field row">
-          <%= form.label :due_date_pending_flag, class: 'control-label col-sm-5' %>
-          <div class="col-sm-1">
-            <%= form.check_box :due_date_pending_flag, id: :estimate_due_date_pending_flag, class: 'form-control form-control-sm' %>
+          <%= form.label :issue_date, class: 'control-label col-sm-3' %>
+          <div class="col-sm-4">
+            <%= form.date_field :issue_date, id: :estimate_issue_date, class: 'form-control form-control-sm' %>
           </div>
         </div>
       </div>
