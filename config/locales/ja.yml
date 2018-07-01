@@ -53,7 +53,7 @@ ja:
         due_date_pending_flag: 納期を別途相談とする
         payment_term: 支払条件
         effective_date: 見積有効期限
-        tax_rate: 消費税率
+        tax_rate: 消費税率(%)
         remarks: 備考
         user_profile_id: 担当営業
         submitted_flag: 提出済み
