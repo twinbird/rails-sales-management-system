@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'csv'
 
 class CustomersControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
@@ -161,6 +162,31 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
     expect_sales_reports.each do |sales_report|
       assert_select 'a[href=?]', sales_report_path(sales_report)
     end
+  end
+
+  test "csv download is equal search result" do
+    sign_in(@sato)
+
+    get customers_path, params: { query: '0' }
+    assert_response :success
+    assert_select 'tbody>tr', count: 9
+
+    expect_csv = CSV.generate(encoding: Encoding::SJIS, row_sep: "\r\n", force_quotes: true) do |csv|
+      csv << %w(顧客名 支払条件)
+      90.times do |i|
+        next if i % 10 != 0
+        customer = customers("customer#{i}".to_sym)
+        csv_column_values = [
+          customer.name,
+          customer.payment_term
+        ]
+        csv << csv_column_values
+      end
+    end
+
+    get customers_path(format: :csv), params: { query: '0' }
+    assert_response :success
+    assert_equal expect_csv.encode("UTF-8"), response.body.encode("UTF-8")
   end
 
 end

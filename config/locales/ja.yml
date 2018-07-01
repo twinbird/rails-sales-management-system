@@ -101,6 +101,7 @@ ja:
       new_entry: 新しい顧客を追加
       search: 検索
       search_word_placeholder: 顧客名で検索できます
+      save_to_csv: 検索結果をCSVへ保存
     new:
       title: 新しい顧客情報の追加
     show:

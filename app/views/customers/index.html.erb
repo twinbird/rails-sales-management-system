@@ -10,6 +10,7 @@
         <%= button_tag class: 'btn btn-default btn-sm' do %>
           <%= content_tag :span, t('.search') %>
         <% end %>
+        <%= link_to t('.save_to_csv'), customers_path(format: :csv), class: 'btn btn-sm btn-success' %>
       </span>
     </div>
   <% end %>
