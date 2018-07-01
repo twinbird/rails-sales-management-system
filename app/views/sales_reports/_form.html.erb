@@ -5,7 +5,7 @@
     <div class="field">
       <%= form.label :customer, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {}, class: 'form-control form-control-sm' %>
+        <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {}, class: 'form-control form-control-sm searchable' %>
       </div>
     </div>
   </div>
@@ -14,7 +14,7 @@
     <div class="field">
       <%= form.label :user_profile, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]}, {}, class: 'form-control form-control-sm' %>
+        <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]}, {}, class: 'form-control form-control-sm searchable' %>
       </div>
     </div>
   </div>

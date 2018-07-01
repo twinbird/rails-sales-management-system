@@ -16,4 +16,6 @@
 //= require popper
 //= require cocoon
 //= require bootstrap-sprockets
+//= require select2
+//= require select2_locale_ja
 //= require_tree .
