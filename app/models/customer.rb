@@ -18,4 +18,8 @@ class Customer < ApplicationRecord
     self.prospects.order(created_at: :desc).limit(limit_size)
   end
 
+  def latest_sales_reports(limit_size)
+    self.sales_reports.order(occur_date: :desc).limit(limit_size)
+  end
+
 end

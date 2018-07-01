@@ -2,6 +2,8 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!
   before_action :initialized_user!
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_latest_prospects, only: [:show]
+  before_action :set_latest_sales_reports, only: [:show]
 
   # GET /customers
   # GET /customers.json
@@ -69,6 +71,14 @@ class CustomersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
       @customer = Customer.find_by(id: params[:id], company_information: current_user_company)
+    end
+
+    def set_latest_prospects
+      @latest_prospects = @customer.latest_prospects(5)
+    end
+
+    def set_latest_sales_reports
+      @latest_sales_reports = @customer.latest_sales_reports(5)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -24,3 +24,46 @@
   </div>
 </div>
 
+<div class="row mt-3"></div>
+<div class="row">
+  <div class="col-sm-6">
+    <h6><%= t('.latest_sales_reports') %></h6>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th></th>
+          <th><%= t('activerecord.attributes.sales_report.occur_date') %></th>
+          <th><%= t('activerecord.attributes.sales_report.description') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @latest_sales_reports.each do |report| %>
+        <tr>
+          <td><%= link_to t('.open'), report, class: 'btn btn-info btn-sm' %></td>
+          <td><%= report.occur_date&.to_s(:date) %></td>
+          <td><%= report.description&.truncate(50) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-6">
+    <h6><%= t('.latest_prospects') %></h6>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th></th>
+          <th><%= t('activerecord.attributes.prospect.title') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @latest_prospects.each do |prospect| %>
+        <tr>
+          <td><%= link_to t('.open'), prospect, class: 'btn btn-info btn-sm' %></td>
+          <td><%= prospect.title.truncate(50) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
