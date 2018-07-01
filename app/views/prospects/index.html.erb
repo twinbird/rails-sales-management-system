@@ -45,8 +45,8 @@
         <td><%= prospect.customer.name %></td>
         <td><%= prospect.rank %></td>
         <td><%= prospect.prospect_amount %></td>
-        <td><%= prospect.prospect_order_date.to_s(:date) %></td>
-        <td><%= prospect.prospect_earning_date.to_s(:date) %></td>
+        <td><%= prospect.prospect_order_date&.to_s(:date) %></td>
+        <td><%= prospect.prospect_earning_date&.to_s(:date) %></td>
         <td><%= prospect.distribute %></td>
         <td><%= prospect.user_profile.name %></td>
       </tr>
