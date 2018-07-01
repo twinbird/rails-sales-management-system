@@ -7,7 +7,7 @@
         <div class="field row">
           <%= form.label :prospect_id, class: 'control-label col-sm-3' %>
           <div class="col-sm-9">
-            <%= form.select :prospect_id, @prospects.map{|p| [p.title, p.id]}, { include_blank: true }, class: 'form-control form-control-sm' %>
+            <%= form.select :prospect_id, @prospects.map{|p| [p.title, p.id]}, { include_blank: true }, class: 'form-control form-control-sm searchable' %>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
         <div class="field row">
           <%= form.label :customer_id, class: 'control-label col-sm-3' %>
           <div class="col-sm-9">
-            <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {}, class: 'form-control form-control-sm' %>
+            <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {}, class: 'form-control form-control-sm searchable' %>
           </div>
         </div>
       </div>
@@ -92,7 +92,7 @@
           <div class="field row">
             <%= form.label :user_profile_id, class: 'control-label col-sm-3' %>
             <div class="col-sm-9">
-              <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]}, {}, class: 'form-control form-control-sm' %>
+              <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]}, {}, class: 'form-control form-control-sm searchable' %>
             </div>
           </div>
         </div>
