@@ -12,9 +12,14 @@
  *
  */
 @import "bootstrap";
+@import "signin";
 
 .field_with_errors {
 	input {
 		@extend .is-invalid;
 	}
+}
+
+body {
+	background-color: #f5f5f5;
 }
