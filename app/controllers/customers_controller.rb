@@ -8,8 +8,16 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = current_user_company.customers.search(params[:query]).order(:name).paginate(page: params[:page], per_page: 20)
+    @customers = current_user_company.customers.search(params[:query]).order(:name)
     @query = params[:query]
+
+    respond_to do |format|
+      format.html do
+        @customers = @customers.paginate(page: params[:page], per_page: 20)
+        render :index
+      end
+      format.csv { send_data render_to_string, filename: 'customers.csv', type: 'text/csv; charset=shift_jis' }
+    end
   end
 
   # GET /customers/1
@@ -64,6 +72,21 @@ class CustomersController < ApplicationController
       format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def import_form
+  end
+
+  def import
+    if params[:file].nil?
+      flash[:danger] = t('.file_must_be_spec')
+      render 'import_form'
+      return
+    end
+
+    @error_line, @error_customer = Customer.import(params[:file], current_user_company)
+    flash[:info] = t('.import_success') unless @error_customer
+    render 'import_form'
   end
 
   private

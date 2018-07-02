@@ -101,6 +101,8 @@ ja:
       new_entry: 新しい顧客を追加
       search: 検索
       search_word_placeholder: 顧客名で検索できます
+      save_to_csv: 検索結果をCSVへ保存
+      import_from_csv: CSVからインポート
     new:
       title: 新しい顧客情報の追加
     show:
@@ -113,6 +115,15 @@ ja:
       open: 開く
     edit:
       title: 顧客情報の編集
+    import_form:
+      title: CSVからのインポート
+      import_csv: CSVをインポート
+      description_csv_file: 顧客名,支払条件の形式のCSVを選択してください。
+                            先頭一行はヘッダとして扱うため取り込まれません。
+      import_error_occured: 行目の入力に誤りがあります
+    import:
+      import_success: CSVから顧客情報をインポートしました
+      file_must_be_spec: ファイルを指定してください
   prospects:
     index:
       title: 案件の管理
