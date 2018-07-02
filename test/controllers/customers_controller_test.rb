@@ -3,6 +3,7 @@ require 'csv'
 
 class CustomersControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+  include ActionDispatch::TestProcess
 
   def setup
     @sato = users(:sato)
@@ -172,7 +173,7 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
     assert_select 'tbody>tr', count: 9
 
     expect_csv = CSV.generate(encoding: Encoding::SJIS, row_sep: "\r\n", force_quotes: true) do |csv|
-      csv << %w(顧客名 支払条件)
+      csv << %w[顧客名 支払条件]
       90.times do |i|
         next if i % 10 != 0
         customer = customers("customer#{i}".to_sym)
@@ -187,6 +188,45 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
     get customers_path(format: :csv), params: { query: '0' }
     assert_response :success
     assert_equal expect_csv.encode("UTF-8"), response.body.encode("UTF-8")
+  end
+
+  test "valid csv import" do
+    sign_in(@sato)
+
+    get customers_path
+    assert_response :success
+    assert_select 'a[href=?]', import_form_customers_path
+
+    get import_form_customers_path
+    assert_response :success
+    assert_select 'form[action=?]', import_customers_path
+
+    file = fixture_file_upload "files/customer.csv", "text/comma-separated-values"
+    assert_difference('Customer.count', 4) do
+      post import_customers_path, params: { file: file }
+    end
+    assert_response :success
+    assert_not flash[:info].empty?
+  end
+
+  test "invalid csv import" do
+    sign_in(@sato)
+
+    get customers_path
+    assert_response :success
+    assert_select 'a[href=?]', import_form_customers_path
+
+    get import_form_customers_path
+    assert_response :success
+    assert_select 'form[action=?]', import_customers_path
+
+    file = fixture_file_upload "files/error_customer.csv", "text/comma-separated-values"
+    assert_no_difference('Customer.count') do
+      post import_customers_path, params: { file: file }
+    end
+    assert_response :success
+    assert_select '#error_explanation'
+    assert flash.empty?
   end
 
 end

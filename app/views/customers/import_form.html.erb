@@ -1,0 +1,19 @@
+<div class="row mt-3"></div>
+
+<h4><%= t('.title') %></h4>
+
+<div class="row mt-3"></div>
+
+<p>
+<%= t('.description_csv_file') %>
+</p>
+
+<%= form_tag(import_customers_path, method: 'post', multipart: true) do |f| %>
+  <%= file_field_tag :file %>
+  <%= submit_tag t('.import_csv'), class: 'btn btn-success btn-sm' %>
+<% end %>
+
+<% if @error_customer %>
+  <%= @error_line %><%= t('.import_error_occured') %>
+  <%= render 'shared/error_messages', object: @error_customer %>
+<% end %>

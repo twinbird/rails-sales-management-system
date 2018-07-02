@@ -1,3 +1,5 @@
+require 'csv'
+
 class Customer < ApplicationRecord
   belongs_to :company_information
   has_many :sales_reports, dependent: :restrict_with_error
@@ -21,6 +23,23 @@ class Customer < ApplicationRecord
 
   def latest_estimates(limit_size)
     estimates.order(issue_date: :desc).limit(limit_size)
+  end
+
+  def self.import(file, company)
+    ret = nil
+    Customer.transaction do
+      CSV.foreach(file.path, encoding: 'sjis', headers: true).with_index(2) do |row, i|
+        obj = new
+        obj.company_information = company
+        obj.name = row.to_hash[I18n.t('activerecord.attributes.customer.name')]
+        obj.payment_term = row.to_hash[I18n.t('activerecord.attributes.customer.payment_term')]
+
+        ret = [i, obj]
+        obj.save!
+      end
+    end
+  rescue ActiveRecord::RecordInvalid
+    return ret
   end
 
 end

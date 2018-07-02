@@ -15,8 +15,9 @@
     </div>
   <% end %>
 
-  <div class="pull-right col-sm-2">
+  <div class="pull-right col-sm-4">
     <%= link_to t('.new_entry'), new_customer_path, class: 'btn btn-primary btn-sm' %>
+    <%= link_to t('.import_from_csv'), import_form_customers_path %>
   </div>
 </div>
 

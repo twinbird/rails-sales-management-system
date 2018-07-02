@@ -1,11 +1,13 @@
 require 'test_helper'
 
 class CustomerTest < ActiveSupport::TestCase
+  include ActionDispatch::TestProcess
 
   def setup
     @customer = customers(:mint)
     @pepper = customers(:pepper)
     @no_use_customer = customers(:no_use_customer)
+    @lime = company_informations(:lime)
   end
 
   test "should be pass" do
@@ -88,6 +90,22 @@ class CustomerTest < ActiveSupport::TestCase
 
     empty_estimates = @no_use_customer.latest_estimates(size)
     assert_equal 0, empty_estimates.count
+  end
+
+  test "valid csv import" do
+    file = fixture_file_upload "files/customer.csv", "text/comma-separated-values"
+    assert_difference('Customer.count', 4) do
+      assert_nil Customer.import(file, @lime)
+    end
+  end
+
+  test "invalid csv import" do
+    file = fixture_file_upload "files/error_customer.csv", "text/comma-separated-values"
+    assert_no_difference('Customer.count') do
+      error_line, error_obj = Customer.import(file, @lime)
+      assert_equal 3, error_line
+      assert_equal 1, error_obj.errors.count
+    end
   end
 
 end
