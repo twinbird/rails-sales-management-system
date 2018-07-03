@@ -1,4 +1,8 @@
 <div class="signin-form">
+  <%= image_tag 'logo_transparent.png', size: '350x100' %>
+
+  <div class="row mt-3"></div>
+
   <h3><%= t('devise.signin') %></h3>
   
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
