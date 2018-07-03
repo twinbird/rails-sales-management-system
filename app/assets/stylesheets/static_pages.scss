@@ -1,3 +1,13 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#logo {
+	max-width: 950px;
+	margin: 0 auto;
+}
+
+.signup-btn {
+	display: block;
+	width: 300px;
+	margin: 0 auto;
+}

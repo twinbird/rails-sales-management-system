@@ -1,4 +1,25 @@
-<h1>top</h1>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <!-- brand -->
+  <%= link_to 'Rails CRM', root_path, class: 'navbar-brand' %>
+  <!-- toggle button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- menu -->
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+    <ul class="navbar-nav">
+      <%= link_to t('devise.signin'), new_user_session_path, class: 'btn btn-primary' %>
+    </ul>
+  </div>
+</nav>
 
-<%= link_to t('devise.signin'), new_user_session_path %>
-<%= link_to t('devise.signup'), new_user_registration_path %>
+<div class="jumbotron">
+  <div id="logo">
+    <%= image_tag 'logo_transparent.png' %>
+  </div>
+  <p class="lead">Ruby on Railsで作られたショボいCRMアプリケーション</p>
+</div>
+
+<%= link_to t('devise.signin_now'), new_user_registration_path, class: 'btn btn-primary btn-lg signup-btn' %>

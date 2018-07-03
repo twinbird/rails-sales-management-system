@@ -3,6 +3,7 @@ ja:
     signup: サインアップ
     signin: サインイン
     signout: サインアウト
+    signin_now: 今すぐ登録して使ってみる
     characters_minimum: 文字以上で入力してください
     forgot_your_password: パスワードをお忘れですか?
     send_me_reset_password_instructions: パスワード再設定のメールを送信
