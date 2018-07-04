@@ -26,6 +26,8 @@ $(document).on('turbolinks:load', function() {
 			var txt_amount = $(this).val();
 			amount += Number(txt_amount);
 		});
+		var tax_rate = $('#tax-rate').val();
+		amount *= (Number(tax_rate) / 100) + 1;
 		$('#total-amount').text(amount.toString(10));
 	};
 	var calc_price = function() {
@@ -44,6 +46,7 @@ $(document).on('turbolinks:load', function() {
 	$('#estimate_details').on('cocoon:after-remove', toggle_remove_detail_button);
 	$('#estimate_details').on('cocoon:after-insert', calc_total_amount);
 	$('#estimate_details').on('cocoon:after-remove', calc_total_amount);
+	$('#tax-rate').on('change', calc_total_amount);
 	$('.estimate-detail-quantity').on('change', calc_price);
 	$('.estimate-detail-unit-price').on('change', calc_price);
 	$('.remove-detail-button').addClass('disabled');
