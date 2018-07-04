@@ -59,6 +59,7 @@ ja:
         user_profile_id: 担当営業
         submitted_flag: 提出済み
         ordered_flag: 受注済み
+        total_amount: 合計金額
       estimate_detail:
         display_order: 表示順
         product_id: 商品
