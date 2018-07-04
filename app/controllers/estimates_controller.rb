@@ -22,6 +22,7 @@ class EstimatesController < ApplicationController
   # GET /estimates/new
   def new
     @estimate = current_user_company.estimates.build
+    @estimate.estimate_details.build
   end
 
   # GET /estimates/1/edit
