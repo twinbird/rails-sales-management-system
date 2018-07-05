@@ -14,10 +14,18 @@ Rails.application.routes.draw do
       post :import
     end
   end
-  resources :company_informations, only: [:edit, :create, :update]
-  devise_for :users
+  resources :company_informations, only: [:edit, :update]
+  resources :user_profiles
+  devise_for :users, skip: :registrations
+  devise_scope :user do
+    resource :user_registration,
+      only: [:new, :create],
+      path: 'users',
+      path_names: { new: 'sign_up' },
+      controller: 'registrations'
+  end
+
   root to: 'static_pages#index'
-  get '/mysetting', to: 'company_informations#edit'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'

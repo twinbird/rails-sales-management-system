@@ -1,6 +1,5 @@
 class EstimatesController < ApplicationController
   before_action :authenticate_user!
-  before_action :initialized_user!
   before_action :set_estimate, only: [:show, :edit, :update, :destroy]
   before_action :set_users
   before_action :set_customers

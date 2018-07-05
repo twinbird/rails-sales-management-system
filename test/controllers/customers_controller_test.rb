@@ -7,18 +7,8 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @sato = users(:sato)
-    @new_user = users(:new_user)
     @pepper = customers(:pepper)
     @mint = customers(:mint)
-  end
-
-  test "can't access not setup user" do
-    sign_in(@new_user)
-
-    get customers_path
-    assert_redirected_to mysetting_path
-    follow_redirect!
-    assert_not flash[:notice].empty?
   end
 
   test "can't access not signin user" do

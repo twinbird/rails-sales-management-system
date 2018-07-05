@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
 
   def after_sign_in_path_for(_resources)
-    mysetting_path
+    sales_reports_path
   end
 
 end

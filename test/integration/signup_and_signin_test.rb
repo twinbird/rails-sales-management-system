@@ -7,10 +7,14 @@ class SignupAndSigninTest < ActionDispatch::IntegrationTest
     get new_user_registration_path
     assert_response :success
 
-    post user_registration_path, params: { user: { email: 'test@example.com',
+    post user_registration_path, params: { company_name: 'test company',
+                                           user: { email: 'test@example.com',
                                                    password: 'password',
-                                                   password_confirmation: 'password' } }
-    assert_redirected_to mysetting_path
+                                                   password_confirmation: 'password',
+                                                   user_profile_attributes: {
+                                                     name: 'test user'
+                                                   } } }
+    assert_redirected_to sales_reports_path
     follow_redirect!
     assert_not flash[:notice].empty?
     assert_select 'a', text: 'サインアウト', count: 1

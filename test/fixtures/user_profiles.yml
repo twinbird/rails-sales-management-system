@@ -12,3 +12,20 @@ tanaka:
   user: tanaka
   company_information: lime
   name: 田中 健司
+
+miyagi:
+  user: miyagi
+  company_information: large_company
+  name: 宮城 壮太
+
+disabled_user:
+  user: disabled_user
+  company_information: large_company
+  name: 無効なユーザ
+
+<% 99.times do |i| %>
+user<%= i %>:
+  user: user<%= i %>
+  company_information: large_company
+  name: ユーザ<%= i %>
+<% end %>

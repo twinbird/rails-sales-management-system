@@ -30,7 +30,7 @@
             <div class="dropdown-menu navbar-dark" role="menu">
               <%= link_to t('layout.customers'), customers_path, class: 'dropdown-item' %>
               <%= link_to t('layout.products'), products_path, class: 'dropdown-item' %>
-              <%= link_to t('layout.mysetting'), mysetting_path, class: 'dropdown-item' %>
+              <%= link_to t('layout.mysetting'), edit_company_information_path(current_user_company), class: 'dropdown-item' %>
             </div>
           </li>
           <li class="nav-item"><span class="nav-link disabled"><%= welcome_message %></span></li>

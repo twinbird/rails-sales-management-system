@@ -1,6 +1,5 @@
 class ProspectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :initialized_user!
   before_action :set_prospect, only: [:show, :edit, :update, :destroy]
   before_action :set_customers, only: [:new, :edit, :create, :update]
   before_action :set_users, only: [:new, :edit, :create, :update]

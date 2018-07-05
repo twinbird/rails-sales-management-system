@@ -14,3 +14,17 @@ new_user:
   email: newuser@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
+miyagi:  
+  email: miyagi@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+disabled_user:
+  email: disabled_user@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  disabled_at: 2018-07-05 03:00:00
+
+<% 99.times do |i| %>
+user<%= i %>:
+  email: user<%= i %>@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+<% end %>

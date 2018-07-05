@@ -1,0 +1,47 @@
+<div class="row mt-3"></div>
+
+<h4><%= t('.title') %></h4>
+
+<div class="row">
+  <%= form_tag user_profiles_path, method: :get, class: 'col-sm-6' do %>
+    <div class="input-group input-group-sm">
+      <%= text_field_tag :query, @query, class: 'form-control input-sm', placeholder: t('.search_word_placeholder') %>
+      <span class="input-group-btn">
+        <%= button_tag class: 'btn btn-default btn-sm' do %>
+          <%= content_tag :span, t('.search') %>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+
+  <div class="pull-right col-sm-4">
+    <%= link_to t('.new_entry'), new_user_profile_path, class: 'btn btn-primary btn-sm' %>
+  </div>
+</div>
+
+<div class="row mt-3"></div>
+
+<table class="table table-hover table-sm">
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.user_profile.name') %></th>
+      <th><%= t('activerecord.attributes.user.email') %></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.name %></td>
+        <td><%= profile.user.email %></td>
+        <td><%= link_to t('.edit'), edit_user_profile_path(profile), class: 'btn btn-info btn-sm' %></td>
+        <td><%= link_to t('.disable'), user_profile_path(profile), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @user_profiles, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer %>
+

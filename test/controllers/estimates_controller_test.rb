@@ -6,21 +6,11 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
   def setup
     @yamada = users(:yamada)
     @sato = users(:sato)
-    @new_user = users(:new_user)
     @buy_new_computer = estimates(:buy_new_computer)
     @buy_new_taxi_prospect = prospects(:buy_new_taxi)
     @customer_mint = customers(:mint)
     @crown = products(:crown)
     @non_ordered_estimate = estimates(:non_ordered_estimate)
-  end
-
-  test "can't access not setup user" do
-    sign_in(@new_user)
-
-    get estimates_path
-    assert_redirected_to mysetting_path
-    follow_redirect!
-    assert_not flash[:notice].empty?
   end
 
   test "can't access not signin user" do

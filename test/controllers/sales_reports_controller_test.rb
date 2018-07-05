@@ -6,19 +6,9 @@ class SalesReportsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @sato = users(:sato)
     @yamada = users(:yamada)
-    @new_user = users(:new_user)
     @pepper = customers(:pepper)
     @sales_to_pepper = sales_reports(:sales_to_pepper)
     @sales_to_mint = sales_reports(:sales_to_mint)
-  end
-
-  test "can't access not setup user" do
-    sign_in(@new_user)
-
-    get sales_reports_path
-    assert_redirected_to mysetting_path
-    follow_redirect!
-    assert_not flash[:notice].empty?
   end
 
   test "can't access not signin user" do

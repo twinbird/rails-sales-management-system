@@ -6,4 +6,12 @@ class UserProfile < ApplicationRecord
   has_many :prospect, dependent: :restrict_with_error
 
   validates :name, presence: true, length: { maximum: 50 }
+
+  scope :actives, -> {
+    joins(:user).where("users.disabled_at IS NULL")
+  }
+
+  scope :search, -> (word) {
+    joins(:user).where("name LIKE :word OR users.email LIKE :word", word: "\%#{word}\%")
+  }
 end

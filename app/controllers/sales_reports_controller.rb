@@ -1,6 +1,5 @@
 class SalesReportsController < ApplicationController
   before_action :authenticate_user!
-  before_action :initialized_user!
   before_action :set_sales_report, only: [:show, :edit, :update, :destroy]
   before_action :set_customers
   before_action :set_users

@@ -7,6 +7,7 @@ ja:
     characters_minimum: 文字以上で入力してください
     forgot_your_password: パスワードをお忘れですか?
     send_me_reset_password_instructions: パスワード再設定のメールを送信
+    your_name: お名前
     new_password: 新しいパスワード
     confirm_new_password: 新しいパスワード(再入力)
     change_my_password: パスワードを変更
@@ -80,7 +81,7 @@ ja:
         too_many_details: 明細が多すぎます
         too_few_details: 明細が少なすぎます
   layout:
-    mysetting: ユーザ設定
+    mysetting: 自社情報とユーザの設定
     customers: 顧客情報の管理
     prospects: 案件の管理
     estimates: 見積の管理
@@ -90,8 +91,9 @@ ja:
     login_now: ログイン中：
   company_informations:
     edit:
-      title: ユーザ情報の登録
+      title: 会社情報の設定
       submit: 登録
+      management_users: ユーザの管理
     create:
       created: 登録しました
     update:
@@ -239,3 +241,24 @@ ja:
       due_date_pending: 別途ご相談
       ordered: 受注済
       non_ordered: 未受注
+  user_profiles:
+    index:
+      title: ユーザの管理
+      search_word_placeholder: ユーザ名とEメールで検索できます
+      search: 検索
+      new_entry: 新しいユーザの追加
+      edit: 編集
+      disable: 無効にする
+      are_you_sure: 本当に削除してよろしいですか?
+    new:
+      title: ユーザの追加
+    create:
+      user_created: 新しいユーザを作成しました
+    edit:
+      title: ユーザ情報の変更
+      if_you_wont_change_password_please_empty_password_field: パスワードを更新しない場合にはパスワード欄(確認含む)を空欄にしてください
+    update:
+      user_updated: ユーザ情報を更新しました
+    destroy:
+      user_was_disabled: ユーザを無効化しました
+      user_disable_was_failed: ユーザの無効化に失敗しました

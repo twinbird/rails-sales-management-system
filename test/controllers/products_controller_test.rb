@@ -7,18 +7,8 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     @sato = users(:sato)
     # yamada belongs to a company that has many products
     @yamada = users(:yamada)
-    @new_user = users(:new_user)
     @crown = products(:crown)
     @egg_break_machine = products(:egg_break_machine)
-  end
-
-  test "can't access not setup user" do
-    sign_in(@new_user)
-
-    get products_path
-    assert_redirected_to mysetting_path
-    follow_redirect!
-    assert_not flash[:notice].empty?
   end
 
   test "can't access not signin user" do
