@@ -61,10 +61,14 @@ class EstimatesController < ApplicationController
   # DELETE /estimates/1
   # DELETE /estimates/1.json
   def destroy
-    @estimate.destroy
     respond_to do |format|
-      format.html { redirect_to estimates_url, notice: t('.estimate_was_successfully_destroyed') }
-      format.json { head :no_content }
+      if @estimate.destroy
+        format.html { redirect_to estimates_url, notice: t('.estimate_was_successfully_destroyed') }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to estimates_url, notice: t('.estimate_was_fail_destroyed') }
+        format.json { head :no_content }
+      end
     end
   end
 

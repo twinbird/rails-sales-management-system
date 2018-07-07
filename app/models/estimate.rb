@@ -6,6 +6,7 @@ class Estimate < ApplicationRecord
   has_many :estimate_details, dependent: :destroy
   accepts_nested_attributes_for :estimate_details, allow_destroy: true, limit: 10
   before_validation :save_customer_name
+  before_destroy :can_destroy?
 
   MIN_DETAILS_SIZE = 1
   MAX_DETAILS_SIZE = 10
@@ -37,6 +38,17 @@ class Estimate < ApplicationRecord
 
     def save_customer_name
       self.customer_name = customer.name
+    end
+
+    def can_destroy?
+      if submitted_flag
+        errors.add(:base, '.can_not_destroy_submitted_estimate')
+        throw :abort
+      end
+      if ordered_flag
+        errors.add(:base, '.can_not_destroy_ordered_estimate')
+        throw :abort
+      end
     end
 
 end

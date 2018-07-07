@@ -11,7 +11,9 @@
   </div>
   <div class="col-sm-2">
     <%= link_to t('.edit'), edit_estimate_path(@estimate), class: 'btn btn-warning btn-sm' %>
-    <%= link_to t('.destroy'), @estimate, method: :delete, data: { confirm: t('.are_you_sure') }, class: 'btn btn-danger btn-sm' %>
+    <% unless (@estimate.submitted_flag || @estimate.ordered_flag) %>
+      <%= link_to t('.destroy'), @estimate, method: :delete, data: { confirm: t('.are_you_sure') }, class: 'btn btn-danger btn-sm' %>
+    <% end %>
   </div>
 </div>
 

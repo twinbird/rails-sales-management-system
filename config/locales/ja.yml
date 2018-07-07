@@ -83,6 +83,8 @@ ja:
         too_many_details: 明細が多すぎます
         too_few_details: 明細が少なすぎます
         is_last_user_last_user_can_not_disable: は最後のユーザです。他にユーザがいない場合はユーザは無効化できません。
+        can_not_destroy_submitted_estimate: 提出済みの見積は削除できません
+        can_not_destroy_ordered_estimate: 受注済みの見積は削除できません
   layout:
     mysetting: 自社情報とユーザの設定
     customers: 顧客情報の管理

@@ -128,12 +128,22 @@ class EstimateTest < ActiveSupport::TestCase
 
   test "search can find partial estimate customer name" do
     actual = Estimate.search('epper')
-    assert_equal 2, actual.count
+    assert_equal 3, actual.count
   end
 
   test "search can find partial estimate PIC name" do
     actual = Estimate.search('田')
-    assert_equal 2, actual.count
+    assert_equal 3, actual.count
+  end
+
+  test "submitted estimate must not destroy" do
+    assert @buy_new_computer.submitted_flag
+    assert_no_difference('Estimate.count') do
+      assert_not @buy_new_computer.destroy
+    end
+  end
+
+  test "ordered estimate must not destroy" do
   end
 
 end
