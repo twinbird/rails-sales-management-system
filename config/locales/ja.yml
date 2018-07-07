@@ -80,6 +80,7 @@ ja:
       messages:
         too_many_details: 明細が多すぎます
         too_few_details: 明細が少なすぎます
+        is_last_user_last_user_can_not_disable: は最後のユーザです。他にユーザがいない場合はユーザは無効化できません。
   layout:
     mysetting: 自社情報とユーザの設定
     customers: 顧客情報の管理

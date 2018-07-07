@@ -37,7 +37,11 @@
         <td><%= profile.name %></td>
         <td><%= profile.user.email %></td>
         <td><%= link_to t('.edit'), edit_user_profile_path(profile), class: 'btn btn-info btn-sm' %></td>
-        <td><%= link_to t('.disable'), user_profile_path(profile), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: t('.are_you_sure') } %></td>
+        <td>
+          <% unless profile.user.last_user? %>
+            <%= link_to t('.disable'), user_profile_path(profile), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: t('.are_you_sure') } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

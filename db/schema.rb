@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20180705054440) do
     t.boolean "due_date_pending_flag", default: false, null: false, comment: "納期は別途相談"
     t.string "payment_term", default: "", null: false, comment: "支払条件"
     t.date "effective_date", comment: "見積有効期限"
-    t.decimal "tax_rate", precision: 10, default: "0", null: false, comment: "発行時消費税率"
+    t.decimal "tax_rate", precision: 4, scale: 3, default: "0.0", null: false, comment: "発行時消費税率"
     t.string "remarks", default: "", null: false, comment: "備考"
     t.bigint "user_profile_id", comment: "担当ユーザID"
     t.datetime "created_at", null: false

@@ -6,6 +6,7 @@ class UserProfilesControllerTest < ActionDispatch::IntegrationTest
   def setup
     @miyagi = users(:miyagi)
     @disabled_user = user_profiles(:disabled_user)
+    @yamada = users(:yamada)
   end
 
   test "can't access not signin user" do
@@ -101,6 +102,21 @@ class UserProfilesControllerTest < ActionDispatch::IntegrationTest
     delete user_profile_path(@miyagi.user_profile)
     assert_redirected_to user_profiles_path
     assert_not flash[:info].empty?
+  end
+
+  test "last user must not be disable" do
+    sign_in(@yamada)
+
+    get user_profiles_path
+    assert_response :success
+    assert_select 'a[href=?]', user_profile_path(@yamada.user_profile), count: 0
+
+    delete user_profile_path(@yamada.user_profile)
+    assert_redirected_to user_profiles_path
+    follow_redirect!
+    assert_not flash[:danger].empty?
+
+    assert_nil @yamada.reload.disabled_at
   end
 
   test "disable user shouldn't listing" do
