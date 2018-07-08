@@ -67,7 +67,7 @@ class ProductsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find_by(id: params[:id], company_information: current_user_company)
+      @product = Product.find_by!(id: params[:id], company_information: current_user_company)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

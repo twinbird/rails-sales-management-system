@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'json'
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
@@ -117,6 +118,28 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'tbody>tr', count: 1
     assert_select 'input[value=?]', 'Mac'
+  end
+
+  test "json product information api" do
+    sign_in(@yamada)
+
+    get product_path(@egg_break_machine, format: :json)
+    assert_response :success
+
+    json = JSON.parse(response.body)
+    assert_equal 4, json.size
+    assert_equal @egg_break_machine.id, json["id"]
+    assert_equal @egg_break_machine.name, json["name"]
+    assert_equal @egg_break_machine.default_price, json["default_price"]
+    assert_equal product_url(@egg_break_machine, format: :json), json["url"]
+  end
+
+  test "json product information api not found" do
+    sign_in(@yamada)
+
+    assert_raise ActiveRecord::RecordNotFound do
+      get product_path(@crown, format: :json)
+    end
   end
 
 end
