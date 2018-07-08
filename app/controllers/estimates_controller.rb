@@ -64,11 +64,10 @@ class EstimatesController < ApplicationController
     respond_to do |format|
       if @estimate.destroy
         format.html { redirect_to estimates_url, notice: t('.estimate_was_successfully_destroyed') }
-        format.json { head :no_content }
       else
         format.html { redirect_to estimates_url, notice: t('.estimate_was_fail_destroyed') }
-        format.json { head :no_content }
       end
+      format.json { head :no_content }
     end
   end
 

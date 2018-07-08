@@ -18,8 +18,8 @@ class User < ApplicationRecord
   end
 
   def last_user?
-    return true if self.user_profile.nil?
-    return true if self.user_profile.company_information.nil?
-    self.user_profile.company_information.user_profiles.count == 1
+    return true if user_profile.nil?
+    return true if user_profile.company_information.nil?
+    user_profile.company_information.user_profiles.count == 1
   end
 end
