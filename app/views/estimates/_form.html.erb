@@ -35,9 +35,9 @@
           <div class="col-sm-4">
             <%= form.date_field :due_date, id: :estimate_due_date, class: 'form-control form-control-sm' %>
           </div>
-          <%= form.label :due_date_pending_flag, class: 'control-label col-sm-4' %>
-          <div class="col-sm-1">
-            <%= form.check_box :due_date_pending_flag, id: :estimate_due_date_pending_flag, class: 'form-control form-control-sm' %>
+          <div class="col-sm-2">
+            <%= form.check_box :due_date_pending_flag, id: :estimate_due_date_pending_flag, class: 'form-control form-control-sm button-checkbox' %>
+            <%= form.label :due_date_pending_flag, class: 'control-label button-label btn btn-outline-success' %>
           </div>
         </div>
       </div>
@@ -105,18 +105,20 @@
       </div>
       <div class="form-group">
         <div class="field row">
-          <%= form.label :submitted_flag, class: 'control-label col-sm-3' %>
-          <div class="col-sm-5">
-            <%= form.check_box :submitted_flag, id: :estimate_submitted_flag, class: 'form-control form-control-sm' %>
+          <div class="col-sm-7">
+            <span>
+              <%= form.check_box :submitted_flag, id: :estimate_submitted_flag, class: 'form-control form-control-sm button-checkbox' %>
+              <%= form.label :submitted_flag, class: 'control-label button-label btn btn-outline-success' %>
+            </span>
+            <span>
+              <%= form.check_box :ordered_flag, id: :estimate_ordered_flag, class: 'form-control form-control-sm button-checkbox' %>
+              <%= form.label :ordered_flag, class: 'control-label button-label btn btn-outline-success' %>
+            </span>
           </div>
         </div>
       </div>
       <div class="form-group">
         <div class="field row">
-          <%= form.label :ordered_flag, class: 'control-label col-sm-3' %>
-          <div class="col-sm-5">
-            <%= form.check_box :ordered_flag, id: :estimate_ordered_flag, class: 'form-control form-control-sm' %>
-          </div>
         </div>
       </div>
     </div>
