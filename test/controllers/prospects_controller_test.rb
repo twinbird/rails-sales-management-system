@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'json'
 
 class ProspectsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
@@ -149,6 +150,28 @@ class ProspectsControllerTest < ActionDispatch::IntegrationTest
 
     latest_prospects.each do |prospect|
       assert_select 'a[href=?]', prospect_path(prospect)
+    end
+  end
+
+  test "json prospect api found prospect" do
+    sign_in(@sato)
+
+    get prospect_path(@buy_new_taxi, format: :json)
+    assert_response :success
+
+    json = JSON.parse(response.body)
+    assert_equal 4, json.size
+    assert_equal @buy_new_taxi.id, json["id"]
+    assert_equal @buy_new_taxi.title, json["title"]
+    assert_equal @buy_new_taxi.customer_id, json["customer_id"]
+    assert_equal prospect_url(@buy_new_taxi, format: :json), json["url"]
+  end
+
+  test "json prospect api not found prospect" do
+    sign_in(@yamada)
+
+    assert_raise(ActiveRecord::RecordNotFound) do
+      get prospect_path(@buy_new_taxi, format: :json)
     end
   end
 
