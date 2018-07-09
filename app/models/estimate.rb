@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 class Estimate < ApplicationRecord
   belongs_to :company_information
   belongs_to :prospect, optional: true
@@ -7,11 +9,14 @@ class Estimate < ApplicationRecord
   accepts_nested_attributes_for :estimate_details, allow_destroy: true, limit: 10
   before_validation :save_customer_name
   before_destroy :can_destroy?
+  after_initialize :set_default_tax_rate
 
   MIN_DETAILS_SIZE = 1
   MAX_DETAILS_SIZE = 10
+  DEFAULT_TAX_RATE = 8
 
   validates :title, presence: true, length: { maximum: 70 }
+  validates :customer, presence: true
   validates :customer_name, presence: true, length: { maximum: 50 }
   validates :estimate_no, presence: true, length: { maximum: 14 }
   validates :issue_date, presence: true
@@ -19,7 +24,7 @@ class Estimate < ApplicationRecord
   validates :due_date_pending_flag, inclusion: { in: [true, false] }
   validates :payment_term, presence: true, length: { maximum: 50 }
   validates :effective_date, presence: true
-  validates :tax_rate, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 1 }
+  validates :tax_rate, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 100 }
   validates :remarks, length: { maximum: 1000 }
   validate :details_count_validate
   validates :submitted_flag, inclusion: { in: [true, false] }
@@ -37,7 +42,8 @@ class Estimate < ApplicationRecord
     end
 
     def save_customer_name
-      self.customer_name = customer.name
+      return if customer.blank?
+      self[:customer_name] = customer.name
     end
 
     def can_destroy?
@@ -49,6 +55,11 @@ class Estimate < ApplicationRecord
         errors.add(:base, '.can_not_destroy_ordered_estimate')
         throw :abort
       end
+    end
+
+    def set_default_tax_rate
+      return if persisted?
+      self.tax_rate = DEFAULT_TAX_RATE
     end
 
 end
