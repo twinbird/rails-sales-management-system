@@ -1,11 +1,13 @@
 require 'test_helper'
 require 'csv'
+require 'json'
 
 class CustomersControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
   include ActionDispatch::TestProcess
 
   def setup
+    @yamada = users(:yamada)
     @sato = users(:sato)
     @pepper = customers(:pepper)
     @mint = customers(:mint)
@@ -217,6 +219,28 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select '#error_explanation'
     assert flash.empty?
+  end
+
+  test "json customer api found customer" do
+    sign_in(@sato)
+
+    get customer_path(@pepper, format: :json)
+    assert_response :success
+
+    json = JSON(response.body)
+    assert_equal 4, json.size
+    assert_equal @pepper.id, json["id"]
+    assert_equal @pepper.name, json["name"]
+    assert_equal @pepper.payment_term, json["payment_term"]
+    assert_equal customer_url(@pepper, format: :json), json["url"]
+  end
+
+  test "json customer api not found customer" do
+    sign_in(@yamada)
+
+    assert_raise(ActiveRecord::RecordNotFound) do
+      get customer_path(@pepper, format: :json)
+    end
   end
 
 end

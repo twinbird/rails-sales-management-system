@@ -1,9 +1,9 @@
 <tr class="nested-fields">
   <td><%= f.text_field :display_order, class: 'form-control form-control-sm' %></td>
-  <td><%= f.select :product_id, @products.map{|p| [p.name, p.id]}, {include_blank: true}, class: 'form-control searchable form-control-sm' %></td>
-  <td><%= f.text_field :product_name, class: 'form-control form-control-sm' %></td>
+  <td><%= f.select :product_id, @products.map{|p| [p.name, p.id]}, {include_blank: true}, class: 'form-control searchable form-control-sm product-select' %></td>
+  <td><%= f.text_field :product_name, class: 'form-control form-control-sm product-name' %></td>
   <td><%= f.text_field :quantity, class: 'form-control form-control-sm estimate-detail-quantity' %></td>
-  <td><%= f.text_field :unit_price, class: 'form-control form-control-sm estimate-detail-unit-price' %></td>
+  <td><%= f.text_field :unit_price, class: 'form-control form-control-sm estimate-detail-unit-price default-price' %></td>
   <td><%= f.text_field :price, disabled: true, class: 'form-control form-control-sm estimate-detail-price' %></td>
   <td><%= link_to_remove_association t('.remove_detail'), f, class: 'btn btn-danger btn-sm remove-detail-button' %></td>
 </tr>

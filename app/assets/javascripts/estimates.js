@@ -40,12 +40,61 @@ $(document).on('turbolinks:load', function() {
 		});
 		calc_total_amount();
 	};
+	var set_payment_term_from_customer = function() {
+		var payment_term = $('#estimate_payment_term').val();
+		if (payment_term !== '') {
+			return;
+		}
+		var customer_id = $('#estimate_customer_id').val();
+		$.ajax({
+			url:"/customers/" + customer_id + ".json",
+			type:"get"
+		}).done((data) => {
+			$('#estimate_payment_term').val(data.payment_term);
+		});
+	};
+	var set_title_and_customer_from_prospect_id = function() {
+		var customer_id = $('#estimate_customer_id').val();
+		var title = $('#estimate_title').val();
+		if (customer_id !== '' && title !== '') {
+			return;
+		}
+		var prospect_id = $('#estimate_prospect_id').val();
+		$.ajax({
+			url:"/prospects/" + prospect_id + ".json",
+			type:"get"
+		}).done((data) => {
+			// title
+			$('#estimate_title').val(data.title);
+			// customer
+			var $customer_id_tag = $('#estimate_customer_id').select2({language: 'ja'});
+			$customer_id_tag.val(data.customer_id).trigger('change');
+		});
+	};
+	var set_product_name_and_default_price_from_product_id = function() {
+		var product_id = $(this).val();
+		var $product_tag = $(this);
+		$.ajax({
+			url:"/products/" + product_id + ".json",
+			type:"get"
+		}).done((data) => {
+			var $tr = $product_tag.closest('tr');
+			var $product_name = $tr.find('.product-name');
+			var $default_price = $tr.find('.default-price');
+			$product_name.val(data.name);
+			$default_price.val(data.default_price);
+		});
+	};
+
 	$('#estimate_details').on('cocoon:after-insert', toggle_add_detail_button);
 	$('#estimate_details').on('cocoon:after-insert', toggle_remove_detail_button);
 	$('#estimate_details').on('cocoon:after-remove', toggle_add_detail_button);
 	$('#estimate_details').on('cocoon:after-remove', toggle_remove_detail_button);
 	$('#estimate_details').on('cocoon:after-insert', calc_total_amount);
 	$('#estimate_details').on('cocoon:after-remove', calc_total_amount);
+	$('#estimate_customer_id').on('change', set_payment_term_from_customer);
+	$('#estimate_prospect_id').on('change', set_title_and_customer_from_prospect_id);
+	$('.product-select').on('change', set_product_name_and_default_price_from_product_id);
 	$('#tax-rate').on('change', calc_total_amount);
 	$('.estimate-detail-quantity').on('change', calc_price);
 	$('.estimate-detail-unit-price').on('change', calc_price);
