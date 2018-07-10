@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180705054440) do
+ActiveRecord::Schema.define(version: 20180711064423) do
 
   create_table "company_informations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "企業情報" do |t|
     t.string "name", default: "", null: false, comment: "会社名"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "last_estimate_no", default: 0, null: false
   end
 
   create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "顧客" do |t|
@@ -52,13 +53,14 @@ ActiveRecord::Schema.define(version: 20180705054440) do
     t.boolean "due_date_pending_flag", default: false, null: false, comment: "納期は別途相談"
     t.string "payment_term", default: "", null: false, comment: "支払条件"
     t.date "effective_date", comment: "見積有効期限"
-    t.decimal "tax_rate", precision: 4, scale: 3, default: "0.0", null: false, comment: "発行時消費税率"
+    t.decimal "tax_rate", precision: 10, default: "0", null: false, comment: "発行時消費税率"
     t.string "remarks", default: "", null: false, comment: "備考"
     t.bigint "user_profile_id", comment: "担当ユーザID"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "submitted_flag", default: false, null: false, comment: "顧客へ提出済"
     t.boolean "ordered_flag", default: false, null: false
+    t.index ["company_information_id", "estimate_no"], name: "index_estimates_on_company_information_id_and_estimate_no", unique: true
     t.index ["company_information_id"], name: "index_estimates_on_company_information_id"
     t.index ["customer_id"], name: "index_estimates_on_customer_id"
     t.index ["prospect_id"], name: "index_estimates_on_prospect_id"

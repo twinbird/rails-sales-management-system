@@ -8,4 +8,5 @@ class CompanyInformation < ApplicationRecord
   accepts_nested_attributes_for :user_profiles
 
   validates :name, presence: true, length: { maximum: 50 }
+  validates :last_estimate_no, presence: true, numericality: { greater_than_or_equal_to: 0 }
 end

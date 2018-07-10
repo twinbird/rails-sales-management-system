@@ -85,6 +85,15 @@ $(document).on('turbolinks:load', function() {
 			$default_price.val(data.default_price);
 		});
 	};
+	var attach_detail_display_order = function() {
+		$('.estimate-detail-display-order').each(function(index) {
+			$(this).val(index+1);
+		});
+		return true;
+	};
+	var attach_detail_change_event = function() {
+		$('.product-select').on('change', set_product_name_and_default_price_from_product_id);
+	};
 
 	$('#estimate_details').on('cocoon:after-insert', toggle_add_detail_button);
 	$('#estimate_details').on('cocoon:after-insert', toggle_remove_detail_button);
@@ -92,12 +101,14 @@ $(document).on('turbolinks:load', function() {
 	$('#estimate_details').on('cocoon:after-remove', toggle_remove_detail_button);
 	$('#estimate_details').on('cocoon:after-insert', calc_total_amount);
 	$('#estimate_details').on('cocoon:after-remove', calc_total_amount);
+	$('#estimate_details').on('cocoon:after-insert', attach_detail_change_event);
 	$('#estimate_customer_id').on('change', set_payment_term_from_customer);
 	$('#estimate_prospect_id').on('change', set_title_and_customer_from_prospect_id);
-	$('.product-select').on('change', set_product_name_and_default_price_from_product_id);
 	$('#tax-rate').on('change', calc_total_amount);
 	$('.estimate-detail-quantity').on('change', calc_price);
 	$('.estimate-detail-unit-price').on('change', calc_price);
 	$('.remove-detail-button').addClass('disabled');
+	$('#estimate-submit-form').on('submit', attach_detail_display_order);
 	calc_total_amount();
+	attach_detail_change_event();
 });

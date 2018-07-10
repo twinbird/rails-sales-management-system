@@ -8,6 +8,7 @@ class Estimate < ApplicationRecord
   has_many :estimate_details, dependent: :destroy
   accepts_nested_attributes_for :estimate_details, allow_destroy: true, limit: 10
   before_validation :save_customer_name
+  before_validation :set_estimate_no
   before_destroy :can_destroy?
   after_initialize :set_default_tax_rate
 
@@ -18,7 +19,7 @@ class Estimate < ApplicationRecord
   validates :title, presence: true, length: { maximum: 70 }
   validates :customer, presence: true
   validates :customer_name, presence: true, length: { maximum: 50 }
-  validates :estimate_no, presence: true, length: { maximum: 14 }
+  validates :estimate_no, presence: true, length: { maximum: 14 }, uniqueness: { scope: [:company_information_id, :estimate_no] }
   validates :issue_date, presence: true
   validates :due_date, presence: true, unless: :due_date_pending_flag
   validates :due_date_pending_flag, inclusion: { in: [true, false] }
@@ -60,6 +61,13 @@ class Estimate < ApplicationRecord
     def set_default_tax_rate
       return if persisted?
       self.tax_rate = DEFAULT_TAX_RATE
+    end
+
+    def set_estimate_no
+      return if self.persisted?
+      company_information.increment!(:last_estimate_no)
+      eno = sprintf("%014d", company_information.last_estimate_no)
+      self.estimate_no = eno
     end
 
 end

@@ -21,4 +21,14 @@ class CompanyInformationTest < ActiveSupport::TestCase
     assert_not @company_information.valid?
   end
 
+  test "last_estimate_no should not be nil" do
+    @company_information.last_estimate_no = nil
+    assert_not @company_information.valid?
+  end
+
+  test "last_estimate_no should be greater than or equal 0" do
+    @company_information.last_estimate_no = -1
+    assert_not @company_information.valid?
+  end
+
 end

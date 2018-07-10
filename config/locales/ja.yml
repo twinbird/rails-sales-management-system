@@ -237,7 +237,7 @@ ja:
     destroy:
       estimate_was_successfully_destroyed: 見積を削除しました
     form:
-      add_detail: 明細を追加
+      add_detail: 追加
     estimate_detail_fields:
       remove_detail: 削除
     helper:

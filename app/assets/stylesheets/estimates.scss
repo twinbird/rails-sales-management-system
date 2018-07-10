@@ -14,3 +14,7 @@
 .button-checkbox:checked ~ .button-label {
 	@extend .btn-success
 }
+
+.numeric-text {
+	text-align: right;
+}

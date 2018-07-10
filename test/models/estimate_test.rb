@@ -4,6 +4,7 @@ class EstimateTest < ActiveSupport::TestCase
 
   def setup
     @buy_new_computer = estimates(:buy_new_computer)
+    @misstake_estimate = estimates(:misstake_estimate)
   end
 
   test "should be pass" do
@@ -144,6 +145,48 @@ class EstimateTest < ActiveSupport::TestCase
   end
 
   test "ordered estimate must not destroy" do
+    @buy_new_computer.submitted_flag = false
+    assert_no_difference('Estimate.count') do
+      assert_not @buy_new_computer.destroy
+    end
+  end
+
+  test "no submitted and ordered estimate should destroy" do
+    assert_difference('Estimate.count', -1) do
+      assert @misstake_estimate.destroy
+    end
+  end
+
+  test "estimate no must not duplicate" do
+    @misstake_estimate.estimate_no = @buy_new_computer.estimate_no
+    assert_not @misstake_estimate.valid?
+  end
+
+  test "estimate no should auto allocate" do
+    expect_estimate_no = @buy_new_computer.company_information.last_estimate_no + 1
+    new_estimate = Estimate.new
+    new_estimate.title = "new estimate"
+    new_estimate.customer = @buy_new_computer.customer
+    new_estimate.company_information = @buy_new_computer.company_information
+    new_estimate.issue_date = @buy_new_computer.issue_date
+    new_estimate.due_date = @buy_new_computer.due_date
+    new_estimate.payment_term = @buy_new_computer.payment_term
+    new_estimate.effective_date = @buy_new_computer.effective_date
+    new_estimate.tax_rate = @buy_new_computer.tax_rate
+    new_estimate.user_profile = @buy_new_computer.user_profile
+
+    new_estimate_detail = EstimateDetail.new
+    new_estimate_detail.display_order = 1
+    new_estimate_detail.product_name = "test"
+    new_estimate_detail.quantity = 1
+    new_estimate_detail.unit_price = 1
+
+    new_estimate.estimate_details << new_estimate_detail
+
+    assert_difference('Estimate.count', 1) do
+      assert new_estimate.save
+    end
+    assert_equal sprintf("%014d", expect_estimate_no), new_estimate.estimate_no
   end
 
 end
