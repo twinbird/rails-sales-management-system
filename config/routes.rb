@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :delivery_slips
   resources :orders
   resources :order_details, only: [:show]
-  resources :estimates
+  resources :estimates do
+    member do
+      get :report
+    end
+  end
   resources :sales_reports
   resources :prospects
   resources :products

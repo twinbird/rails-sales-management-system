@@ -1,6 +1,6 @@
 class EstimatesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_estimate, only: [:show, :edit, :update, :destroy]
+  before_action :set_estimate, only: [:show, :report, :edit, :update, :destroy]
   before_action :set_users
   before_action :set_customers
   before_action :set_prospects
@@ -16,6 +16,10 @@ class EstimatesController < ApplicationController
   # GET /estimates/1
   # GET /estimates/1.json
   def show
+  end
+
+  def report
+    render 'report', layout: false
   end
 
   # GET /estimates/new

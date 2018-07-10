@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= stylesheet_link_tag "estimate_report" %>
+  </head>
+  <body>
+    <h1>御見積書</h1>
+    <div><%= @estimate.customer_name %>御中</div>
+    <div>件名：<%= @estimate.title %></div>
+    <div>下記の通り、御見積申し上げます。</div>
+
+    <div>納期：<%= @estimate.due_date.to_s %></div>
+    <div>支払条件：<%= @estimate.payment_term %></div>
+    <div>有効期限：<%= @estimate.effective_date.to_s %></div>
+
+    <div>見積No.： <%= @estimate.estimate_no %></div>
+    <div>見積日: <%= @estimate.issue_date.to_s %></div>
+
+    <table>
+      <thead>
+        <tr>
+          <td>No.</td>
+          <td>品名</td>
+          <td>数量</td>
+          <td>単価</td>
+          <td>金額</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        </tr>
+      </tbody>
+    </table>
+
+    <div>備考：</div>
+    <div><%= @estimate.remarks %></div>
+  </body>
+</html>
+
