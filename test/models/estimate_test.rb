@@ -90,11 +90,11 @@ class EstimateTest < ActiveSupport::TestCase
     assert_not @buy_new_computer.valid?
   end
 
-  test "tax rate must be less than 1" do
-    @buy_new_computer.tax_rate = 0.9
+  test "tax rate must be less than 100" do
+    @buy_new_computer.tax_rate = 99
     assert @buy_new_computer.valid?
 
-    @buy_new_computer.tax_rate = 1
+    @buy_new_computer.tax_rate = 100
     assert_not @buy_new_computer.valid?
   end
 
