@@ -5,7 +5,9 @@
     <div class="col-sm-6">
       <div class="form-group">
         <div class="field row">
-          <%= form.label :prospect_id, class: 'control-label col-sm-3' %>
+          <div class="col-sm-3">
+            <%= form.label :prospect_id, class: 'control-label' %>
+          </div>
           <div class="col-sm-9">
             <%= form.select :prospect_id, @prospects.map{|p| [p.title, p.id]}, { include_blank: true }, class: 'form-control form-control-sm searchable', id: :estimate_prospect_id %>
           </div>
@@ -14,7 +16,9 @@
       
       <div class="form-group">
         <div class="field row">
-          <%= form.label :title, class: 'control-label col-sm-3' %>
+          <div class="col-sm-3">
+            <%= form.label :title, class: 'control-label' %>
+          </div>
           <div class="col-sm-9">
             <%= form.text_field :title, id: :estimate_title, class: 'form-control form-control-sm' %>
           </div>
@@ -22,7 +26,9 @@
       </div>
       <div class="form-group">
         <div class="field row">
-          <%= form.label :customer_id, class: 'control-label col-sm-3' %>
+          <div class="col-sm-3">
+            <%= form.label :customer_id, class: 'control-label' %>
+          </div>
           <div class="col-sm-9">
             <%= form.select :customer_id, @customers.map{|c| [c.name, c.id]}, {include_blank: true}, class: 'form-control form-control-sm searchable', id: :estimate_customer_id %>
           </div>
@@ -31,7 +37,9 @@
       
       <div class="form-group">
         <div class="field row">
-          <%= form.label :due_date, class: 'control-label col-sm-3' %>
+          <div class="col-sm-3">
+            <%= form.label :due_date, class: 'control-label' %>
+          </div>
           <div class="col-sm-4">
             <%= form.date_field :due_date, id: :estimate_due_date, class: 'form-control form-control-sm' %>
           </div>
@@ -44,7 +52,9 @@
 
       <div class="form-group">
         <div class="field row">
-          <%= form.label :effective_date, class: 'control-label col-sm-3' %>
+          <div class="col-sm-3">
+            <%= form.label :effective_date, class: 'control-label' %>
+          </div>
           <div class="col-sm-4">
             <%= form.date_field :effective_date, id: :estimate_effective_date, class: 'form-control form-control-sm' %>
           </div>
@@ -53,7 +63,9 @@
       
       <div class="form-group">
         <div class="field row">
-          <%= label_tag t('activerecord.attributes.estimate.total_amount'), nil, class: 'control-label col-sm-3' %>
+          <div class="col-sm-3">
+            <%= label_tag t('activerecord.attributes.estimate.total_amount'), nil, class: 'control-label' %>
+          </div>
           <div class="col-sm-4">
             <span class="font-weight-bold"><span id="total-amount"></span>円</span>
           </div>
@@ -66,7 +78,9 @@
     <div class="col-sm-6">
       <div class="form-group">
         <div class="field row">
-          <%= form.label :estimate_no, class: 'control-label col-sm-3' %>
+          <div class="col-sm-3">
+            <%= form.label :estimate_no, class: 'control-label' %>
+          </div>
           <div class="col-sm-9">
             <%= form.text_field :estimate_no, id: :estimate_estimate_no, class: 'form-control form-control-sm' %>
           </div>
@@ -74,7 +88,9 @@
       </div>
       <div class="form-group">
         <div class="field row">
-          <%= form.label :issue_date, class: 'control-label col-sm-3' %>
+          <div class="col-sm-3">
+            <%= form.label :issue_date, class: 'control-label' %>
+          </div>
           <div class="col-sm-4">
             <%= form.date_field :issue_date, id: :estimate_issue_date, class: 'form-control form-control-sm' %>
           </div>
@@ -82,14 +98,18 @@
       </div>
       <div class="form-group">
         <div class="field row">
-          <%= form.label :payment_term, class: 'control-label col-sm-3' %>
+          <div class="col-sm-3">
+            <%= form.label :payment_term, class: 'control-label' %>
+          </div>
           <div class="col-sm-9">
             <%= form.text_field :payment_term, id: :estimate_payment_term, class: 'form-control form-control-sm' %>
           </div>
         </div>
         <div class="form-group">
           <div class="field row">
-            <%= form.label :user_profile_id, class: 'control-label col-sm-3' %>
+            <div class="col-sm-3">
+              <%= form.label :user_profile_id, class: 'control-label' %>
+            </div>
             <div class="col-sm-9">
               <%= form.select :user_profile_id, @users.map{|u| [u.name, u.id]}, {}, class: 'form-control form-control-sm searchable' %>
             </div>
