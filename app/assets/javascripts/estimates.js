@@ -94,6 +94,18 @@ $(document).on('turbolinks:load', function() {
 	var attach_detail_change_event = function() {
 		$('.product-select').on('change', set_product_name_and_default_price_from_product_id);
 	};
+	var change_due_date_pending_button = function() {
+		var disabled = $('#estimate_due_date').prop('disabled');
+		set_due_date_disabled(!disabled);
+	};
+	var set_due_date_disabled = function(disabled) {
+		if (disabled === true) {
+			$('#estimate_due_date').val('');
+			$('#estimate_due_date').prop('disabled', true);
+		} else {
+			$('#estimate_due_date').prop('disabled', false);
+		}
+	};
 
 	$('#estimate_details').on('cocoon:after-insert', toggle_add_detail_button);
 	$('#estimate_details').on('cocoon:after-insert', toggle_remove_detail_button);
@@ -109,6 +121,10 @@ $(document).on('turbolinks:load', function() {
 	$('.estimate-detail-unit-price').on('change', calc_price);
 	$('.remove-detail-button').addClass('disabled');
 	$('#estimate-submit-form').on('submit', attach_detail_display_order);
+	$('#estimate_due_date_pending_flag').on('change', change_due_date_pending_button);
 	calc_total_amount();
 	attach_detail_change_event();
+
+	var disabled = $('#estimate_due_date_pending_flag').val();
+	set_due_date_disabled(disabled);
 });

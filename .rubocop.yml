@@ -61,7 +61,7 @@ Metrics/BlockLength:
     - 'test/**/*'
 
 FormatString:
-  EnforcedStyle: percent
+  EnforcedStyle: sprintf
 
 NumericLiterals:
   Enabled: false

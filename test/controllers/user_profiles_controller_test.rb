@@ -5,6 +5,7 @@ class UserProfilesControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @miyagi = users(:miyagi)
+    @sato = users(:sato)
     @disabled_user = user_profiles(:disabled_user)
     @yamada = users(:yamada)
   end
@@ -125,6 +126,14 @@ class UserProfilesControllerTest < ActionDispatch::IntegrationTest
     get user_profiles_path, params: { query: @disabled_user.name }
     assert_response :success
     assert_select 'a[href=?]', user_profile_path(@disabled_user), count: 0
+  end
+
+  test "should 404 access other company user profile page" do
+    sign_in(@yamada)
+
+    assert_raise(ActiveRecord::RecordNotFound) do
+      get edit_user_profile_path(@sato)
+    end
   end
 
 end

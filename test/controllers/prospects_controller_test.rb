@@ -175,4 +175,12 @@ class ProspectsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should 404 access other company prospect" do
+    sign_in(@yamada)
+
+    assert_raise(ActiveRecord::RecordNotFound) do
+      get prospect_path(@buy_new_taxi)
+    end
+  end
+
 end

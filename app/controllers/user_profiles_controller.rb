@@ -58,7 +58,7 @@ class UserProfilesController < ApplicationController
 
     def set_user
       user_id = params[:id]
-      @user = current_user_company.user_profiles.find_by(user_id: user_id).user
+      @user = current_user_company.user_profiles.find_by!(user_id: user_id).user
     end
 
 end

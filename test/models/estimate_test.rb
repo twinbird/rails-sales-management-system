@@ -189,4 +189,38 @@ class EstimateTest < ActiveSupport::TestCase
     assert_equal sprintf("%014d", expect_estimate_no), new_estimate.estimate_no
   end
 
+  test "company informations set on created" do
+    new_estimate = Estimate.new
+    new_estimate.title = "new estimate"
+    new_estimate.customer = @buy_new_computer.customer
+    new_estimate.company_information = @buy_new_computer.company_information
+    new_estimate.issue_date = @buy_new_computer.issue_date
+    new_estimate.due_date = @buy_new_computer.due_date
+    new_estimate.payment_term = @buy_new_computer.payment_term
+    new_estimate.effective_date = @buy_new_computer.effective_date
+    new_estimate.tax_rate = @buy_new_computer.tax_rate
+    new_estimate.user_profile = @buy_new_computer.user_profile
+
+    new_estimate_detail = EstimateDetail.new
+    new_estimate_detail.display_order = 1
+    new_estimate_detail.product_name = "test"
+    new_estimate_detail.quantity = 1
+    new_estimate_detail.unit_price = 1
+
+    new_estimate.estimate_details << new_estimate_detail
+
+    assert_difference('Estimate.count', 1) do
+      assert new_estimate.save
+    end
+
+    new_estimate.reload
+
+    assert_equal @buy_new_computer.company_information.name, new_estimate.company_name
+    assert_equal @buy_new_computer.company_information.address1, new_estimate.address1
+    assert_equal @buy_new_computer.company_information.address2, new_estimate.address2
+    assert_equal @buy_new_computer.company_information.email, new_estimate.email
+    assert_equal @buy_new_computer.company_information.tel, new_estimate.tel
+    assert_equal @buy_new_computer.company_information.fax, new_estimate.fax
+  end
+
 end

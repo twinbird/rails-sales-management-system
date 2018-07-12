@@ -203,4 +203,12 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'tbody>tr', count: 3
   end
 
+  test "should 404 access other company estimate" do
+    sign_in(@sato)
+
+    assert_raise(ActiveRecord::RecordNotFound) do
+      get estimate_path(@buy_new_computer)
+    end
+  end
+
 end

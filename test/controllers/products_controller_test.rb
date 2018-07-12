@@ -142,4 +142,12 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should 404 access other company product" do
+    sign_in(@yamada)
+
+    assert_raise ActiveRecord::RecordNotFound do
+      get product_path(@crown)
+    end
+  end
+
 end

@@ -79,7 +79,7 @@ class EstimatesController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_estimate
-      @estimate = Estimate.find_by(id: params[:id], company_information: current_user_company)
+      @estimate = Estimate.find_by!(id: params[:id], company_information: current_user_company)
     end
 
     def set_users

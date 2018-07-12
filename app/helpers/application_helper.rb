@@ -8,4 +8,17 @@ module ApplicationHelper
   def welcome_message
     t('layout.login_now') + current_user.user_profile.name
   end
+
+  def active_class(controller_name = "")
+    return "active" if controller_name == controller.controller_name
+
+    if controller_name == "" &&
+       SalesReportsController.controller_name != controller.controller_name &&
+       ProspectsController.controller_name != controller.controller_name &&
+       EstimatesController.controller_name != controller.controller_name
+      return "active"
+    end
+
+    return ""
+  end
 end

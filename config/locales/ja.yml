@@ -28,6 +28,12 @@ ja:
     attributes:
       company_information:
         name: 会社名
+        postal_code: 郵便番号
+        address1: 住所1
+        address2: 住所2
+        email: メールアドレス
+        tel: 電話番号
+        fax: FAX番号
       company_information/user_profiles:
         name: お名前
       user_profile:

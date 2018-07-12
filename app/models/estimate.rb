@@ -9,6 +9,7 @@ class Estimate < ApplicationRecord
   accepts_nested_attributes_for :estimate_details, allow_destroy: true, limit: 10
   before_validation :save_customer_name
   before_validation :set_estimate_no
+  before_validation :set_company_information, on: :create
   before_destroy :can_destroy?
   after_initialize :set_default_tax_rate
 
@@ -64,10 +65,20 @@ class Estimate < ApplicationRecord
     end
 
     def set_estimate_no
-      return if self.persisted?
-      company_information.increment!(:last_estimate_no)
+      return if persisted?
+      company_information.increment(:last_estimate_no)
       eno = sprintf("%014d", company_information.last_estimate_no)
       self.estimate_no = eno
+    end
+
+    def set_company_information
+      self.company_name = company_information.name
+      self.postal_code = company_information.postal_code
+      self.address1 = company_information.address1
+      self.address2 = company_information.address2
+      self.email = company_information.email
+      self.tel = company_information.tel
+      self.fax = company_information.fax
     end
 
 end

@@ -1,8 +1,26 @@
 lime:
   name: lime company.co
+  postal_code: 999-9999
+  address1: 東京都〇〇区△△1
+  address2: 2-223 ビル 2F
+  email: company@lime.example.com
+  tel: 03-3333-3333
+  fax: 03-3333-3334
 
 lemon:
   name: lemon company.co
+  postal_code: 001-0001
+  address1: 東京都〇〇区△△1
+  address2: 2-223 ビル 10F
+  email: company@lemon.example.com
+  tel: 03-4444-4444
+  fax: 03-4444-4445
 
 large_company:
   name: large company.co
+  postal_code: 001-0002
+  address1: 東京都〇〇区xxx
+  address2: super ビル 15F
+  email: company@large.example.com
+  tel: 030-1111-1111
+  fax: 030-1111-1112

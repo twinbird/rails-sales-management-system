@@ -15,6 +15,13 @@ buy_new_computer:
   user_profile: yamada
   submitted_flag: true
   ordered_flag: true
+  company_name: lemon company.co
+  postal_code: 001-0001
+  address1: 東京都〇〇区△△1
+  address2: 2-223 ビル 10F
+  email: company@lemon.example.com
+  tel: 03-4444-4444
+  fax: 03-4444-4445
 
 buy_new_taxi:
   company_information: lime
@@ -33,6 +40,13 @@ buy_new_taxi:
   user_profile: sato
   submitted_flag: true
   ordered_flag: false
+  company_name: lime company.co
+  postal_code: 999-9999
+  address1: 東京都〇〇区△△1
+  address2: 2-223 ビル 2F
+  email: company@lime.example.com
+  tel: 03-3333-3333
+  fax: 03-3333-3334
 
 misstake_estimate:
   company_information: lemon
@@ -51,6 +65,13 @@ misstake_estimate:
   user_profile: yamada
   submitted_flag: false
   ordered_flag: false
+  company_name: lemon company.co
+  postal_code: 001-0001
+  address1: 東京都〇〇区△△1
+  address2: 2-223 ビル 10F
+  email: company@lemon.example.com
+  tel: 03-4444-4444
+  fax: 03-4444-4445
 
 non_ordered_estimate:
   company_information: lemon
@@ -69,6 +90,13 @@ non_ordered_estimate:
   user_profile: yamada
   submitted_flag: true
   ordered_flag: false
+  company_name: lemon company.co
+  postal_code: 001-0001
+  address1: 東京都〇〇区△△1
+  address2: 2-223 ビル 10F
+  email: company@lemon.example.com
+  tel: 03-4444-4444
+  fax: 03-4444-4445
 
 <% 99.times do |i| %>
 estimate<%= i %>:
@@ -88,4 +116,11 @@ estimate<%= i %>:
   user_profile: sato
   submitted_flag: false
   ordered_flag: false
+  company_name: lemon company.co
+  postal_code: 999-9999
+  address1: 東京都〇〇区△△1
+  address2: 2-223 ビル 2F
+  email: company@lime.example.com
+  tel: 03-3333-3333
+  fax: 03-3333-3334
 <% end %>

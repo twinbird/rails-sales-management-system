@@ -28,4 +28,15 @@ class CompanyInformationsControllerTest < ActionDispatch::IntegrationTest
     assert_select '#error_explanation', count: 1
   end
 
+  test "expect self company access other company" do
+    sign_in(@sato)
+
+    lemon = company_informations(:lemon)
+
+    get edit_company_information_path(lemon)
+
+    assert_response :success
+    assert_select 'input[value=?]', @sato.user_profile.company_information.name
+  end
+
 end

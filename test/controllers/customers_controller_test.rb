@@ -243,4 +243,12 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should 404 access other company customer" do
+    sign_in(@yamada)
+
+    assert_raise(ActiveRecord::RecordNotFound) do
+      get customer_path(@pepper)
+    end
+  end
+
 end

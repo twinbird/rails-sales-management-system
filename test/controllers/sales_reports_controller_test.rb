@@ -165,4 +165,12 @@ class SalesReportsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should 404 access other company sales report" do
+    sign_in(@yamada)
+
+    assert_raise(ActiveRecord::RecordNotFound) do
+      get sales_report_path(@sales_to_pepper)
+    end
+  end
+
 end

@@ -13,7 +13,61 @@
       </div>
     </div>
   </div>
+
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :postal_code, class: 'control-label form-control-sm' %>
+      <div class="col-sm-5">
+        <%= f.text_field :postal_code, class: 'form-control form-control-sm' %>
+      </div>
+    </div>
+  </div>
   
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :address1, class: 'control-label form-control-sm' %>
+      <div class="col-sm-5">
+        <%= f.text_field :address1, class: 'form-control form-control-sm' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :address2, class: 'control-label form-control-sm' %>
+      <div class="col-sm-5">
+        <%= f.text_field :address2, class: 'form-control form-control-sm' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :email, class: 'control-label form-control-sm' %>
+      <div class="col-sm-5">
+        <%= f.email_field :email, class: 'form-control form-control-sm' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :tel, class: 'control-label form-control-sm' %>
+      <div class="col-sm-5">
+        <%= f.phone_field :tel, class: 'form-control form-control-sm' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :fax, class: 'control-label form-control-sm' %>
+      <div class="col-sm-5">
+        <%= f.phone_field :fax, class: 'form-control form-control-sm' %>
+      </div>
+    </div>
+  </div>
+
   <div class="form-group">
     <div class="col-sm-1"></div>
     <%= f.submit t('.submit'), class: 'btn btn-primary col-sm-1' %>

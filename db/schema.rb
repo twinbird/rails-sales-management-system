@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180711064423) do
+ActiveRecord::Schema.define(version: 20180713072403) do
 
   create_table "company_informations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "企業情報" do |t|
     t.string "name", default: "", null: false, comment: "会社名"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "last_estimate_no", default: 0, null: false
+    t.string "postal_code", default: "", null: false, comment: "自社の郵便番号"
+    t.string "address1", default: "", null: false, comment: "自社の住所1"
+    t.string "address2", default: "", null: false, comment: "自社の住所2"
+    t.string "email", default: "", null: false, comment: "自社のメールアドレス"
+    t.string "tel", default: "", null: false, comment: "自社の電話番号"
+    t.string "fax", default: "", null: false, comment: "自社のFAX番号"
   end
 
   create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "顧客" do |t|
@@ -60,6 +66,13 @@ ActiveRecord::Schema.define(version: 20180711064423) do
     t.datetime "updated_at", null: false
     t.boolean "submitted_flag", default: false, null: false, comment: "顧客へ提出済"
     t.boolean "ordered_flag", default: false, null: false
+    t.string "company_name", default: "", null: false, comment: "発行時の自社名"
+    t.string "postal_code", default: "", null: false, comment: "発行時の自社郵便番号"
+    t.string "address1", default: "", null: false, comment: "発行時の自社住所1"
+    t.string "address2", default: "", null: false, comment: "発行時の自社住所2"
+    t.string "email", default: "", null: false, comment: "発行時の自社メールアドレス"
+    t.string "tel", default: "", null: false, comment: "発行時の自社電話番号"
+    t.string "fax", default: "", null: false, comment: "発行時の自社FAX番号"
     t.index ["company_information_id", "estimate_no"], name: "index_estimates_on_company_information_id_and_estimate_no", unique: true
     t.index ["company_information_id"], name: "index_estimates_on_company_information_id"
     t.index ["customer_id"], name: "index_estimates_on_customer_id"
