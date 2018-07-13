@@ -5,6 +5,7 @@ bundler_args: "--without develop --deployment -j4"
 cache: bundler
 before_install:
   - mysql -e 'CREATE DATABASE myapp_test;'
+  - gem install rubocop
 before_script:
   - cp config/database.travis.yml config/database.yml
   - bundle exec rake db:setup
