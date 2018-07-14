@@ -100,12 +100,12 @@ non_ordered_estimate:
 
 <% 99.times do |i| %>
 estimate<%= i %>:
-  company_information: lime
+  company_information: lemon
   prospect: 
   title: estimate_<%= i %>
   customer: mint
   customer_name: ミント株式会社
-  estimate_no: <%= sprintf("%014d", i + 2) %>
+  estimate_no: <%= sprintf("%014d", i + 4) %>
   issue_date: 2018-06-12
   due_date: nil
   due_date_pending_flag: true

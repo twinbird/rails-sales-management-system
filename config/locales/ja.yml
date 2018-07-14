@@ -53,6 +53,7 @@ ja:
         rank: 商談ランク
         created_at: 登録日
       estimate:
+        customer: 顧客
         prospect_id: 案件
         title: 見積名
         customer_id: 顧客
@@ -69,6 +70,13 @@ ja:
         submitted_flag: 提出済み
         ordered_flag: 受注済み
         total_amount: 合計金額
+        estimate_details: 明細
+      estimate/estimate_details:
+        product_id: 商品
+        product_name: 商品名
+        quantity: 数量
+        unit_price: 単価
+        price: 金額
       estimate_detail:
         display_order: 表示順
         product_id: 商品
@@ -86,8 +94,8 @@ ja:
         description: 活動内容
     errors:
       messages:
-        too_many_details: 明細が多すぎます
-        too_few_details: 明細が少なすぎます
+        too_many_details: が多すぎます
+        too_few_details: が少なすぎます
         is_last_user_last_user_can_not_disable: は最後のユーザです。他にユーザがいない場合はユーザは無効化できません。
         can_not_destroy_submitted_estimate: 提出済みの見積は削除できません
         can_not_destroy_ordered_estimate: 受注済みの見積は削除できません
@@ -120,6 +128,8 @@ ja:
       import_from_csv: CSVからインポート
     new:
       title: 新しい顧客情報の追加
+    create:
+      customer_was_successfully_created: 顧客が登録されました
     show:
       title: 顧客の情報
       edit: 編集
@@ -130,6 +140,10 @@ ja:
       open: 開く
     edit:
       title: 顧客情報の編集
+    update:
+      customer_was_successfully_updated: 顧客情報を更新しました
+    destroy:
+      customer_was_successfully_destroyed: 顧客が削除されました
     import_form:
       title: CSVからのインポート
       import_csv: CSVをインポート
@@ -159,7 +173,9 @@ ja:
       open: 開く
     create:
       prospect_was_successfully_created: 案件が作成されました
+    update:
       prospect_was_successfully_updated: 案件情報を更新しました
+    destroy:
       prospect_was_successfully_destroyed: 案件を削除しました
     form:
       description_placeholder: |
@@ -173,7 +189,6 @@ ja:
       title: 商品の管理
       new_product: 新しい商品を登録する
       show: 開く
-      are_you_sure: 本当に削除してよろしいですか?
       search: 検索
       search_placeholder: 品名で検索できます
     edit:
@@ -182,12 +197,15 @@ ja:
       title: 新しい商品の登録
     create:
       product_was_successfully_created: 商品を登録しました
+    update:
       product_was_successfully_updated: 商品情報を更新しました
+    destroy:
       product_was_successfully_destroyed: 商品を削除しました
     show:
       title: 商品の情報
       edit: 編集
       destroy: 削除
+      are_you_sure: 本当に削除してよろしいですか?
   sales_reports:
     index:
       title: 営業報告の管理

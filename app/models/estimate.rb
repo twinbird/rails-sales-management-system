@@ -39,8 +39,8 @@ class Estimate < ApplicationRecord
   private
 
     def details_count_validate
-      errors.add(:estimate_details, 'too_many_details') if estimate_details.size > MAX_DETAILS_SIZE
-      errors.add(:estimate_details, 'too_few_details') if estimate_details.size < MIN_DETAILS_SIZE
+      errors.add(:estimate_details, I18n.t('activerecord.errors.messages.too_many_details')) if estimate_details.size > MAX_DETAILS_SIZE
+      errors.add(:estimate_details, I18n.t('activerecord.errors.messages.too_few_details')) if estimate_details.size < MIN_DETAILS_SIZE
     end
 
     def save_customer_name
