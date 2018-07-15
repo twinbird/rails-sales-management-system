@@ -24,7 +24,6 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
 
     get estimates_path
     assert_response :success
-    assert_select 'a[href=?]', estimate_path(@buy_new_computer)
     assert_select 'nav.pagination', count: 1
   end
 
@@ -103,7 +102,7 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
   test "edit estimate" do
     sign_in(@yamada)
 
-    get estimates_path
+    get estimates_path, params: { query: @buy_new_computer.title }
     assert_response :success
     assert_select 'a[href=?]', estimate_path(@buy_new_computer)
 

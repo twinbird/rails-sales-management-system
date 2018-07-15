@@ -99,7 +99,7 @@ non_ordered_estimate:
   fax: 03-4444-4445
 
 <% 99.times do |i| %>
-estimate<%= i %>:
+estimate_<%= i %>:
   company_information: lemon
   prospect: 
   title: estimate_<%= i %>
