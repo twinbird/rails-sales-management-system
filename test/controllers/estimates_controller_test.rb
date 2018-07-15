@@ -25,7 +25,7 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
     get estimates_path
     assert_response :success
     assert_select 'a[href=?]', estimate_path(@buy_new_computer)
-    assert_select 'nav.pagination', count: 0
+    assert_select 'nav.pagination', count: 1
   end
 
   test "search estimate" do
@@ -33,8 +33,6 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
 
     get estimates_path
     assert_response :success
-    assert_select 'nav.pagination'
-    assert_select 'tbody>tr', count: 20
 
     get estimates_path, params: { query: 'タクシー' }
     assert_response :success
@@ -134,9 +132,8 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
   test "destroy estimate" do
     sign_in(@yamada)
 
-    get estimates_path
+    get estimates_path, params: { query: @misstake_estimate.title }
     assert_response :success
-    assert_select 'tbody>tr', count: 3
 
     assert_select 'a[href=?]', estimate_path(@misstake_estimate)
     get estimate_path(@misstake_estimate)
@@ -150,16 +147,14 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to estimates_path
     follow_redirect!
     assert_not flash.empty?
-
-    assert_select 'tbody>tr', count: 2
   end
 
   test "can not destroy submitted estimate" do
     sign_in(@yamada)
 
-    get estimates_path
+    get estimates_path, params: { query: @buy_new_computer.title }
     assert_response :success
-    assert_select 'tbody>tr', count: 3
+    assert_select 'tbody>tr', count: 1
 
     assert_select 'a[href=?]', estimate_path(@buy_new_computer)
     get estimate_path(@buy_new_computer)
@@ -174,15 +169,17 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_not flash.empty?
 
-    assert_select 'tbody>tr', count: 3
+    get estimates_path, params: { query: @buy_new_computer.title }
+    assert_response :success
+    assert_select 'tbody>tr', count: 1
   end
 
   test "can not destroy ordered estimate" do
     sign_in(@yamada)
 
-    get estimates_path
+    get estimates_path, params: { query: @buy_new_computer.title }
     assert_response :success
-    assert_select 'tbody>tr', count: 3
+    assert_select 'tbody>tr', count: 1
 
     @buy_new_computer.submitted_flag = false
     @buy_new_computer.save
@@ -200,7 +197,9 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_not flash.empty?
 
-    assert_select 'tbody>tr', count: 3
+    get estimates_path, params: { query: @buy_new_computer.title }
+    assert_response :success
+    assert_select 'tbody>tr', count: 1
   end
 
   test "should 404 access other company estimate" do
