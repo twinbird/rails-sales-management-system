@@ -258,6 +258,7 @@ ja:
       edit: 編集
       destroy: 削除
       are_you_sure: 本当に削除してよろしいですか?
+      print: 印刷
     destroy:
       estimate_was_successfully_destroyed: 見積を削除しました
     form:
@@ -270,6 +271,28 @@ ja:
       due_date_pending: 別途ご相談
       ordered: 受注済
       non_ordered: 未受注
+    report:
+      title: 御見積書
+      for_the_attention: 御中
+      estimate_title: 件名
+      greeting_message: 下記の通り、御見積申し上げます。
+      due_date: 納期
+      payment_term: 支払条件
+      effective_date: 見積有効期限
+      total_price: 御見積金額
+      yen: 円
+      estimate_no: 見積番号
+      issue_date: 発行日
+      postal_code: 〒
+      email: Email
+      tel: TEL
+      fax: FAX
+      display_order: "No"
+      product_name: 品名
+      quantity: 数量
+      unit_price: 単価
+      price: 金額
+      remarks: 備考
   user_profiles:
     index:
       title: ユーザの管理

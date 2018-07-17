@@ -16,6 +16,6 @@ class CompanyInformationsController < ApplicationController
   private
 
     def company_information_params
-      params.require(:company_information).permit(:name)
+      params.require(:company_information).permit(:name, :postal_code, :address1, :address2, :email, :tel, :fax)
     end
 end

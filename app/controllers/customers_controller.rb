@@ -84,7 +84,7 @@ class CustomersController < ApplicationController
     end
 
     @error_line, @error_customer = Customer.import(params[:file], current_user_company)
-    flash[:info] = t('.import_success') unless @error_customer
+    flash[:notice] = t('.import_success') unless @error_customer
     render 'import_form'
   end
 

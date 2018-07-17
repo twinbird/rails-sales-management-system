@@ -223,4 +223,9 @@ class EstimateTest < ActiveSupport::TestCase
     assert_equal @buy_new_computer.company_information.fax, new_estimate.fax
   end
 
+  test "total_price should be equal sum detail prices" do
+    price = @buy_new_computer.estimate_details.sum(&:price)
+    assert_equal price, @buy_new_computer.total_price
+  end
+
 end

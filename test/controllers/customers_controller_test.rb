@@ -198,7 +198,7 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
       post import_customers_path, params: { file: file }
     end
     assert_response :success
-    assert_not flash[:info].empty?
+    assert_not flash[:notice].empty?
   end
 
   test "invalid csv import" do

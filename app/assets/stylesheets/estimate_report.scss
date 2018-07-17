@@ -11,21 +11,122 @@ h1 {
 }
 
 #left-block {
-	width: 50%;
+	width: 60%;
+	margin-left: 2mm;
+}
+
+#left-block-strong-area {
+	margin-bottom: 5mm;
 }
 
 #right-block {
+	width: 40%;
+	margin-right: 3mm;
+}
+
+.right-block-elements {
+	text-align: right;
+	margin-right: 0;
 }
 
 #estimate-title {
 	border-bottom: solid 1px;
+	margin-top: 1mm;
 }
 
 #customer-name {
 	font-size: 1.5em;
 	border-bottom: solid 1px;
+	margin-right: 2mm;
+}
+
+#title {
+	margin-top: 1mm;
+	font-size: 1.1em;
+}
+
+#total-price {
+	margin-top: 3mm;
+	border-bottom: solid 1px;
+	font-size: 1.1em;
+}
+
+#total-price-num {
+	display: block;
+	text-align: right;
+	font-weight: bold;
+}
+
+#greeting-message {
+	font-size: 0.8em;
+}
+
+#details-area {
+	margin-top: 5mm;
+	margin-left: 2mm;
 }
 
 #details {
+	height: 100mm;
+	border: solid 0.1mm;
+	border-collapse: collapse;
+	td {
+		border: solid 0.1mm;
+		border-collapse: collapse;
+		padding: 1mm;
+		height: 5mm;
+	}
+	th {
+		border: solid 0.1mm;
+		border-collapse: collapse;
+		font-weight: bold;
+	}
 }
 
+.detail-no {
+	width: 10mm;
+}
+
+td.detail-no {
+	text-align: right;
+}
+
+.detail-item-name {
+	width: 90mm;
+}
+
+.detail-quantity {
+	width: 20mm;
+}
+
+td.detail-quantity {
+	text-align: right;
+}
+
+.detail-unit-price {
+	width: 65mm;
+}
+
+td.detail-unit-price {
+	text-align: right;
+}
+
+.detail-price {
+	width: 65mm;
+}
+
+td.detail-price {
+	text-align: right;
+}
+
+#remarks-area {
+	margin-top: 3mm;
+}
+
+#remarks {
+	height: 60mm;
+	border: solid 0.1mm;
+	margin-left: 2mm;
+	margin-right: 3mm;
+	padding: 1mm;
+}

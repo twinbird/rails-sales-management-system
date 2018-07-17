@@ -17,7 +17,7 @@ class UserProfilesController < ApplicationController
     @user = User.new(user_params)
     @user.user_profile.company_information = current_user_company
     if @user.save
-      flash[:info] = t('.user_created')
+      flash[:notice] = t('.user_created')
       redirect_to user_profiles_url
     else
       render 'new'
@@ -30,7 +30,7 @@ class UserProfilesController < ApplicationController
   def update
     if @user.update(user_params)
       sign_in(@user, bypass: true)
-      flash[:info] = t('.user_updated')
+      flash[:notice] = t('.user_updated')
       redirect_to user_profiles_url
     else
       render 'edit'
@@ -39,7 +39,7 @@ class UserProfilesController < ApplicationController
 
   def destroy
     if @user.disable
-      flash[:info] = t('.user_was_disabled')
+      flash[:notice] = t('.user_was_disabled')
     else
       flash[:danger] = t('.user_disable_was_failed')
     end

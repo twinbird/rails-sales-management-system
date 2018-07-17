@@ -12,4 +12,6 @@ class EstimateDetail < ApplicationRecord
     quantity * unit_price
   end
 
+  default_scope { order(:display_order) }
+
 end

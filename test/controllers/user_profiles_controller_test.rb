@@ -50,7 +50,7 @@ class UserProfilesControllerTest < ActionDispatch::IntegrationTest
                                                } } }
     assert_redirected_to user_profiles_url
     follow_redirect!
-    assert_not flash[:info].empty?
+    assert_not flash[:notice].empty?
   end
 
   test "add new user with invalid info" do
@@ -102,7 +102,7 @@ class UserProfilesControllerTest < ActionDispatch::IntegrationTest
 
     delete user_profile_path(@miyagi.user_profile)
     assert_redirected_to user_profiles_path
-    assert_not flash[:info].empty?
+    assert_not flash[:notice].empty?
   end
 
   test "last user must not be disable" do

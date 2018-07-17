@@ -36,6 +36,10 @@ class Estimate < ApplicationRecord
     joins(:customer).joins(:user_profile).where("title LIKE :word OR customers.name LIKE :word OR user_profiles.name LIKE :word", word: "\%#{word}\%")
   }
 
+  def total_price
+    estimate_details.sum(&:price)
+  end
+
   private
 
     def details_count_validate

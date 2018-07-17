@@ -7,7 +7,7 @@
   </div>
   <div class="col-sm-3"></div>
   <div class="col-sm-2">
-    <button class="btn btn-primary btn-sm">印刷</button>
+    <button id="estimate-print-btn" class="btn btn-primary btn-sm"><%= t('.print') %></button>
     <%= link_to t('.edit'), edit_estimate_path(@estimate), class: 'btn btn-warning btn-sm' %>
     <% unless (@estimate.submitted_flag || @estimate.ordered_flag) %>
       <%= link_to t('.destroy'), @estimate, method: :delete, data: { confirm: t('.are_you_sure') }, class: 'btn btn-danger btn-sm' %>
@@ -19,8 +19,6 @@
 
 <div class="row">
   <div class="col-sm-7">
-    <div class="embed-responsive embed-responsive-4by3">
-      <iframe class="embed-responsive-item" src="<%= report_estimate_path(@estimate) %>"></iframe>
-    </div>
+    <iframe id="estimate-frame" src="<%= report_estimate_path(@estimate) %>"></iframe>
   </div>
 </div>

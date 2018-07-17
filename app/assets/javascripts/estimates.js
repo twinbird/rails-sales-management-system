@@ -106,6 +106,9 @@ $(document).on('turbolinks:load', function() {
 			$('#estimate_due_date').prop('disabled', false);
 		}
 	};
+	var print_estimate = function() {
+		$('#estimate-frame')[0].contentWindow.print();
+	};
 
 	$('#estimate_details').on('cocoon:after-insert', toggle_add_detail_button);
 	$('#estimate_details').on('cocoon:after-insert', toggle_remove_detail_button);
@@ -122,6 +125,7 @@ $(document).on('turbolinks:load', function() {
 	$('.remove-detail-button').addClass('disabled');
 	$('#estimate-submit-form').on('submit', attach_detail_display_order);
 	$('#estimate_due_date_pending_flag').on('change', change_due_date_pending_button);
+	$('#estimate-print-btn').on('click', print_estimate);
 	calc_total_amount();
 	attach_detail_change_event();
 

@@ -160,7 +160,7 @@
        </tr>
       </thead>
       <tbody id="estimate_details">
-        <%= form.fields_for :estimate_details, @estimate.estimate_details.order(:display_order) do |detail| %>
+        <%= form.fields_for :estimate_details do |detail| %>
           <%= render 'estimate_detail_fields', f: detail %>
         <% end %>
       </tbody>

@@ -1,124 +1,77 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= stylesheet_link_tag "estimate_report" %>
+    <%= stylesheet_link_tag "estimate_report", media: 'all' %>
   </head>
   <body>
-    <h1><span id="estimate-title">御見積書</span></h1>
+    <h1><span id="estimate-title"><%= t('.title') %></span></h1>
 
     <div id="header-container">
       <div id="left-block">
-        <div id="customer-name-block"><span id="customer-name"><%= @estimate.customer_name %></span>御中</div>
-        <div>件名：<%= @estimate.title %></div>
-        <div>下記の通り、御見積申し上げます。</div>
+        <div id="left-block-strong-area">
+          <div id="customer-name-block"><span id="customer-name"><%= @estimate.customer_name %></span><%= t('.for_the_attention') %></div>
+          <div id="title"><%= t('.estimate_title') %>:<%= @estimate.title %></div>
+          <div id="greeting-message"><%= t('.greeting_message') %></div>
+        </div>
   
-        <div>納期：<%= @estimate.due_date.to_s %></div>
-        <div>支払条件：<%= @estimate.payment_term %></div>
-        <div>有効期限：<%= @estimate.effective_date.to_s %></div>
-        <div>合計金額: 000000000000000000000000</div>
+        <div class="left-block-elements"><%= t('.due_date') %>:<%= @estimate.due_date.to_s %></div>
+        <div class="left-block-elements"><%= t('.payment_term') %>:<%= @estimate.payment_term %></div>
+        <div class="left-block-elements"><%= t('.effective_date') %>:<%= @estimate.effective_date.to_s %></div>
+        <div id="total-price"><%= t('.total_price') %>:<span id="total-price-num" class="left-block-elements"><%= @estimate.total_price.to_s(:delimited) %><%= t('.yen') %></span></div>
       </div>
   
       <div id="right-block">
-        <div>見積No.： <%= @estimate.estimate_no %></div>
-        <div>見積日: <%= @estimate.issue_date.to_s %></div>
+        <div class="right-block-elements"><%= t('.estimate_no') %>: <%= @estimate.estimate_no %></div>
+        <div class="right-block-elements"><%= t('.issue_date') %>: <%= @estimate.issue_date.to_s %></div>
     
-        <div><%= @estimate.company_name %></div>
-        <div><%= @estimate.postal_code %></div>
-        <div><%= @estimate.address1 %></div>
-        <div><%= @estimate.address2 %></div>
-        <div><%= @estimate.email %></div>
-        <div><%= @estimate.tel %></div>
-        <div><%= @estimate.fax %></div>
+        <div class="right-block-elements"><%= @estimate.company_name %></div>
+        <div class="right-block-elements"><%= t('.postal_code') %><%= @estimate.postal_code %></div>
+        <div class="right-block-elements"><%= @estimate.address1 %></div>
+        <div class="right-block-elements"><%= @estimate.address2 %></div>
+        <div class="right-block-elements"><%= t('.email') %>:<%= @estimate.email %></div>
+        <div class="right-block-elements"><%= t('.tel') %>:<%= @estimate.tel %></div>
+        <div class="right-block-elements"><%= t('.fax') %>:<%= @estimate.fax %></div>
       </div>
     </div>
 
-    <table id="details">
-      <thead>
-        <tr>
-          <td class="detail-no">No.</td>
-          <td class="detail-item-name">品名</td>
-          <td class="detail-quantity">数量</td>
-          <td class="detail-unit-price">単価</td>
-          <td class="detail-price">金額</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="detail-no">1</td>
-          <td class="detail-item-name">test item</td>
-          <td class="detail-quantity">999</td>
-          <td class="detail-unit-price">10000</td>
-          <td class="detail-price">9990000</td>
-        </tr>
-        <tr>
-          <td class="detail-no">1</td>
-          <td class="detail-item-name">test item</td>
-          <td class="detail-quantity">999</td>
-          <td class="detail-unit-price">10000</td>
-          <td class="detail-price">9990000</td>
-        </tr>
-        <tr>
-          <td class="detail-no">1</td>
-          <td class="detail-item-name">test item</td>
-          <td class="detail-quantity">999</td>
-          <td class="detail-unit-price">10000</td>
-          <td class="detail-price">9990000</td>
-        </tr>
-        <tr>
-          <td class="detail-no">1</td>
-          <td class="detail-item-name">test item</td>
-          <td class="detail-quantity">999</td>
-          <td class="detail-unit-price">10000</td>
-          <td class="detail-price">9990000</td>
-        </tr>
-        <tr>
-          <td class="detail-no">1</td>
-          <td class="detail-item-name">test item</td>
-          <td class="detail-quantity">999</td>
-          <td class="detail-unit-price">10000</td>
-          <td class="detail-price">9990000</td>
-        </tr>
-        <tr>
-          <td class="detail-no">1</td>
-          <td class="detail-item-name">test item</td>
-          <td class="detail-quantity">999</td>
-          <td class="detail-unit-price">10000</td>
-          <td class="detail-price">9990000</td>
-        </tr>
-        <tr>
-          <td class="detail-no">1</td>
-          <td class="detail-item-name">test item</td>
-          <td class="detail-quantity">999</td>
-          <td class="detail-unit-price">10000</td>
-          <td class="detail-price">9990000</td>
-        </tr>
-        <tr>
-          <td class="detail-no">1</td>
-          <td class="detail-item-name">test item</td>
-          <td class="detail-quantity">999</td>
-          <td class="detail-unit-price">10000</td>
-          <td class="detail-price">9990000</td>
-        </tr>
-        <tr>
-          <td class="detail-no">1</td>
-          <td class="detail-item-name">test item</td>
-          <td class="detail-quantity">999</td>
-          <td class="detail-unit-price">10000</td>
-          <td class="detail-price">9990000</td>
-        </tr>
-        <tr>
-          <td class="detail-no">1</td>
-          <td class="detail-item-name">test item</td>
-          <td class="detail-quantity">999</td>
-          <td class="detail-unit-price">10000</td>
-          <td class="detail-price">9990000</td>
-        </tr>
-      </tbody>
-      </tbody>
-    </table>
+    <div id="details-area">
+      <table id="details">
+        <thead>
+          <tr>
+            <th class="detail-no"><%= t('.display_order') %></th>
+            <th class="detail-item-name"><%= t('.product_name') %></th>
+            <th class="detail-quantity"><%= t('.quantity') %></th>
+            <th class="detail-unit-price"><%= t('.unit_price') %></th>
+            <th class="detail-price"><%= t('.price') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @estimate.estimate_details.each do |detail| %>
+          <tr>
+            <td class="detail-no"><%= detail.display_order %></td>
+            <td class="detail-item-name"><%= detail.product_name %></td>
+            <td class="detail-quantity"><%= detail.quantity %></td>
+            <td class="detail-unit-price"><%= detail.unit_price.to_s(:delimited) %></td>
+            <td class="detail-price"><%= (detail.quantity * detail.unit_price).to_s(:delimited) %></td>
+          </tr>
+          <% end %>
+          <% (10 - @estimate.estimate_details.count).times do |i| %>
+          <tr>
+            <td class="detail-no"></td>
+            <td class="detail-item-name"></td>
+            <td class="detail-quantity"></td>
+            <td class="detail-unit-price"></td>
+            <td class="detail-price"></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-    <div>備考：</div>
-    <div><%= @estimate.remarks %></div>
+    <div id="remarks-area">
+      <div><%= t('.remarks') %>:</div>
+      <div id="remarks"><%= @estimate.remarks %></div>
+    </div>
   </body>
 </html>
 
