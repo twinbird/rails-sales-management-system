@@ -130,7 +130,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 4, json.size
     assert_equal @egg_break_machine.id, json["id"]
     assert_equal @egg_break_machine.name, json["name"]
-    assert_equal @egg_break_machine.default_price, json["default_price"]
+    assert_equal @egg_break_machine.default_price.to_s, json["default_price"]
     assert_equal product_url(@egg_break_machine, format: :json), json["url"]
   end
 
