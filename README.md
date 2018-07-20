@@ -1,24 +1,31 @@
-# README
+# Rails Sales Management System
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.org/twinbird/rails-sales-management-system.svg?branch=master)](https://travis-ci.org/twinbird/rails-sales-management-system)
 
-Things you may want to cover:
+Rails Sales Management SystemはRails5で作られた簡易CRMアプリケーションです.
+Rails5の個人的な学習のために作成されました.
 
-* Ruby version
+## 機能
 
-* System dependencies
+ * 顧客のマスタ管理
+ * 商品のマスタ管理
+ * ユーザ(営業担当者)の管理
+ * 営業日報の管理
+ * 案件の管理
+ * 見積の管理
 
-* Configuration
+## 環境
 
-* Database creation
+ * Ruby 2.5.1
+ * Rails 5.1.6
+ * Postgres 10.x
 
-* Database initialization
+## デモサイト
 
-* How to run the test suite
+Thank you Heroku.
 
-* Services (job queues, cache servers, search engines, etc.)
+[Rails CRM](https://rails-sales-management-system.herokuapp.com/)
 
-* Deployment instructions
+## ライセンス
 
-* ...
+MIT Lisence
