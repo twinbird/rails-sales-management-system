@@ -28,4 +28,4 @@ Thank you Heroku.
 
 ## ライセンス
 
-MIT Lisence
+MIT Licence
