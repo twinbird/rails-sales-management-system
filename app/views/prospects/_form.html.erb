@@ -41,7 +41,7 @@
     <div class="field">
       <%= form.label :prospect_amount, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.text_field :prospect_amount, id: :prospect_prospect_amount, class: 'form-control form-control-sm' %>
+        <%= form.text_field :prospect_amount, id: :prospect_prospect_amount, class: 'form-control form-control-sm', value: number_to_currency(form.object.prospect_amount.to_f, delimiter: '', unit: '') %>
       </div>
     </div>
   </div>

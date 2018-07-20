@@ -14,7 +14,7 @@
     <div class="field">
       <%= form.label :default_price, class: 'control-label col-sm-2' %>
       <div class="col-sm-5">
-        <%= form.text_field :default_price, id: :product_default_price, class: 'form-control form-control-sm' %>
+        <%= form.text_field :default_price, id: :product_default_price, class: 'form-control form-control-sm', value: number_to_currency(form.object.default_price.to_f, delimiter: '', unit: '') %>
       </div>
     </div>
   </div>

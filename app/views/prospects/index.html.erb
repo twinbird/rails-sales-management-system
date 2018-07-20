@@ -44,7 +44,7 @@
         <td><%= prospect.title %></td>
         <td><%= prospect.customer.name %></td>
         <td><%= prospect.rank %></td>
-        <td><%= prospect.prospect_amount %></td>
+        <td><%= number_to_currency(prospect.prospect_amount, unit: '') %></td>
         <td><%= prospect.prospect_order_date&.to_s(:date) %></td>
         <td><%= prospect.prospect_earning_date&.to_s(:date) %></td>
         <td><%= prospect.distribute %></td>
