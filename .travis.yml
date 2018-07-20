@@ -4,11 +4,18 @@ services: postgresql
 bundler_args: "--without develop --deployment -j4"
 cache: bundler
 before_install:
-  - gem install rubocop
+- gem install rubocop
 before_script:
-  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
-  - cp config/database.travis.yml config/database.yml
-  - bundle exec rake db:setup
+- psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+- cp config/database.travis.yml config/database.yml
+- bundle exec rake db:setup
 script:
-  - bundle exec rake test
-  - rubocop --fail-level=W
+- bundle exec rake test
+- rubocop --fail-level=W
+deploy:
+  provider: heroku
+  api_key:
+    secure: Qc5ondNd6GDpcXj5HzZtuHrQjNdG7d/6lTwJ306PVXbIyxIpzh9xdUQkMoofHW1JCJdQq9nBlYGfmm5/FXybCKX6kYKnR9zuxD5EWJ2xif872wrkknIhhDNaz7kWLnk5bmGpENJRwE9gaXjK98mJz/nSxkCqhmSdIRFJjGqHp3uNnGT9jIyHngIbvzD1+9HDePSuwqq2nJrcefd3YEMjWEQSoF7FZ+fLbqEbqdl8A961XgNtW0ggRFa3wuRc+hogHu0XIDGw5iABc03I2qRJqzRoIh+VQmFVGOrDlkvZIMQer0NEoXm/supTqSvTX6jkXl8LXC7XmBAeI2/0QM7G/1NybImwgH+GwumtOkRsXUmgWcCI1W5uu05xPXqRo+h0Eegx3G3IbVXQLbx9V3cc96zFQoRIL3h0FNlF9utfgXv/ZGC5Bj5S5VAQ9s/629sRb387EpqPNKu1Y5IBLFfPOprsIWDRKMWz1gt+le+N8e2lSCRDPnopVIsW+85hZu6eyTfvJKbvlVvF8s+swYmkruOryz9+j78ugKyR4WzVmb70AV+uG4VLkbaDM2qogwAu9ESwa1zLwZbvzMFXD7VaHmkYVakRGRJjuE0phVZHdFzhQB8zrnTfayzByIeNpytHRq+V7r2+Sxpfi6a5L9WCxRh9q5NO7iwUwJ3+eykvW2w=
+  app: rails-sales-management-system
+  on:
+    repo: twinbird/rails-sales-management-system
